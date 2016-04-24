@@ -1,0 +1,32 @@
+<!--
+    TYPE:           nhSunblindElement
+    TEMPLATENAME:   list
+-->
+
+<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+   <a href="" class="pull-left">                                     
+        <img class="icon img-circle p-xs m-r-md blue-bg" ng-src="{{fhem.Image}}" />     
+    </a>
+     <div class="media-body">        
+        <strong>{{text}}</strong>
+        
+        <br/>
+        <div class="pull-left text-center vertical-align fw-semi-bold text-gray nowrap">
+            {{fhem.Readings.state.Value|translate}} ({{fhem.Readings.position.Value}} &#37;)
+        </div>
+        <div class="btn-group btn-group-xs pull-right">
+            <label class="btn btn-white" uib-btn-radio="'on'" ng-model="blindLevel" ng-click="setBlindState()">
+                On
+            </label>
+            <label class="btn btn-white" uib-btn-radio="'off'" ng-model="blindLevel" ng-click="setBlindState()">
+                Off
+            </label>
+            <label class="btn btn-white" uib-btn-radio="'stop'" ng-model="blindLevel" ng-click="setBlindState()">
+                Stop
+            </label>           
+        </div>       
+        <br/>          
+        <br/>                                                                                                                   
+        <small class="text-muted">{{fhem.Readings.state.Time | date:'dd-MM-yyyy'}}</small>
+    </div>
+</li>

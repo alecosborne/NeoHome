@@ -1,0 +1,20 @@
+<!--
+    TYPE:           nhStateElement           
+    TEMPLATENAME:   list
+-->
+
+<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+    
+     <a href="" class="pull-left">                                     
+        <img class="icon img-circle p-xs m-r-md" ng-src="{{fhem[0].Readings.state.Value === onState && imageOn || imageOff}}" 
+                ng-class="{true:'{{imageClassOn}} {{bgColorOn}}',false:'{{imageClassOff}} {{bgColorOff}}'}[fhem[0].Readings.state.Value === '{{onState}}']"/>     
+    </a>
+
+    <div class="media-body ">        
+        <strong>{{text}}</strong>
+
+        <p class="m-b-xs" translate={{fhem[0].Readings.state.Value}}></p>
+        <br/>
+        <small class="text-muted">{{fhem[0].Readings.state.Time}}</small>
+    </div>                               
+</li>

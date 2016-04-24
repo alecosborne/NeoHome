@@ -1,0 +1,22 @@
+<!--
+    TYPE:           nhSceneElement
+    TEMPLATENAME:   list
+-->
+<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+    
+    <div class="im-centered">
+        <div class="row">           
+                <div ng-repeat="item in sceneNamesArray" class="col-xs-2 col-sm-2 col-md-2">  
+                    <button class="btn btn-default btn-circle btn-lg" type="button" ng-click="setScene($index)"><img  ng-src="{{sceneIconsArray[$index]}}"/></button>
+                </div>
+
+                <div ng-repeat="item in modeNamesArray" class="col-xs-2 col-sm-2 col-md-2" ng-class="{' col-xs-offset-1 col-sm-offset-1': $index == 0}">  
+                    <button class="btn btn-primary btn-circle btn-lg" type="button" ng-click="setMode($index)" ng-class="{true:'btn-danger',false:'btn-primary'}[modeNamesboolValue[$index]]">
+                        <img  ng-src="{{modeIconsArray[$index]}}"/>
+                    </button>
+                </div>
+        </div>
+    </div>       
+        <small class="text-muted">{{fhem.Readings.state.Time | date:'dd-MM-yyyy'}}</small>
+    </div>                               
+</li>

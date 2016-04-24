@@ -1,0 +1,54 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+
+                <div class="dropdown profile-element" dropdown>
+                    <span>
+                            <img alt="image" class="img-circle" src="images/neohome.png">
+                    </span>
+                    
+                    <a class="dropdown-toggle" dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">{{main.app_name}}</strong>
+                             </span>
+                                <!--<span class="text-muted text-xs block">Example menu<b class="caret"></b></span>-->
+                            </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="">Logout</a></li>
+                    </ul>
+                </div>
+                            
+                
+                <!--<div class="logo-element">
+                    <img alt="image" class="img-circle" src="images/neohome.png">   
+                </div>-->
+                <i class="fa fa-home fa-4x logo-element-font"/>
+
+            </li>            
+            <li ui-sref-active="active">
+                <a ui-sref="index.dashboard"><i class="fa fa-tachometer"></i> <span class="nav-label">{{'NAVIGATION.ITEM.DEMO_DASHBOARD' | translate}}</span></a>
+            </li>
+
+            <li ng-class="{active: $state.includes('rooms')}">
+                <a href="index.html"><i class="fa fa-home"></i> <span class="nav-label">{{'NAVIGATION.ITEM.DEMO_ROOMS' | translate}}</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('rooms')}">
+                    <li ui-sref-active="active"><a ui-sref="rooms.demo_room1">{{'NAVIGATION.ITEM.DEMO_ROOM_1' | translate}}</a></li>
+                </ul>
+            </li>
+            
+            <li>                
+                <h5 class="sidebar-nav-title">{{'NAVIGATION.TITLE.THEMA' | translate}}<a class="action-link" href="#"></a></h5>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="index.demo_thema1"><i class="fa fa-shield"></i> <span class="nav-label">{{'NAVIGATION.ITEM.DEMO_THEMA_1' | translate}}</span></a>
+            </li>
+                     
+            
+
+        </ul>
+
+    </div>
+</nav>

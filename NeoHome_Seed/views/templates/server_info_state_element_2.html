@@ -1,0 +1,75 @@
+<!--
+    TYPE:           nhStateElement           
+    TEMPLATENAME:   serverinfo
+-->
+
+<div class="ibox float-e-margins">
+			    <div class="widget-head-color-box blue-bg p-lg text-center">
+			        <div class="m-b-md">
+			            <h2 class="font-bold no-margins">
+			                {{text}}
+			            </h2>
+			            <small></small>
+			        </div>              
+
+			     
+						<i class="fa fa-server maintype-circle-icon"></i>  				
+			    </div>
+			    <div class="ibox-content no-padding">
+			        <ul class="list-group">
+			        	<li class="list-group-item">
+			        		<div class="media-body">
+			        			<ul class="no-padding">
+			        				<!--Uptime-->
+			        				<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.UPTIME"></strong>
+     							       <span>{{fhem.Readings.uptime.Value | readableTime }}</span>
+									</li>
+									<!--CPU-Model-->
+									<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.CPU_MODEL_NAME"></strong>
+     							       <span>{{fhem.Readings.cpu_model_name.Value}}</span>
+									</li>
+									<!--CPU-Core-Count-->
+									<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.CPU_CORE_COUNT"></strong>
+     							       <span>{{fhem.Readings.cpu_core_count.Value}}</span>
+									</li>
+									<!--IP-Address-->
+									<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.IP_ADDRESS"></strong>
+     							       <span>{{fhem.Readings.eth0_ip.Value}}</span>
+									</li>
+									<!--Network-Speed-->
+									<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.NETWORK_SPEED"></strong>
+     							       <span>{{fhem.Readings.eth0_speed.Value}} MBit</span>
+									</li>
+			        			</ul>
+						        
+						        
+						    </div>    
+			     
+			        	</li>
+			        	<li class="list-group-item">
+			        		<div class="m-r-md text-center">
+			        			<ui-knob class="server-knob" value="cpuTempAvg" options="knobstyleCpuTemperature" ng-model="cpuTempAvg"></ui-knob>
+			        		</div>
+
+			        		<div class="m-r-md text-center">
+			        			<ui-knob class="server-knob" value="statCpuUserPercent" options="knobstyleCpuUserPercent" ng-model="statCpuUserPercent"></ui-knob>
+			        		</div>
+
+			        		<div class="m-r-md text-center">
+			        			<ui-knob class="server-knob" value="ramUsedPercent" options="knobstyleRamUsedPercent" ng-model="ramUsedPercent"></ui-knob>
+			        		</div>
+
+			        		<div class="m-r-md text-center">
+			        			<ui-knob class="server-knob" value="diskUsedPercent" options="knobstyleDiskUsedPercent" ng-model="diskUsedPercent"></ui-knob>
+			        		</div>
+			        	</li>
+			        	
+			        	
+			        </ul>
+			    </div>
+			</div>

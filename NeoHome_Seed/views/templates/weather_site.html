@@ -1,0 +1,265 @@
+<div class="col-lg-4">
+        <div class="widget-head-color-box blue-bg p-sm text-left">
+            <div class="m-b-md">
+            	<i class="fa fa-map-marker pull-left text-black"></i>{{fhem.weather.location}}
+
+            	<table class="">
+	                <tbody>
+	                	<tr>
+	                		<td rowspan="2">
+	                			<h1 class="font-bold no-margins font-size-huge" 
+	                				ng-bind-html="fhem.weather.temperature | number:1 | smallDecimal:'&deg;':true">	                				
+	                			</h1>	                			
+	                		</td>	  
+	                		<td class="valign-bottom">
+	                			<img class="iconWeatherTypMini" src="images/weather_01/detail_temp_max.png"/> 	           		
+	                		</td>              			                          		
+	                		<td class="valign-bottom">
+	                			<h5 class="font-bold no-margins pull-right" ng-bind-html="fhem.weather.temperatur_max | number:1 | smallDecimal:'&deg;':true">	                		
+	                			
+	                			</h5>
+	                		</td>
+	                		<td rowspan="2" class="p-l-md">
+	                			<img class="iconWeatherTypMini" ng-src="images/weather_01/trend_{{fhem.weather.temperatur_trend}}.png"/>
+	                		</td>	                		
+	                		
+	                		<td rowspan="2" class="p-l-xl">	                			
+	                			
+                				<i ng-class="['weather-icon wi', getWeatherClass(fhem.weather.date,fhem.weather.sunrise,fhem.weather.sunset)]"></i>                     				                			
+	                		</td>
+	                	</tr>
+	                	<tr>
+	                		<td class="valign-top">
+	                			<img class="iconWeatherTypMini" src="images/weather_01/detail_temp_min.png"/> 	           		
+	                		</td>              			                          			
+	                		<td class="valign-top">
+	                			<h5 class="font-bold no-margins pull-right" ng-bind-html="fhem.weather.temperatur_min | number:1 | smallDecimal:'&deg;':true">
+	                			</h5>
+	                		</td>
+	                	</tr>		
+	             	</tbody>
+				</table>			               
+                <h2>{{fhem.weather.description}}</h2>
+            </div>
+ 			<div class="col-xs-12 row">
+	 			<div class="row">
+		            <div class="col-xs-3">
+		            	<ul class="weather-list">
+		                	<li><i class="wi wi-thermometer-exterior"></i><p class="inline">{{fhem.weather.temperatur_min | number:0}}&deg;</p></li>
+		                	<li><i class="wi wi-thermometer"></i><p class="inline">{{fhem.weather.temperatur_max | number:0}}&deg;</p></li>		
+		              	</ul>
+		            </div>
+		            <div class="col-xs-3">
+		            	<ul class="weather-list">
+		                	<li><i class="wi wi-strong-wind"></i><p class="inline" ng-bind-html="fhem.weather.wind_strength | number:1 | smallDecimal:' km&frasl;h'"/></li>
+		                	<li><i class="wi wi-humidity"></i><p class="inline" ng-bind-html="fhem.weather.humidity | number:0 | smallDecimal:' &#37;'"/></li>		
+		              	</ul>
+		            </div>
+		            <div class="col-xs-3">
+		            	<ul class="weather-list">
+		                	<li><i class="wi wi-barometer"></i><p class="inline" ng-bind-html="fhem.weather.pressure | number:0 | smallDecimal:' hPa'"/></li>
+		                	<li><i class="wi wi-umbrella"></i>
+		                	<p class="inline" ng-bind-html="fhem.weather.rain | number:2 | smallDecimal:' l&frasl;m&sup2;'"/></li>
+		              	</ul>
+		            </div>
+		            <div class="col-xs-3">
+		            	<ul class="weather-list">
+		                	<li><i class="wi wi-sunrise"></i><p class="inline">{{fhem.weather.sunrise | unixTimestampToUTC | date:'HH:mm'}}</p></li>
+		                	<li><i class="wi wi-sunset"></i><p class="inline">{{fhem.weather.sunset | unixTimestampToUTC | date:'HH:mm'}}</p></li>
+		              	</ul>
+		            </div>
+		        </div>
+	        </div>
+
+			<div class="row">
+				
+			</div>            
+        </div>
+        <div class="blue-bg ibox-footer p-b-lg">        
+        	<p class="pull-right">{{fhem.weather.date | unixTimestampToUTC | date:'MMM. dd HH:mm'}}
+        		<a class="" ng-click="getWeatherData();">
+        			<i class="fa fa-refresh text-white"></i>
+				</a>
+        	</p>
+        	
+		
+        </div>
+        <div ng-controller="WeatherForecastToggle">
+	        <div class="widget-text-box">
+	        	<div class="row">
+	        	<div class="col-xs-4 pull-left">
+	        		<h4 class="media-heading">Today</h4> 		            
+		            <a ng-click="setTab(1); loadChartDataForecastHourly();" class="btn btn-xs" ng-class="{'btn-success' : isTab(1), 'btn-white' : dataTab != 1}"><i class="fa fa-bar-chart-o"></i> Chart</a>
+	        	</div>
+	        	<div class="col-xs-4 pull-right">
+		            <h4 class="media-heading">Forecast Hourly</h4> 
+		            <a ng-click="setTab(0)" class="btn btn-xs" 
+		            ng-class="{'btn-success' : isTab(0), 'btn-white' : dataTab != 0}"><i class="fa fa-list"></i> List </a>
+		            <a ng-click="setTab(1); loadChartDataForecastHourly();" class="btn btn-xs" ng-class="{'btn-success' : isTab(1), 'btn-white' : dataTab != 1}"><i class="fa fa-bar-chart-o"></i> Chart</a>
+	            </div>
+	            <div class="col-xs-4 pull-right">
+		            <h4 class="media-heading">Forecast Daily</h4> 
+		            <a ng-click="setTab(2)" class="btn btn-xs" ng-class="{'btn-success' : isTab(2), 'btn-white' : dataTab != 2}"><i class="fa fa-list"></i> List </a>
+		            <a ng-click="setTab(3); loadChartDataForecastDaily();" class="btn btn-xs" ng-class="{'btn-success' : isTab(3), 'btn-white' : dataTab != 3}"><i class="fa fa-bar-chart-o"></i> Chart</a>
+	            </div>
+	            </div>
+	            <!--<a href ng-click="showData = !showData"><i class="fa fa-laptop"></i> <span class="nav-label">Main page</span> </a>          -->
+	        </div>
+	        <!--forecast hourly-->
+	        <div ng-show="isTab(0)" class="widget-text-box no-padding">
+	            <slick ng-if="fhem.weather.forecast.hourly" init-onload="true" data="fhem.weather.forecast.hourly" class="slick_weather" infinite="true" slides-to-show="3" slides-to-scroll="1" center-mode="false"
+	            responsive="[ { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 3, infinite: true, dots: true } }, { breakpoint: 600, settings: { slidesToShow: 2, slidesToScroll: 2 } }, { breakpoint: 480, settings: { slidesToShow: 2, slidesToScroll: 1 } } ]">
+	                
+	                <div ng-repeat="forecast in fhem.weather.forecast.hourly | limitTo:6">
+	                    <div class="ibox-content blue-bg text-center">			
+	                    	<h2>{{forecast.date | unixTimestampToUTC | date:'EEEE'}}</h2>		                    
+	                        <h4>{{forecast.date | unixTimestampToUTC | date:'HH:mm'}}</h4>
+	                        <!--<img class="iconWeatherForecast" ng-src="images/weather_01/{{forecast.id}}d.png"/>-->
+	                        <i ng-class="['font-size-large wi', getWeatherClass(forecast.date,fhem.weather.sunrise,fhem.weather.sunset)]"></i>						     
+
+	                        <br/>
+	                        <div class="text-left m-t-md p-l">
+	                        <ul class="weather-list">		                		
+		                		<li><i class="wi wi-thermometer"></i><p class="inline">{{forecast.temperatur_min | number:0}}&deg; &frasl; {{forecast.temperatur_max | number:0}}&deg;</p></li>
+		                		<li><i class="wi wi-barometer"></i><p class="inline">{{forecast.pressure | number:0}} hPa</p></li>	
+		                		<li><i class="wi wi-humidity"></i><p class="inline">{{forecast.humidity | number:0}} &#37;</p></li>	
+		                		<li><i class="wi wi-strong-wind"></i><p class="inline">{{forecast.wind | number:0}} m&frasl;s</p></li>	
+		                		<li><i class="wi wi-umbrella"></i><p class="inline">{{forecast.precipitation | number:2}} l&frasl;m&sup2;</p></li>	
+		              		</ul>
+		              		</div>                  
+		              		<!--
+	                        <table class="table table-stripped m-t-md">
+	                            <tbody>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">	                                    
+	                                    <i class="wi wi-thermometer"></i>
+	                                </td>
+	                                <td  class="no-borders no-top-bottom-padding">
+										<h6 class="font-bold">{{forecast.temperatur_min | number:0}}&deg; &frasl; {{forecast.temperatur_max | number:0}}&deg;</h6>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <img class="iconWeatherTypMini" src="images/weather_01/detail_pressure.png"/>
+	                                </td>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                     <h6 class="font-bold">{{forecast.pressure | number:0}} hPa</h6>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <img class="iconWeatherTypMini" src="images/weather_01/detail_humidity.png"/>
+	                                </td>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <h6 class="font-bold">{{forecast.humidity | number:0}} &#37;</h6>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <img class="iconWeatherTypMini" src="images/weather_01/detail_wind.png"/>
+	                                </td>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                   	<h6 class="font-bold">{{forecast.wind | number:0}} m&frasl;s</h6>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <img class="iconWeatherTypMini" src="images/weather_01/detail_rain.png"/>
+	                                </td>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                   	<h6 class="font-bold">{{forecast.precipitation | number:2}} l&frasl;m&sup2;</h6>
+	                                </td>
+	                            </tr>
+	                            </tbody>
+	                        </table>-->					                        	
+	                    </div>
+	                </div>					                
+	            </slick>
+			</div>
+	        <div ng-show="isTab(1)" class="widget-text-box no-padding blue-bg">
+	        		
+	        		<nvd3 options='statisticsOptionsForecastHourly' data='statisticsDataForecastHourly'></nvd3>
+	        </div>
+
+	        <!--forecast daily-->
+	        <div ng-show="isTab(2)" class="widget-text-box no-padding">
+	            <slick ng-if="fhem.weather.forecast.daily" init-onload="true" data="fhem.weather.forecast.daily" class="slick_weather" infinite="true" slides-to-show="3" slides-to-scroll="1" center-mode="false"
+	            responsive="[ { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 3, infinite: true, dots: true } }, { breakpoint: 600, settings: { slidesToShow: 2, slidesToScroll: 2 } }, { breakpoint: 480, settings: { slidesToShow: 2, slidesToScroll: 1 } } ]">
+	                
+	                <div ng-repeat="forecast in fhem.weather.forecast.daily | limitTo:6">
+	                    <div class="ibox-content blue-bg text-center">					                    
+	                        <h2>{{forecast.date | unixTimestampToUTC | date:'EEEE'}}</h2>
+	                        <!--<img class="iconWeatherForecast" ng-src="images/weather_01/{{forecast.id}}d.png"/>-->						 
+	                        <i ng-class="['font-size-large wi', getWeatherClass(forecast.date,fhem.weather.sunrise,fhem.weather.sunset)]"></i>                      
+
+	                        <br/>
+	                        <div class="text-left m-t-md p-l">
+	                        <ul class="weather-list">		                		
+		                		<li><i class="wi wi-thermometer"></i><p class="inline">{{forecast.temperatur_min | number:0}}&deg; &frasl; {{forecast.temperatur_max | number:0}}&deg;</p></li>
+		                		<li><i class="wi wi-barometer"></i><p class="inline">{{forecast.pressure | number:0}} hPa</p></li>	
+		                		<li><i class="wi wi-humidity"></i><p class="inline">{{forecast.humidity | number:0}} &#37;</p></li>	
+		                		<li><i class="wi wi-strong-wind"></i><p class="inline">{{forecast.wind | number:0}} m&frasl;s</p></li>	
+		                		<li><i class="wi wi-umbrella"></i><p class="inline">{{forecast.precipitation | number:2}} l&frasl;m&sup2;</p></li>	
+		              		</ul>
+		              		</div>  
+		              		<!--
+	                        <table class="table table-stripped m-t-md">
+	                            <tbody>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <img class="iconWeatherTypMini" src="images/weather_01/detail_temp_min.png"/>
+	                                </td>
+	                                <td  class="no-borders no-top-bottom-padding">
+										<h6 class="font-bold">{{forecast.temperatur_min | number:0}}&deg; &frasl; {{forecast.temperatur_max | number:0}}&deg;</h6>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <img class="iconWeatherTypMini" src="images/weather_01/detail_pressure.png"/>
+	                                </td>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                     <h6 class="font-bold">{{forecast.pressure | number:0}} hPa</h6>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <img class="iconWeatherTypMini" src="images/weather_01/detail_humidity.png"/>
+	                                </td>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <h6 class="font-bold">{{forecast.humidity | number:0}} &#37;</h6>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <img class="iconWeatherTypMini" src="images/weather_01/detail_wind.png"/>
+	                                </td>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                   	<h6 class="font-bold">{{forecast.wind | number:0}} m&frasl;s</h6>
+	                                </td>
+	                            </tr>
+	                            <tr>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                    <img class="iconWeatherTypMini" src="images/weather_01/detail_rain.png"/>
+	                                </td>
+	                                <td class="no-borders no-top-bottom-padding">
+	                                   	<h6 class="font-bold">{{forecast.precipitation | number:2}} l&frasl;m&sup2;</h6>
+	                                </td>
+	                            </tr>
+	                            </tbody>
+	                        </table>	-->				                        	
+	                    </div>
+	                </div>					                
+	            </slick>
+			</div>
+	        <div ng-show="isTab(3)" class="widget-text-box no-padding blue-bg">
+	        		
+	        		<nvd3 options='statisticsOptionsForecastDaily' data='statisticsDataForecastDaily'></nvd3>
+	        </div>
+        </div>
+    </div>
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+<div class="row animated fadeInRight">
+    <div class="col-lg-4">
+        <div class="ibox float-e-margins">
+            <div class="widget-head-color-box blue-bg p-lg text-center">
+                <div class="m-b-md">
+                    <h2 class="font-bold no-margins">
+                        {{'SUBTITLE.DEMO_SUBTITLE_BIG_BLOCK' | translate}}
+                    </h2>
+                    <small></small>
+                </div>              
+                <i class="fa fa-tint maintype-circle-icon"></i>               
+            </div>
+            <div class="ibox-content no-padding">
+                <ul class="list-group">
+                    <nh-state-element     
+			            data-template="list_switch"
+
+			            data-fhem-names="FHEM_DEMO_SWITCH_1"
+			            data-text="{{'ELEMENTTEXT.DEMO_SWTICH' | translate}}"
+
+			            data-on-state = "on"             
+			            data-off-state = "off"               
+
+			            data-bg-color="white-bg"  
+			            data-bg-color-on="red-bg"
+			            data-bg-color-off="blue-bg"                       
+
+			            data-image-on="images/controls/alarmanlage_ext.png"
+			            data-image-off="images/controls/alarmanlage_ext_open.png"     
+			            data-image-class-on="iconOn"
+			            data-image-class-off="iconOff">
+			        </nh-state-element>
+					<nh-state-element     
+                        data-template="list"
+
+                        data-fhem-names="FHEM_DEMO_STATE" 
+                        data-text="{{'ELEMENTTEXT.DEMO_STATE'| translate}}"
+
+                        data-state-only = "true"
+                        data-on-state = "open"               
+                        data-off-state = "closed"                
+
+                        data-bg-color="white-bg"  
+                        data-bg-color-on="red-bg"
+                        data-bg-color-off="blue-bg"                        
+
+                        data-image-on="images/controls/door_open.png"
+                        data-image-off="images/controls/door_closed.png"     
+                        data-image-class-on="iconOn"
+                        data-image-class-off="iconOff"
+
+                        data-brand-color="opacity" 
+                        data-brand-color-on="red-bg"
+                        data-brand-color-off="blue-bg">
+                    </nh-state-element> 
+                </ul>
+            </div> 
+        </div>                      
+    </div>
+   
+    <div class="col-lg-4">   
+        <div class="ibox float-e-margins">
+            <div class="widget-head-color-box blue-bg p-xs">
+                <h5 class="font-bold no-margins">
+                    {{'SUBTITLE.DEMO_SUBTITLE_BLOCK' | translate}}                
+                </h5>               
+            </div>
+            <div class="ibox-content no-padding">
+                <ul class="list-group">
+                    <nh-state-element     
+                        data-template="list"
+
+                        data-fhem-names="FHEM_DEMO_STATE" 
+                        data-text="{{'ELEMENTTEXT.DEMO_STATE'| translate}}"
+
+                        data-state-only = "true"
+                        data-on-state = "open"               
+                        data-off-state = "closed"                
+
+                        data-bg-color="white-bg"  
+                        data-bg-color-on="red-bg"
+                        data-bg-color-off="blue-bg"                        
+
+                        data-image-on="images/controls/door_open.png"
+                        data-image-off="images/controls/door_closed.png"     
+                        data-image-class-on="iconOn"
+                        data-image-class-off="iconOff"
+
+                        data-brand-color="opacity" 
+                        data-brand-color-on="red-bg"
+                        data-brand-color-off="blue-bg">
+                    </nh-state-element>                                        
+                </ul>
+            </div>               
+        </div>
+    </div>
+</div>

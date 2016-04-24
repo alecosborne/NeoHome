@@ -1,0 +1,12 @@
+<!--
+    TYPE:           nhCounterElement
+    TEMPLATENAME:   list
+-->
+
+<li class="list-group-item">
+    <p class="text-light fs-mini m">
+        {{text}}
+        <span class="badge {{badgeColor}} pull-right" ng-class="{true:'{{badgeColorOn}}',false:'{{badgeColorOff}}'}[fhem.count >='{{onState}}']">{{fhem.count}}</span>
+    </p>
+
+</li>

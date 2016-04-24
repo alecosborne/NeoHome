@@ -1,0 +1,58 @@
+<!--
+    TYPE:           nhBlindElement
+    TEMPLATENAME:   list
+-->
+<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+    
+     <a href="" class="pull-left">                                     
+        <img class="icon img-circle p-xs m-r-md" ng-src="{{fhem.Image}}" 
+                ng-class="{true:'{{imageClassOn}} {{bgColorOn}}',false:'{{imageClassOff}} {{bgColorOff}}'}[fhem[0].Readings.state.Value === '{{onState}}']"/>     
+    </a>
+
+    <div class="media-body ">        
+        <strong>{{text}}</strong>
+
+        <p class="m-b-xs" translate={{fhem[0].Readings.state.Value}}></p>
+        <br/>
+        
+        <div class="pull-left text-center vertical-align fw-semi-bold text-gray nowrap">
+            {{fhem.Readings.state.Value|translate}} &#37;
+        </div>
+                                  
+        <div class="btn-group btn-group-xs pull-right">
+            <label class="btn btn-white" uib-btn-radio="0" ng-model="blindLevel" ng-click="setBlindState()">
+                0 &#37;
+            </label>
+            <label class="btn btn-white" uib-btn-radio="25" ng-model="blindLevel" ng-click="setBlindState()">
+               25 &#37;
+            </label>
+            <label class="btn btn-white" uib-btn-radio="50" ng-model="blindLevel" ng-click="setBlindState()">
+                50 &#37;
+            </label>
+            <label class="btn btn-white" uib-btn-radio="75" ng-model="blindLevel" ng-click="setBlindState()">
+                75 &#37;
+            </label>
+            <label class="btn btn-white" uib-btn-radio="100" ng-model="blindLevel" ng-click="setBlindState()">
+                100 &#37;
+            </label>
+        </div>
+       <br/>
+        <br/>
+        <div class="m-r-md text-center">
+                <!--<knob knob-data="blindLevel" class="m-r-sm" data-fgColor="#1c84c6" data-width="85" data-height="85" knob-options="" data-angleOffset=-125 data-angleArc=250 ng-click="setBlindState()"> 
+                    
+                </knob>-->
+
+                <ui-knob class="blind-knob" value="blindLevel" options="knobstyle" ng-click="setBlindState()" ng-model="blindLevel"></ui-knob>
+        </div>
+                                                                                                                            
+         <!--<div class="col-md-12 text-center">               
+       <slider floor='0' ceiling='100' step-width='1' precision='1' stickiness='3'
+            ng-model='blindLevel' ng-click="setBlindState()">
+        </slider>
+        </div>-->
+               
+      
+        <small class="text-muted">{{fhem.Readings.state.Time | date:'dd-MM-yyyy'}}</small>
+    </div>                               
+</li>

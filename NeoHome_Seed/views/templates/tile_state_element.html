@@ -1,0 +1,31 @@
+<!--
+    TYPE:           nhStateElement 
+    TEMPLATENAME:   tile
+-->
+
+<div class="widget tile-widget p-lg text-center no-padding {{bgColor}}" ng-click="setControlState(0)" ng-class="{true:'{{bgColorOn}}',false:'{{bgColorOff}}'}[fhem[0].Readings.state.Value == '{{onState}}']">
+    <div class="p-m">
+        <img class="tile-icon" ng-src="{{fhem[0].Readings.state.Value == onState && imageOn || imageOff}}" 
+				ng-class="{true:'{{imageClassOn}}',false:'{{imageClassOff}}'}[fhem[0].Readings.state.Value == '{{onState}}']"/>	
+    </div>
+
+	<div class="tile-footer {{brandColor}}" ng-class="{true:'{{brandColorOn}}',false:'{{brandColorOff}}'}[fhem[0].Readings.state.Value == '{{onState}}']">
+	                {{text}}                                        
+	</div>
+</div>
+
+<!--<div class="tile" ng-class="{{size}}" ng-click="setControlState(0)">
+        <section class="widget text-white {{bgColor}}" ng-class="{true:'{{bgColorOn}}',false:'{{bgColorOff}}'}[fhem[0].Readings.state.Value === '{{onState}}']">
+            <div class="widget-body icon-only">                        
+                    
+				<img class="" ng-src="{{fhem[0].Readings.state.Value === onState && imageOn || imageOff}}" 
+				ng-class="{true:'{{imageClassOn}}',false:'{{imageClassOff}}'}[fhem[0].Readings.state.Value === '{{onState}}']"/>						
+                    
+            </div>
+            <footer class="{{brandColor}}" ng-class="{true:'{{brandColorOn}}',false:'{{brandColorOff}}'}[fhem[0].Readings.state.Value == '{{onState}}']">
+                {{text}}                                        
+            </footer>
+        </section>
+</div>
+
+

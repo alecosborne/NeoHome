@@ -1,0 +1,28 @@
+<div class="wrapper wrapper-content animated fadeInRight00 landing-page">
+
+<h2 class="page-title text-black" translate="TITLE.DEMO_DASHBOARD"></h2>
+	<div class="row">
+		<div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+			<nh-state-element 
+				data-template="tile"
+
+				data-fhem-names="FHEM_DEMO_SWITCH_1"	
+				data-text="{{'ELEMENTTEXT.DEMO_SWTICH' | translate}}"
+				data-on-state = "on"				
+				data-off-state = "off"
+
+				data-bg-color="blue-bg"				
+
+				data-image-on="images/controls/alarmanlage_ext.png"
+				data-image-off="images/controls/alarmanlage_ext_open.png"		
+				data-image-class-on="tilesIconOn"
+				data-image-class-off="tilesIconOff"
+
+				data-brand-color="opacity" 
+				data-brand-color-on="red-bg"
+				data-brand-color-off="navy-bg"
+				>
+			</nh-state-element>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+<!--
+    TYPE:           nhPresenceElement           
+    TEMPLATENAME:   presence
+-->
+<div class="team">
+    <div ng-repeat="item in fhemNamesArray" class="col-xs-3">
+        <div class="team-member wow zoomIn">
+            <img ng-src="{{imagesArray[$index]}}" class="img-responsive img-circle" alt="" ng-class="{true:'',false:'imageOff'}[fhem[$index].Readings.state.Value === '{{onState}}']">
+            <h4>{{textsArray[$index]}}</h4>
+            <p translate={{fhem[$index].Readings.state.Value}}></p>
+        </div>
+    </div>
+</div>
+<!-- 
+<div ng-repeat="item in fhemNamesArray" class="col-xs-3">
+    <div class="profile-image">
+        <img  <img ng-src="{{imagesArray[$index]}}" class="img-circle circle-border m-b-md" 
+        ng-class="{true:'',false:'imageOff'}[fhem[$index].Readings.state.Value === '{{onState}}']" alt="profile">
+    </div>
+    <div class="col-xs-6">
+        <div class="">
+            <div>
+                <h2 class="no-margins">
+                    {{textsArray[$index]}}
+                </h2>
+                <h4 translate={{fhem[$index].Readings.state.Value}}></h4>
+                <small>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+-->

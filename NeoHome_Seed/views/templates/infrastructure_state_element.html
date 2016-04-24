@@ -1,0 +1,9 @@
+<!--
+    TYPE:           nhStateElement           
+    TEMPLATENAME:   infrastructure
+-->
+
+<li class="list-group-item">
+            <span class="badge badge-primary" ng-class="{true:'{{bgColorOn}}',false:'{{bgColorOff}}'}[fhem[0].Readings.state.Value === '{{offState}}']">{{ fhem[0].Readings.state.Value | translate }}</span>
+    {{text}}
+</li>

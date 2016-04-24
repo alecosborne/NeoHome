@@ -1,0 +1,559 @@
+/* PACE */
+.pace .pace-progress {
+    background: #1c84c6;
+ }
+
+/* TOPNAVEBAR */
+.md-skin .navbar-fixed-top, .md-skin .navbar-static-top {
+    background-color: #1c84c6 !important;
+}
+
+/* SIDEBAR */
+.nav > li.active {
+    border-left: 4px solid #1c84c6;
+}
+
+.sidebar-nav-title{
+	margin: 35px 0 5px 11px;
+    text-transform: uppercase;
+}
+
+.logo-element-font {
+    text-align: center;    
+    color: white;    
+    padding: 18px 0;
+    display: none;
+}
+
+body.mini-navbar .logo-element-font {
+    display: block;
+}
+
+
+
+/*	COLORS */
+.explicit-navy-bg {
+    background-color: #1ab394!important;
+    color: #111111;
+}
+/*
+.bg-primary {
+    background-color: #1ab394;
+    color: #FFFFFF;
+}
+
+.bg-success {
+    background-color: #1c84c6;
+    color: #FFFFFF;
+}
+.bg-warning {
+    background-color: #f8ac59;
+    color: #FFFFFF;
+}
+.bg-warning-light {
+    background-color: #f8ac59;
+    color: #ffffff;
+}
+.bg-danger {
+    background-color: #ed5565;
+    color: #FFFFFF;
+}
+.bg-info {
+    background-color: #23c6c8;
+    color: #FFFFFF;
+}
+.bg-inverse {
+    background-color: #262626;
+    color: #FFFFFF;
+}
+.bg-white {
+    background-color: #FFFFFF;
+    color: #5E5E5E;
+}
+.bg-disable {
+    background-color: #2A2E36;
+    color: #8B91A0;
+}
+*/
+.fc-white {    
+    color: #FFFFFF;
+}
+
+/*	ICON STUFF */
+.maintype-circle-icon  {
+	font-size: 4.6em;
+    width: 1.7em;
+    text-align: center;
+    line-height: 1.5em;    
+    color: #fff;
+    border-radius: 0.8em;
+    border: 6px solid #FFFFFF;
+}
+
+img.iconWeatherForecast {
+  height: 50px;
+  width: 50px;
+}
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+    img.icon {
+        height: 60px;
+        width: 60px;
+    }
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    img.icon {
+        height: 60px;
+        width: 60px;
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+    img.icon {
+        height: 60px;
+        width: 60px;
+    }
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    img.icon {
+        height: 35px;
+        width: 35px;
+    }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+    img.icon {
+          height: 35px;
+          width: 35px;
+    }
+}
+
+img.iconSmall {
+ /* height: 50px;
+  width: 50px;
+  */
+  height: 35px;
+  width: 35px;
+}
+
+/* Iconstate on of a titles */
+.iconOn {    
+
+}
+
+/* Iconstate off of a titles */
+.iconOff{	    
+	opacity: 1.0;
+}
+
+.imageOff{       
+    opacity: 0.1;
+}
+
+img.iconWeatherTypMini{
+    height: 20px;
+    width: 20px;
+}
+
+img.iconWeatherCurrentSmall {
+    height: 150px;
+    width: 150px;
+}
+
+img.inverted {  
+  -webkit-filter: invert(1);
+  filter: invert(1);
+}
+
+/* TEXT */
+.nowrap {
+	white-space: nowrap;
+}
+
+/*
+* Button
+*/
+.btn-default {
+    background-color: #cccccc;
+}
+
+.btn-medium-dim {
+    width: 40px;
+    height: 40px;
+    /*font-size: 22px;*/
+}
+
+.btn-circle.btn-lg {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.btn-circle img{
+    width: 25px;
+    height: 25px;
+}
+
+.btn-outline {
+    background-color: #ffffff;
+}
+
+/*
+* Switch
+*/
+.switch{
+    margin-left: 5px!important;
+    margin-right: 5px!important;
+    top: 0px!important;
+}
+
+.switch.checked.greenSwitch {
+  background: #64bd63;
+  border-color: #64bd63;
+}
+
+.switch.checked.yellowSwitch {
+  background: #f2be35;
+  border-color: #f2be35;
+}
+
+.switch.checked.redSwitch {
+  background: #dd5826;
+  border-color: #dd5826;
+}
+
+/* SLICK */
+.slick-prev:before, .slick-next:before {
+	color: #1c84c6 !important;
+}
+
+.slick_weather .ibox-content {
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;      
+}
+
+.slick_weather.slick-slider {
+	margin-bottom: 5px;
+}
+
+.slick-slide img.iconWeatherForecast {
+	display: inline;
+}
+
+/* PADDING */
+.p-l-none {
+    padding-left: 0;
+}
+.p-l-xxs {
+    padding-left: 1px;
+}
+.p-l-xs {
+    padding-left: 5px;
+}
+.p-l-sm {
+    padding-left: 10px;
+}
+.p-l {
+    padding-left: 15px;
+}
+.p-l-md {
+    padding-left: 20px;
+}
+.p-l-lg {
+    padding-left: 30px;
+}
+.p-l-xl {
+    padding-left: 40px;
+}
+
+.p-b-lg {
+    padding-bottom: 30px;
+}
+
+/* GLOBAL  */
+.no-top-bottom-padding {
+   padding-top: 0 !important;
+   padding-bottom: 0 !important;
+}
+
+/* TABS  */
+.tabs-container .nav-tabs > li.active > a, .tabs-container .nav-tabs > li.active > a:hover, .tabs-container .nav-tabs > li.active > a:focus {    
+    border-bottom-color: transparent;
+    background-color: #1ab394;
+    border:none;
+}
+
+/* LISTS */
+.weather-icon{
+	font-size: 6vw;
+}
+
+/* NG-KNOB */
+ui-knob.heating-knob svg text[style] {
+    text-anchor: middle !important;
+    font: 300 30px "Open Sans", sans-serif!important;
+}
+
+ui-knob.blind-knob svg text[style] {
+    text-anchor: middle !important;
+    font: 300 30px "Open Sans", sans-serif!important;
+}  
+
+ui-knob.server-knob svg text[style] {
+    text-anchor: middle !important;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 30px !important;
+    /*font: 300 30px "Open Sans", sans-serif!important;*/
+}
+
+ui-knob.server-knob svg text.sub-text[style] {
+    text-anchor: middle !important;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 10.5px !important;
+    /*font: 300 30px "Open Sans", sans-serif!important;*/
+}
+
+ui-knob.heating-knob svg {
+    display: inline !important;
+    width: 150px !important;
+    height: 150px !important;
+    margin-top: -50px;
+}
+
+ui-knob.blind-knob svg {
+    display: inline !important;
+    width: 150px !important;
+    height: 150px !important;
+    margin-top: -50px;
+}
+
+ui-knob.server-knob svg {
+    display: inline !important;
+    width: 150px !important;
+    height: 150px !important;
+}
+
+/*weatherlist*/
+@media (max-width: @screen-xs) {
+    weather-icon{font-size: 80px;}
+}
+
+@media (max-width: @screen-md) {
+    weather-icon{font-size: 100px;}
+}
+
+.weather-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.weather-list li {
+    font-size: 12px;
+}
+
+.weather-list li i {    
+    width: 25px;
+    font-size: 20px;
+    margin-right: 10px
+}
+
+/* TEXT */
+.valign-top {
+	vertical-align: top;
+}
+
+.valign-bottom {
+	vertical-align: bottom;
+}
+
+.font-size-small {
+	font-size: 9px;
+}
+
+.font-size-large {
+	font-size: 30px
+}
+
+.font-size-huge {
+	font-size: 60px
+}
+
+.font-size-very-huge {
+	font-size: 100px
+}
+
+.number { font-size: 100%; }
+.decimal { font-size:50%; }
+
+
+/*
+*
+*/
+.blue-bg svg text {
+    font: 300 12px "Open Sans", sans-serif;
+    fill: #FFFFFF;
+}
+
+/*svg {
+    padding: 10px;
+}*/
+
+/*
+*   Center  Bootstrap row
+*/
+.im-centered { margin: auto; max-width: 350px;}
+
+/*
+*   TILE STUFF
+*/
+.tile-icon{
+    height: 75px;
+    width: 75px;
+}
+.tile-widget:hover {
+    cursor: pointer;    
+}
+.tile-widget-click {    
+    -webkit-transform: perspective(500px) rotateY(0.138372rad) !important;
+    transform: perspective(400px) rotateY(0.138372rad) !important;
+}
+.tile-widget .tile-footer {
+    height: 40px;
+    padding: 10px;
+    padding-top: 3px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.tile-widget .tile-badges-footer {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+}
+
+.tile-widget .live-tile.carousel {
+    width: 100%;
+}
+
+/*-----------------------------
+.tile > .widget > footer {  
+    padding-left: 5px;
+    padding-right: 5px; 
+    padding-top: 5px;
+    padding-bottom: 0px;
+    font-size: smaller;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 29px;
+    margin: 0;
+}
+
+.tile > .widget {   
+    position: absolute;
+    height: 100%;  
+    width: 100%;
+}
+
+.tile .widget-body {    
+    position: absolute; 
+    height: 100%;
+    width: 100%;
+}
+
+.tile .widget-body.icon-only{   
+    position: absolute; 
+    height: 100%;
+    width: 100%;
+    left: 0;
+    text-align: center;
+}
+
+.tile .widget-body:first-child {
+  display: block;
+}
+
+.tile .widget-body > img {
+    left: 50%;
+}
+
+.tile {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    float: left;
+    margin: 0 10px 10px 0;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 3px;
+    /*background-color: #eeeeee;
+    box-shadow: inset 0px 0px 1px #FFFFCC;
+}
+
+.tile {
+  width: 120px;
+  height: 120px;
+  margin: 0 10px 10px 0;
+}
+
+.tile.half {
+  width: 55px;
+  height: 55px;
+}
+
+.tile.bighalf {
+    width: 76px;    
+}
+
+.tile.double {
+  width: 250px;
+}
+.tile.double-vertical {
+  height: 250px;
+}
+.tile.triple {
+  width: 380px;
+}
+.tile.triple-vertical {
+  height: 380px;
+}
+.tile.quadro {
+  width: 510px;
+}
+.tile.quadro-vertical {
+  height: 510px;
+}
+
+.tile img {
+    height: 70px;
+    width: 70px;
+}
+
+.tile .tilebadge.label {
+  padding-top: 7px;
+  right: 10px;
+  position: absolute;
+  width: 29px;
+  height: 29px;
+}
+
+.tile .brand,
+.tile .tile-status {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-height: 29px;
+  margin: 0;
+}
+
+*/
+

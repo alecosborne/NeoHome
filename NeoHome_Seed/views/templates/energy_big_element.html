@@ -1,0 +1,143 @@
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5 translate="TITLE.ENERGY"></h5>
+
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-xs btn-white" ng-click="setChart(0); loadChartDataDay();" ng-class="{'active' : isChart(0)}" translate="ENERGY.BUTTON.DAY"/>
+                <button type="button" class="btn btn-xs btn-white" ng-click="setChart(1); loadChartDataDaySumWeek();" ng-class="{'active' : isChart(1)}" translate="ENERGY.BUTTON.WEEK"/>
+                <button type="button" class="btn btn-xs btn-white" ng-click="setChart(2); loadChartDataDaySumMonth();" ng-class="{'active' : isChart(2)}" translate="ENERGY.BUTTON.MONTH"/>
+                <button type="button" class="btn btn-xs btn-white" ng-click="setChart(3); loadChartDataDaySumYear();" ng-class="{'active' : isChart(3)}" translate="ENERGY.BUTTON.YEAR"/>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-lg-9 m-sm">
+                <nvd3 options='statisticsOptions' data='statisticsData' api="api" config="{refreshDataOnly: true}"></nvd3>
+               
+                <!--
+                <div class="flot-chart">
+                    <div flot class="flot-chart-content" dataset="flotData" options="flotOptions"></div>
+                </div>
+                -->
+            </div>
+            <div class="col-lg-3">
+                <h2 translate="ELEMENTTEXT.POWER"></h5>
+                <ul class="stat-list">
+                    <li>
+                       <!--<h2 class="no-margins">{{fhem[0].Readings.energy_kWh_Day.Value | number:2}} kWh</h2>-->
+                    
+
+                        <h2 class="no-margins" counter value="zero1" to="statisticsDataCurrentDay_sum" duration="2000" effect="'linear'">{{zero1 | number:2}} kWh</h2>
+
+                        <small>Total power per day</small>
+                        
+                        <div class="stat-percent" counter value="zero2" to="energyPercentToYear_Day" duration="2000" effect="'linear'"> 
+                            {{ zero2 | number:0 }} % <i class="fa fa-bolt text-navy"></i>
+                        </div>
+                        <div class="progress progress-mini" counter value="zero2" to="energyPercentToYear_Day" duration="2000" effect="'linear'">
+                                <div class="progress-bar ng-binding"
+                                      ng-style="{ width: zero2 + '%' }">                                
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h2 class="no-margins" counter value="zero3" to="statisticsDataCurrentWeek_sum" duration="2000" effect="'linear'">{{zero3 | number:2}} kWh</h2>
+                        <small>Total power per week</small>
+                        <div class="stat-percent" counter value="zero4" to="energyPercentToYear_Week" duration="2000" effect="'linear'"> 
+                            {{ zero4 | number:0 }} % <i class="fa fa-bolt text-navy"></i>
+                        </div>
+                        <div class="progress progress-mini" counter value="zero4" to="energyPercentToYear_Week" duration="2000" effect="'linear'">
+                                <div class="progress-bar ng-binding"
+                                      ng-style="{ width: zero4 + '%' }">                                
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h2 class="no-margins" counter value="zero5" to="statisticsDataCurrentMonth_sum" duration="2000" effect="'linear'">{{zero5 | number:2}} kWh</h2>
+                        <small>Total power per month</small>
+                        <div class="stat-percent" counter value="zero6" to="energyPercentToYear_Month" duration="2000" effect="'linear'"> 
+                            {{ zero6 | number:0 }} % <i class="fa fa-bolt text-navy"></i>
+                        </div>
+                        <div class="progress progress-mini" counter value="zero6" to="energyPercentToYear_Month" duration="2000" effect="'linear'">
+                                <div class="progress-bar ng-binding"
+                                      ng-style="{ width: zero6 + '%' }">                                
+                                </div>
+                        </div>
+                    </li>
+                     <li>
+                        <h2 class="no-margins" counter value="zero7" to="statisticsDataCurrentYear_sum" duration="2000" effect="'linear'">{{zero7 | number:2}} kWh</h2>
+                        <small>Total power per year</small>
+                        <div class="stat-percent" counter value="zero8" to="energyPercentToYear_Year" duration="2000" effect="'linear'"> 
+                            {{ zero8 | number:0 }} % <i class="fa fa-bolt text-navy"></i>
+                        </div>
+                        <div class="progress progress-mini" counter value="zero8" to="energyPercentToYear_Year" duration="2000" effect="'linear'">
+                                <div class="progress-bar ng-binding"
+                                      ng-style="{ width: zero8 + '%' }">                                
+                                </div>
+                        </div>
+                    </li>
+            </div>
+            <!--GAS-->
+            <div class="col-lg-3">
+                <h2 translate="ELEMENTTEXT.GAS"></h5>
+                <ul class="stat-list">
+                    <li>
+                       <!--<h2 class="no-margins">{{fhem[0].Readings.energy_kWh_Day.Value | number:2}} kWh</h2>-->
+
+                        <h2 class="no-margins" counter value="zero9" to="statisticsDataGasCurrentDay_sum" duration="2000" effect="'linear'">{{zero9 | number:2}} kWh</h2>
+
+                        <small>Total power per day</small>
+                        
+                        <div class="stat-percent" counter value="zero10" to="gasPercentToYear_Day" duration="2000" effect="'linear'"> 
+                            {{ zero10 | number:0 }} % <i class="fa fa-fire text-warning"></i>
+                        </div>
+                        <div class="progress progress-mini" counter value="zero10" to="gasPercentToYear_Day" duration="2000" effect="'linear'">
+                                <div class="progress-bar progress-bar-warning ng-binding"
+                                      ng-style="{ width: zero10 + '%' }">                                
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h2 class="no-margins" counter value="zero11" to="statisticsDataGasCurrentWeek_sum" duration="2000" effect="'linear'">{{zero11 | number:2}} kWh</h2>
+                        <small>Total power per week</small>
+                        <div class="stat-percent" counter value="zero12" to="gasPercentToYear_Week" duration="2000" effect="'linear'"> 
+                            {{ zero12 | number:0 }} % <i class="fa fa-fire text-warning"></i>
+                        </div>
+                        <div class="progress progress-mini" counter value="zero12" to="gasPercentToYear_Week" duration="2000" effect="'linear'">
+                                <div class="progress-bar progress-bar-warning ng-binding"
+                                      ng-style="{ width: zero12 + '%' }">                                
+                                </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h2 class="no-margins" counter value="zero13" to="statisticsDataGasCurrentMonth_sum" duration="2000" effect="'linear'">{{zero13 | number:2}} kWh</h2>
+                        <small>Total power per month</small>
+                        <div class="stat-percent" counter value="zero14" to="gasPercentToYear_Month" duration="2000" effect="'linear'"> 
+                            {{ zero14 | number:0 }} % <i class="fa fa-fire text-warning"></i>
+                        </div>
+                        <div class="progress progress-mini" counter value="zero14" to="gasPercentToYear_Month" duration="2000" effect="'linear'">
+                                <div class="progress-bar progress-bar-warning ng-binding"
+                                      ng-style="{ width: zero14 + '%' }">                                
+                                </div>
+                        </div>
+                    </li>
+                     <li>
+                        <h2 class="no-margins" counter value="zero15" to="statisticsDataGasCurrentYear_sum" duration="2000" effect="'linear'">{{zero15 | number:2}} kWh</h2>
+                        <small>Total power per year</small>
+                        <div class="stat-percent" counter value="zero16" to="gasPercentToYear_Year" duration="2000" effect="'linear'"> 
+                            {{ zero16 | number:0 }} % <i class="fa fa-fire text-warning"></i>
+                        </div>
+                        <div class="progress progress-mini" counter value="zero16" to="gasPercentToYear_Year" duration="2000" effect="'linear'">
+                                <div class="progress-bar progress-bar-warning ng-binding"
+                                      ng-style="{ width: zero16 + '%' }">                                
+                                </div>
+                        </div>
+                    </li>
+            </div>
+        </div>
+    </div>
+
+</div>
+    

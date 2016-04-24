@@ -1,0 +1,18 @@
+<!--
+    TYPE:           nhSceneElement
+    TEMPLATENAME:   list_fire
+-->
+<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+
+    <a href="" class="pull-left">
+   
+        <img class="iconSmall img-circle p-xs m-r-md" ng-src="{{fhem[0].Readings.state.Value === onState && imageOn || imageOff}}" 
+                    ng-class="{true:'{{imageClassOn}} {{bgColorOn}}',false:'{{imageClassOff}} {{bgColorOff}}'}[resultCount >='{{onState}}']">  
+     </a>   
+       <div class="media-body m-t-sm">
+            <strong>{{text}}</strong>  
+            <div class="pull-right pull-right" >{{resultName}}
+            <span class="badge m-r {{badgeColor}}" ng-class="{true:'{{badgeColorOn}}',false:'{{badgeColorOff}}'}[resultCount >='{{onState}}']">{{resultCount}}</span>
+            </div>    
+        </div>
+</li>

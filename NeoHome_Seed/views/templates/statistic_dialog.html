@@ -1,0 +1,65 @@
+<div class="ngdialog-message">	 								
+	<div class="row">		
+		<div class="col-md-12">
+             <section class="widget">
+        		<header>
+		            <h4>
+		                <span class="fw-semi-bold">{{text}}</span> {{'DIALOG_TITLE.CHARTS'|translate}}
+		            </h4>
+		            <!--<div class="widget-controls">
+		                <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
+		            </div>-->
+       			</header>
+		        <div class="widget-body">
+		            <p class="fs-mini text-muted">
+		                <div class="row">
+							<div class="col-md-5">
+								<div class="input-group">
+								<input type="text"
+								           class="form-control"
+								           ng-model="$parent.startTime"
+								           data-date-time-picker
+								           data-language="'de'"
+								           data-pick12HourFormat="false"
+								           data-use-current="{{false}}"
+								           data-location="'de'"
+								           ng-change="getControlData()"
+								            />   												
+			                    <span class="input-group-btn">
+			                        <a href="#" class="btn btn-success">
+			                            <span class="glyphicon glyphicon-calendar"></span>
+			                        </a>
+			                    </span>
+								</div>
+							</div>
+							<div class="col-md-offset-2 col-md-5">
+								<div class="input-group">											              
+						            <input type="text"
+								           class="form-control"
+								           ng-model="$parent.endTime"
+								           data-date-time-picker
+								           data-language="'de'"
+								           data-pick12HourFormat="false"
+								           data-use-current="{{false}}"
+								           data-location="'de'"
+								           ng-change="getControlData()"
+								            />                    
+						                <span class="input-group-btn">
+						                    <a href="#" class="btn btn-success">
+						                        <span class="glyphicon glyphicon-calendar"></span>
+						                    </a>
+						                </span>
+								</div>
+							</div>	
+						</div>
+		            </p>                    
+		            <nvd3 options='statisticsOptions' data='statisticsData'></nvd3>		            		            
+		        </div>
+    		</section>            
+        </div>
+	</div>
+
+	<div class="ngdialog-buttons">				
+		<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">{{'DIALOG_BUTTON.CLOSE'|translate}}</button>
+	</div>
+</div>

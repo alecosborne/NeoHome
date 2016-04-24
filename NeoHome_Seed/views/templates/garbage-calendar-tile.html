@@ -1,0 +1,88 @@
+<div class="widget tile-widget p-lg text-center {{bgColor}}" ng-controller="GarbageCalendarCtrl as garbageCalendar">
+            <div class="row">
+                <div class="col-xs-2">
+                    <span class="widget-icon">
+                        <!--<i class="glyphicon glyphicon-trash"></i>-->
+                        <img class="tile-icon" ng-src="{{image}}" 
+                ng-class="{true:'{{imageClassOn}}',false:'{{imageClassOff}}'}[fhem[0].Readings.state.Value === '{{onState}}']"/>
+                    </span>
+                </div>
+
+                <div class="col-xs-10">
+                    <div class="live-tile" data-mode="carousel" data-speed="750" data-delay="1000" data-height="100">
+                        <div class="p-m">
+                            <h1 class="m-xs">{{garbageCalendar.result.items[0].description}}</h1>
+                            
+                            <small>{{garbageCalendar.result.items[0].start.date | date:'dd-MM-yyyy'}}</small>
+                        </div>
+                        <div class="p-m">
+                            <h1 class="m-xs">{{garbageCalendar.result.items[1].description}}</h1>
+                            
+                            <small>{{garbageCalendar.result.items[1].start.date | date:'dd-MM-yyyy'}}</small>
+                        </div>
+                        <div class="p-m">
+                            <h1 class="m-xs">{{garbageCalendar.result.items[2].description}}</h1>
+                            
+                            <small>{{garbageCalendar.result.items[2].start.date | date:'dd-MM-yyyy'}}</small>
+                        </div>
+                        <!--<div>
+                            <h2 class="no-margin">{{garbageCalendar.result.items[0].description}}</h2>
+                            <p class="h5 no-margin fw-normal">{{garbageCalendar.result.items[0].start.date | date:'dd-MM-yyyy'}}</p>
+                        </div>
+                        <div>
+                            <h2 class="no-margin">{{garbageCalendar.result.items[1].description}}</h2>
+                            <p class="h5 no-margin fw-normal">{{garbageCalendar.result.items[1].start.date | date:'dd-MM-yyyy'}}</p>
+                        </div>
+                         <div>
+                            <h2 class="no-margin">{{garbageCalendar.result.items[2].description}}</h2>
+                            <p class="h5 no-margin fw-normal">{{garbageCalendar.result.items[2].start.date | date:'dd-MM-yyyy'}}</p>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+           
+
+            <div class="col-xs-offset-9 col-xs-1 tile-badges-footer {{badgeColor}}" ng-class="{true:'red-bg',false:'navy-bg'}[garbageCalendar.result.isTodayOrTomorow]">&nbsp;</div>                               
+    </div>
+</div>
+
+
+<!--
+<div class="tile double">
+    <section class="widget bg-primary text-white" ng-controller="GarbageCalendarCtrl as garbageCalendar">
+        <div class="widget-body">
+            <div class="row">
+                <div class="col-xs-3">
+                    <span class="widget-icon">
+                        <i class="glyphicon glyphicon-trash"></i>
+                        
+                    </span>
+                </div>
+
+                <div class="col-xs-9">
+                    <div class="live-tile" data-mode="carousel" data-speed="750" data-delay="1000" data-height="57">
+                        <div>
+                            <h3 class="no-margin">{{garbageCalendar.result.items[0].description}}</h3>
+                            <p class="h5 no-margin fw-normal">{{garbageCalendar.result.items[0].start.date | date:'dd-MM-yyyy'}}</p>
+                        </div>
+                        <div>
+                            <h3 class="no-margin">{{garbageCalendar.result.items[1].description}}</h3>
+                            <p class="h5 no-margin fw-normal">{{garbageCalendar.result.items[1].start.date | date:'dd-MM-yyyy'}}</p>
+                        </div>
+                         <div>
+                            <h3 class="no-margin">{{garbageCalendar.result.items[2].description}}</h3>
+                            <p class="h5 no-margin fw-normal">{{garbageCalendar.result.items[2].start.date | date:'dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>                
+        </div>
+        <footer class="{{brandColor}}" ng-class="{true:'{{brandColorOn}}',false:'{{brandColorOff}}'}[fhem.Readings.state.Value == '{{onState}}']">
+        	{{brandText}}            
+         	<span class="tilebadge label {{badgeColor}}" ng-class="{true:'red-bg',false:'navy-bg'}[garbageCalendar.result.isTodayOrTomorow]">&nbsp;</span>             
+    	</footer>				          
+    </section>
+</div>
+-->

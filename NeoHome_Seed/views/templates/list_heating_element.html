@@ -1,0 +1,41 @@
+<!--
+    TYPE:           nhHeatingElement
+    TEMPLATENAME:   list
+-->
+<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+   <a href="" class="pull-left">                                     
+        <img class="icon img-circle p-xs m-r-md blue-bg" ng-src="{{image}}" />     
+    </a>
+     <div class="media-body">        
+        <strong>{{text}}</strong>
+        
+        <br/>
+        <div class="pull-left text-center vertical-align fw-semi-bold text-gray nowrap">
+            {{fhem.Readings["desired-temp"].Value}}&deg; ({{fhem.Readings["measured-temp"].Value}}&deg;)
+        </div>
+        <div class="btn-group btn-group-xs pull-right">
+            <label class="btn btn-white" uib-btn-radio="'auto'" ng-model="controlMode" ng-click="setTemperature()">
+                Auto
+            </label>
+            <label class="btn btn-white" uib-btn-radio="'manual'" ng-model="controlMode" ng-click="setTemperature()">
+                Manual
+            </label>
+            <label class="btn btn-white" uib-btn-radio="'boost'" ng-model="controlMode" ng-click="setTemperature()">
+                Boost
+            </label>           
+        </div>
+       <br/>
+        <br/>
+        <div class="m-r-md text-center">
+               <!-- <knob knob-data="desiredTemperature" class="m-r-sm" data-fgColor="#1c84c6" data-width="85" data-height="85" knob-options="" data-angleOffset=-125 data-angleArc=250 ng-click="setTemperature()"> 
+                    
+                </knob>-->
+
+                <ui-knob class="heating-knob" value="desiredTemperature" options="knobstyle" ng-click="setTemperature()" ng-model="desiredTemperature"></ui-knob>
+              
+        </div>
+                                                                                                                                   
+      
+        <small class="text-muted">{{fhem.Readings.state.Time | date:'dd-MM-yyyy'}}</small>
+    </div>
+</li>

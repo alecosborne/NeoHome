@@ -1,0 +1,83 @@
+<!--
+    TYPE:           nhStateElement           
+    TEMPLATENAME:   serverinfo
+-->
+
+<div class="ibox float-e-margins">
+			    <div class="widget-head-color-box blue-bg p-lg text-center">
+			        <div class="m-b-md">
+			            <h2 class="font-bold no-margins">
+			                {{text}}
+			            </h2>
+			            <small></small>
+			        </div>              
+
+			     
+						<i class="fa fa-server maintype-circle-icon"></i>  				
+			    </div>
+			    <div class="ibox-content no-padding">
+			        <ul class="list-group">
+			        	<li class="list-group-item">
+			        		<div class="media-body">
+			        			<ul class="no-padding">
+			        				<!--Uptime-->
+			        				<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.UPTIME"></strong>
+     							       <span>{{fhem[0].Readings.uptime.Value | readableTime }}</span>
+									</li>
+									<!--CPU-Model-->
+									<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.CPU_MODEL_NAME"></strong>
+     							       <span>{{fhem[0].Readings.cpu_model_name.Value}}</span>
+									</li>
+									<!--CPU-Core-Count-->
+									<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.CPU_CORE_COUNT"></strong>
+     							       <span>{{fhem[0].Readings.cpu_core_count.Value}}</span>
+									</li>
+									<!--IP-Address-->
+									<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.IP_ADDRESS"></strong>
+     							       <span>{{fhem[0].Readings.eth0_ip.Value}}</span>
+									</li>
+									<!--Network-Speed-->
+									<li class="list-group-item no-borders">
+     							       <strong translate="ELEMENTTEXT.NETWORK_SPEED"></strong>
+     							       <span>{{fhem[0].Readings.eth0_speed.Value}} MBit</span>
+									</li>
+			        			</ul>
+						        
+						        
+						    </div>    
+			     
+			        	</li>
+			        	<li class="list-group-item">
+			        		<table class="">
+	                		<tbody>
+	                		<tr>
+		                		<td>
+					        		<div just-gage class="gauge" id={{fhemNames}}"temperature" gauge-width-scale=0.1 min=0 max=100 value=fhem[0].Readings.cpu_temp_avg.Value decimals=2
+					        		title="{{ 'ELEMENTTEXT.CPU_TEMPERATURE' | translate}}"
+					        		 symbol="&deg;" donut=true relative-gauge-size=true custom-sectors="0-45-#1ab394 45-60-#f8ac59 60-100-#ed5565"></div>
+					        	</td>
+					        	<td>
+					        		<div just-gage class="gauge" id={{fhemNames}}"cpu_state" gauge-width-scale=0.1 min=0 max=100 value=fhem[0].Readings.stat_cpu_user_percent.Value decimals=2 title="{{ 'ELEMENTTEXT.CPU_STATE' | translate}}" symbol="&#037;" donut=true relative-gauge-size=true custom-sectors="0-45-#1ab394 45-60-#f8ac59 60-100-#ed5565"></div>
+					        	</td>
+							</tr>
+					        <tr>
+					        	<td>
+					        		<div just-gage class="gauge" id={{fhemNames}}"ram_state" gauge-width-scale=0.1 min=0 max=100 value=fhem[0].Readings.ram_used_percent.Value decimals=2 title="{{ 'ELEMENTTEXT.RAM_USAGE' | translate}}" symbol="&#037;" donut=true relative-gauge-size=true custom-sectors="0-45-#1ab394 45-60-#f8ac59 60-100-#ed5565"></div>
+					        	</td>
+					        	<td>
+					        		<div just-gage class="gauge" id={{fhemNames}}"disk_state" gauge-width-scale=0.1 min=0 max=100 value=fhem[0].Readings.disk_used_percent.Value decimals=2 title="{{ 'ELEMENTTEXT.DISK_USAGE' | translate}}" symbol="&#037;" donut=true relative-gauge-size=true custom-sectors="0-45-#1ab394 45-60-#f8ac59 60-100-#ed5565"></div>
+				        		</td>
+
+			        		</tr>
+			        		</tbody>
+			        		</table>
+			        	</li>
+			        	
+			        	
+			        </ul>
+			    </div>
+			</div>

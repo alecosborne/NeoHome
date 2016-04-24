@@ -1,0 +1,18 @@
+<div class="tile {{size}}">
+        <section class="widget text-white {{bgColor}}" ng-class="{true:'{{bgColorOn}}',false:'{{bgColorOff}}'}[fhem.count >='{{onState}}']">
+            <div class="widget-body icon-only">  
+                               
+                                                                         
+						<img class="" ng-src="{{fhem.count >= 'onState' && imageOn || imageOff}}"  
+						ng-class="{true:'{{imageClassOn}}',false:'{{imageClassOff}}'}[fhem.count >='{{onState}}']"/>					
+                                                                                
+            </div>            
+            <footer class="{{brandColor}}" ng-class="{true:'{{brandColorOn}}',false:'{{brandColorOff}}'}[fhem.Readings.state.Value == '{{onState}}']">
+                {{brandText}}                
+                 <span class="tilebadge label {{badgeColor}}" ng-class="{true:'{{badgeColorOn}}',false:'{{badgeColorOff}}'}[fhem.count >='{{onState}}']">
+                        {{fhem.count}}
+                    </span>
+                 
+            </footer>
+        </section>
+</div>
