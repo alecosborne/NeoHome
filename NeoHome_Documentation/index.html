@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>NeoHome - Dokumentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Styles -->
+    <link href="styles/bootstrap.css" rel="stylesheet">
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/black-tie/jquery-ui.css" rel="stylesheet">
+    <link href="styles/jquery.tocify.css" rel="stylesheet">
+    <link href="styles/prettify.css" type="text/css" rel="stylesheet" />
+
+    <!-- fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <style>
+    body {
+      padding-top: 20px;
+    }
+    p {
+      font-size: 16px;
+    }
+    .headerDoc {
+      color: #005580;
+    }
+
+@media (max-width: 767px) {
+    #toc {
+        position: relative;
+        width: 100%;
+        margin: 0px 0px 20px 0px;
+    }
+}
+    </style>
+  </head>
+
+  <body>
+
+
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div id="toc">
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>NeoHome</h1>
+            
+            <br />
+            <h2>Beschreibung</h2>
+            <div class="github-widget" data-repo="alecosborne/NeoHome"></div>
+            <br />
+            <p></p>
+            <p><a class="btn btn-primary btn-large" href="https://github.com/alecosborne/NeoHome" target="_blank">Github &raquo;</a></p>
+          </div>
+			  <h2>Einleitung</h2>
+              <br />
+              <h3>Zielgruppe</h3>
+              <br />
+			  <span class="note">
+			  Es gibt zwei klare Zielgruppen für den Einsatz des Basis-Projektes. Die erste Zielgruppe der Anwender zeichnet sich dadurch ab, das sie das Beispiel mit den zur Verfügung gestellten Mitteln nutzt und auf die beim Anwender eingesetzte Version anpasst. Die zweite Gruppe ist die der Entwickler, welche Erweiterungen in Form von Widgets und Funktionen ergänzen oder ändern kann.
+			  </span>
+			  <br /><br />
+			  <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                  <th>Zielgruppe</th>
+                  <th>Fähigkeiten und Kenntnisse</th>                  
+                </tr>
+                <tr>                  
+                  <td>Anwender</td>                  
+                  <td>HTML, JavaScript (einfach)</td>
+                </tr>
+				<tr>                  
+                  <td>Entwickler</td>                  
+                  <td>HTML, JavaScript, Angular, CSS</td>
+                </tr>
+			  </table>
+			  <br />
+			  <h3>Voraussetzungen und Tools</h3>
+              <br />
+              <p class="well">
+				<a href="https://github.com/AlexDmr/fhem/tree/master/FHEM" target="_blank">FHEM WebSocket Implementierung.</a> - (Ursprünglich von <a href="https://github.com/ntruchsess/" target="_blank">ntruchsess</a>)<br/>
+				<a href="https://www.cesanta.com/products/binary" target="_blank">Mongoose Webserver</a> - Installations- und Konfigurationsfreier Webserver zum entwickeln und debugen<br/>
+				<a href="https://www.sublimetext.com/" target="_blank">Sublimetext</a>  - oder jeder andere Editor
+                <br /><br />
+                 <span class="note"><strong>Bemerkung: </strong>Diewerse andere JavaScript - Abhängigkeiten werden dann in den jeweiligen Modulen erwähnt. 
+              </span>
+              </p>
+              <br />
+			  <h3>Einrichtung</h3>
+              <br />
+			  <h4>FHEM - WebSockets</h4>
+              <br />			  
+              <p>
+              Um FHEM WebSockets beizubringen sind als erstes folgende Bibliotheken auf dem RPI zu installieren.
+              </p>
+              <br />
+              <ol class="well">
+                <li>sudo cpan App::cpanminus</li>
+                <br />
+                <li>sudo cpanm Protocol::WebSocket</li>
+                <br />
+                <li>sudo cpanm JSON</li>                
+              </ol>
+              <br />
+			  <p>
+              Danach müssen die PerlModule heruntergeladen und in das entsprechenden FHEM Verzeichnis <strong>/opt/fhem/FHEM</strong> kopiert werden.			  
+              </p>
+			  <br />
+              <ol class="well">
+                <li>00_websocket.pm</li>
+                <br />
+                <li>10_websocket_json.pm</li>
+                <br />
+                <li>10_websocket_fhem.pm</li>                
+              </ol>
+			  
+			  <strong>Bemerkung: </strong><span class="note">Die PerlModule liegen diesem Paket im Verzeichnis <strong>/NeoHome/setup</strong> auch bei.</span>
+              <br /><br />
+			  <p>
+              In der <strong>fhem.cfg</strong> sind mit folgenden Zeilen die Websockets zu aktivieren.
+              </p>
+			  <br />
+              <span class="note"><strong>fhem.cfg</strong></span>
+              <pre class="prettyprint">
+	define wsPort websocket 8080 global
+	define wsPort_json websocket_json
+              </pre>
+              
+			  <strong>Bemerkung: </strong><span class="note">Nach dem Reboot sollte auf der Startseite folgende Meldung erscheinen</span>
+			  <br /><br />			  
+			  <pre class="prettyprint">
+	ERROR: 0 0
+              </pre>
+			  
+
+			  
+
+			  
+			  <h3>Aufbau und Struktur</h3>
+              <br />
+			  <pre class="prettyprint">
+NeoHome_Seed
+├── css
+│   ├── patterns
+│   ├── plugins
+│   ├── ...
+│   ├── extension.css
+│   ├── style.css
+├── fonts
+├── images
+│   ├── controls
+│   ├── profiles
+│   ├── weather_01
+│   ├── neohome.png
+├── js
+│   ├── angular
+│   ├── configs
+│   ├── controllers
+│   ├── directives
+│   ├── filters
+│   ├── plugins
+│   ├── services
+│   ├── app.js
+│   ├── directives.js
+│   ├── inspinia.js
+├── l10n
+│   ├── en_US.properties
+│   ├── ...
+├── views
+│   ├── common
+│   	├── content.html
+│   	├── footer.html
+│   	├── ibox_tools.html
+│   	├── navigation.html
+│   	├── topnavbar.html
+│   ├── templates
+│   	├── ...
+│   ├── 
+├── favicon.ico
+├── index.html
+              </pre>
+			  <br />
+			  <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                  <th>Verzeichnis</th>
+                  <th>Beschreibung</th>
+                </tr>
+                <tr>
+                  <td>css/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>css/patterns/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>css/plugins/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>fonts/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>images/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>images/controls/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>images/profiles/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>images/weather_01/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/angular/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/configs/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/controllers/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/directives/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/filters/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/plugins/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/services/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/app.js</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/directives.js</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>js/inspinia.js</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>l10n/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>l10n/en_US.properties</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>views/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>views/common/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>views/templates/</td>
+                  <td></td>
+                </tr>
+				<tr>
+                  <td>index.html</td>
+                  <td></td>
+                </tr>
+			  </table>
+			  <h2>Module und Directives</h2>
+			  <h3>Modul - Switch</h3>
+              
+              </form>
+
+        </div><!--/span-->
+      </div><!--/row-->
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="javascripts/libs/jquery/jquery-1.8.3.min.js"></script>
+    <script src="javascripts/libs/jqueryui/jquery-ui-1.9.1.custom.min.js"></script>
+    <script src="javascripts/bootstrap.js"></script>
+    <script src="javascripts/jquery.tocify.js"></script>
+    <script src="javascripts/prettify.js"></script>
+    <script>
+        $(function() {
+
+            var toc = $("#toc").tocify({
+              selectors: "h2,h3,h4,h5"
+            }).data("toc-tocify");
+
+            prettyPrint();
+            $(".optionName").popover({ trigger: "hover" });
+
+        });
+    </script>
+
+  </body>
+</html>
