@@ -11,8 +11,7 @@ angular.module('shared').directive("nhStateElement", function($compile, $http, $
                 list: 'list_state_element.html',
                 infrastructure: 'infrastructure_state_element.html',
                 serverinfo: 'server_info_state_element.html',
-                list_switch: 'list_switch_element.html',  
-                list_fire: 'list_fire_element.html',                
+                list_switch: 'list_switch_element.html',                
                 tile: 'tile_state_element.html',
                 list_double_switch: 'list_double_switch_element.html'                                              
             };
@@ -37,31 +36,9 @@ angular.module('shared').directive("nhStateElement", function($compile, $http, $
             /***Deprecated**/
             //scope.subscribeDevice(attrs.fhemNames);
             scope.init();
-            scope.registerNames(attrs.fhemNames,attrs.texts);	
+            scope.registerNames(attrs.fhemNames);	
 
-            //alternative ng-click/ng-change derective 
-			//ng-click="setControlState(id)				
-			
-			/***Deprecated** With the multiple fhem device we need a onClick array.
-			if (attrs.stateOnly == null || attrs.stateOnly == 'false') {
-            	scope.onClick = function() {        		        			
-        			scope.setControlState();
-      			}
-      		}*/
-
-      		/***Deprecated** With multiple fhem device this onClick array used.
-      		scope.onClick = new Array();				
-			if (attrs.stateOnly == null || attrs.stateOnly == 'false') {
-				var nameArray = attrs.fhemNames.split(/\,| /);	
-				
-				for (var id = 0; id < nameArray.length; id++) { 
-					scope.onClick[id] = (function(index) {
-						return function() {        		        			
-	    					scope.setControlState(index);
-	    				}
-	  				})(id);
-				}            
-	  		}*/
+        
     }
 	
 	return {
@@ -73,8 +50,7 @@ angular.module('shared').directive("nhStateElement", function($compile, $http, $
         	'template': '@',
         	'fhemNames' : '@',        	
 
-        	'texts' : '@',
-        	'text' : '@',			
+        	'text' : '@',		
 
         	'onState' : '@',
         	'offState' : '@',
@@ -84,22 +60,18 @@ angular.module('shared').directive("nhStateElement", function($compile, $http, $
 			'imageClassOn':	'@',
 			'imageClassOff': '@',
 
-			'stateOnly' : '@',
-
-			'switchColor' : '@',			
-
 			'bgColor' : '@',
 			'bgColorOn' : '@',
 			'bgColorOff' : '@',
 
+			'switchColor' : '@',			
+
+			
+
 			//2nd element
 			'onState1' : '@',
         	'offState1' : '@',
-
 			'switchColor1' : '@',
-
-			//3rd element
-
 
 			//only for tile template
 			'size' : '@',			        					

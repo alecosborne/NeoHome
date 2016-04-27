@@ -91,12 +91,9 @@ angular.module('shared').controller('SwitchCtrl',['$rootScope','$scope','FhemFac
 	*	Method to register a listener callback to be executed 
 	*	whenever a device changes.
 	*/
-	$scope.registerNames = function (names,texts) {	
+	$scope.registerNames = function (names) {	
 		$scope.nameArray = names.split(/\,| /);
-		if (typeof texts != 'undefined'){
-			$scope.textsArray = texts.split(/\,/);
-		}
-
+		
 		for (var id = 0; id < $scope.nameArray.length; id++) { 
 			$scope.$watch(
                 "$root.devicelist['"+$scope.nameArray[id]+"']",
@@ -121,30 +118,6 @@ angular.module('shared').controller('SwitchCtrl',['$rootScope','$scope','FhemFac
 	        }
 	    }
     }
-
-	/* **Deprecated**
-	/*WebSocket-Mode*/
-	/* 
-	$scope.subscribeDevice = function (names) {	
-		var nameArray = names.split(/\,| /);	
-		
-		for (var id = 0; id < nameArray.length; id++) { 
-			FhemWebSocketFactory.subscribeEvent('.*', nameArray[id], '.*', (function(index) {				
-				return function(data) {
-					if(GENERAL_CONFIG.APP_CONTROLLER_DEBUG)
-						console.log("Fire from "+ data.Name +":" + JSON.stringify(data));
-					
-					$scope.$apply(function () {
-						$scope.fhem[index] = data;	
-						
-						var state = $scope.fhem[index].Readings.state.Value;
-						if (state === 'on') { $scope.boolValue[index]=true;} else if(state === 'off'){$scope.boolValue[index]=false;}
-					});		
-				}											
-			})(id));
-		}				
-	}
-	*/
 
 	/**
 	*	Method to change/switch the state.
