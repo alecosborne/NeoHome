@@ -72,7 +72,7 @@ var NETATMO_REFRESH_INTERVAL = 600000;
 /**
 * Google calendar constants
 */
-var GOOGLE_CALENDAR_GARBAGE_CAN_URL = "https://www.googleapis.com/calendar/v3/calendars/0nk708rdu1nv5r9quh6p4c8kc8@group.calendar.google.com/events?key=XXXXXXXXXXXXXXXXXXXXXXXXXXXX&"
+var GOOGLE_CALENDAR_GARBAGE_CAN_URL = "https://www.googleapis.com/calendar/v3/calendars/XXXXXXXXXXXXXXX@group.calendar.google.com/events?key=XXXXXXXXXXXXXXXXXXXXXXXXXXXX&"
 var GOOGLE_CALENDAR_GARBAGE_CAN_URL_ATTR_SINGLE_EVENTS = "singleEvents=true&";
 var GOOGLE_CALENDAR_GARBAGE_CAN_URL_ATTR_ORDER_BY = "orderBy=startTime&";
 var GOOGLE_CALENDAR_GARBAGE_CAN_URL_ATTR_MAX_RESULTS = "maxResults=3&";
@@ -80,7 +80,7 @@ var GOOGLE_CALENDAR_GARBAGE_CAN_URL_ATTR_TIME_MIN = "timeMin=" +  new Date().toI
 var GOOGLE_CALENDAR_GARBAGE_CAN_REFRESH_INTERVAL = 600000;
 
 /**
-*Devicelist
+* Devicelist
 */
 var DEVICES = [
     { id: '0', name: 'FHEM_DEMO_SWITCH_1'},
