@@ -217,7 +217,7 @@ NeoHome_Seed
                 </tr>
 				<tr>
                   <td>images/controls/</td>
-                  <td></td>
+                  <td>Enthält alle Anwendungsabhängigen Grafiken.</td>
                 </tr>
 				<tr>
                   <td>images/profiles/</td>
@@ -237,27 +237,27 @@ NeoHome_Seed
                 </tr>
 				<tr>
                   <td>js/configs/</td>
-                  <td></td>
+                  <td>Enthält die Datei nh_config.js. Hier werden alle wesentlichen Konfigurationen hinterlegt. (z.B. FHEM Server, FHEM devices, Wetterdienste, Sprach-Resources ...)</td>
                 </tr>
 				<tr>
                   <td>js/controllers/</td>
-                  <td></td>
+                  <td>Alle für die Anwendung nötigen Controllers. Unterteilt nach den entsprechenden Zugehörigkeiten.</td>
                 </tr>
 				<tr>
                   <td>js/directives/</td>
-                  <td></td>
+                  <td>Alle für die Anwendung nötigen Directiven. Unterteilt nach den entsprechenden Zugehörigkeiten.</td>
                 </tr>
 				<tr>
                   <td>js/filters/</td>
-                  <td></td>
+                  <td>Für die Anwendung hilfreiche Datenfilter (Datenformatierung). </td>
                 </tr>
 				<tr>
                   <td>js/plugins/</td>
-                  <td></td>
+                  <td>Externe JavaScript Bibliotheken.</td>
                 </tr>
 				<tr>
                   <td>js/services/</td>
-                  <td></td>
+                  <td>Alle für die Anwendung nötigen Services. Unterteilt nach den entsprechenden Zugehörigkeiten.</td>
                 </tr>
 				<tr>
                   <td>js/app.js</td>
@@ -273,34 +273,259 @@ NeoHome_Seed
                 </tr>
 				<tr>
                   <td>l10n/</td>
-                  <td></td>
+                  <td>Verzeichnis mit allen Sprach-Resources</td>
                 </tr>
 				<tr>
                   <td>l10n/en_US.properties</td>
-                  <td></td>
+                  <td>Basis Sprach-Resources (weitere wie de_DE.properties beliebig möglich)</td>
                 </tr>
 				<tr>
                   <td>views/</td>
-                  <td></td>
+                  <td>HTML-Seiten der Anwendung</td>
                 </tr>
 				<tr>
                   <td>views/common/</td>
-                  <td></td>
+                  <td>HTML Basisseiten der Anwendung</td>
                 </tr>
 				<tr>
                   <td>views/templates/</td>
-                  <td></td>
+                  <td>Derectives Definitionen (Aussehen der Widgetelemente)</td>
                 </tr>
 				<tr>
                   <td>index.html</td>
-                  <td></td>
+                  <td>index.html mit den Definitionen der Basisbibliotheken (Bootstrap, JS, JQuery, Angular...)</td>
                 </tr>
 			  </table>
+			  <h2>Erste Schritte</h2>
+			   <p class="well">
+			  Für einen ersten Funktionstest muss wie in der Einleitung beschrieben die WebSockets im FHEM eingerichtet und dann die Konfiguration <strong>nh_config.js</strong> angepasst werden.<br /> <br />
+			  Neben den FHEM URLs im Bereich <strong>Fhem constants</strong> müssen in dem Abschnitt <strong>Devicelist</strong> die FHEM Devices bekannt gemacht werden.<br/> 
+			  Jetzt muss das FHEM Device nur noch mit den Modulen (Widgets) auf den Seiten verknüpft werden.<br/>
+			  Dazu muss in den HTML-Views im Verzeichnis <strong>views/</strong> in den entsprechenden Directiven das Attribut <i>data-fhem-names</i> angepasst werden.
+			  </p>			  
+			  <span class="note">Beispiel der <strong>nh_config.js</strong> mit allen Applikationsrelevanten Konstanten:</span><br />
+			  <pre class="prettyprint">
+...
+/**
+ *	Application constants
+ */
+var APP_NAME = "NeoHome";
+var APP_VERSION = "Alpha 0.5";
+var APP_ROOTPATH = "NeoHome_Seed";
+var APP_DEBUG = false;
+var APP_CONTROLLER_DEBUG = false;
+var APP_DIRECTIVE_DEBUG = false;
+var APP_SERVICE_DEBUG = false;
+
+/**
+ *	Fhem constants
+ */
+var FHEM_URL = "http://192.168.1.24:8083/fhem";
+var FHEM_OVER_WEB_SOCKET = true;
+var FHEM_WEB_SOCKET_URL = "ws://192.168.1.24:8080";
+var FHEM_WEB_SOCKET_SECURE_URL = "wss://192.168.1.24:8080";
+var FHEM_WEB_SOCKET_SECURE = false;
+
+...
+
+/**
+*	Devicelist
+*/
+var DEVICES = [
+    { id: '0', name: 'FHEM_DEMO_SWITCH_1'},
+    { id: '1', name: 'FHEM_DEMO_STATE'}
+];
+
+...			  
+			  </pre>
+              <br />			 
 			  <h2>Module und Directives</h2>
 			  <h3>Modul - Switch</h3>
-              
-              </form>
+			  <h5>Beschreibung</h5>
+			  <span class="note">Beispiel für eine State/Switch Directive <strong>nh-state-element</strong>:</span>
 
+              <pre class="prettyprint">
+	&lt;nh-state-element     
+		data-template="list_switch"
+
+		data-fhem-names="FHEM_DEMO_SWITCH_1"
+		data-text="{{'ELEMENTTEXT.DEMO_SWTICH' | translate}}"
+
+		data-on-state = "on"             
+		data-off-state = "off"               
+
+		data-bg-color="white-bg"  
+		data-bg-color-on="red-bg"
+		data-bg-color-off="blue-bg"                       
+
+		data-image-on="images/controls/alarmanlage_ext.png"
+		data-image-off="images/controls/alarmanlage_ext_open.png"     
+		data-image-class-on="iconOn"
+		data-image-class-off="iconOff"&gt;
+	&lt;/nh-state-element&gt;
+              </pre>
+              <br />
+			  <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                  <th>Parameter</th>
+                  <th>Beschreibung</th>
+				  <th>Optionen</th>
+				  <th>Defaultwert</th>
+                </tr>
+                <tr>
+                  <td>data-template</td>
+				  <td>aussehenbestimmendes Template.</td>
+                  <td>
+						<ul class="">
+							<li>list: 'list_state_element.html'</li>
+							<br />
+							<li>infrastructure: 'infrastructure_state_element.html'</li>
+							<br />
+							<li>serverinfo: 'server_info_state_element.html'</li> 
+							<br />
+							<li>list_switch: 'list_switch_element.html'</li>		
+							<br />
+							<li>tile: 'tile_state_element.html'</li>
+							<br />
+							<li>list_double_switch: 'list_double_switch_element.html'</li>							
+						</ul>
+				</td>
+				<td></td>
+                </tr>
+				<tr>
+                  <td>data-fhem-names</td>
+				  <td>FHEM Device</td>
+                  <td></td>
+				  <td></td>
+                </tr>
+				<tr>
+                  <td>data-text</td>
+				  <td>darzustellender Text</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-on-state</td>
+				  <td>FHEM an Status</td>
+                  <td>z.B. on, off, wet, dry, 1 ...</td>
+				  <td></td>
+                </tr>
+				<tr>
+                  <td>data-off-state</td>
+				  <td>FHEM aus Status</td>
+                  <td>z.B. on, off, wet, dry, 1 ...</td>
+				  <td></td>
+                </tr>
+				<tr>
+                  <td>data-image-on</td>
+				  <td>Bild für an Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-image-off</td>
+				  <td>Bild für aus Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-image-class-on</td>
+				  <td>CSS Class für an Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-image-class-off</td>
+				  <td>CSS Class für aus Status</td>
+                  <td>Ermöglicht z.B für den aus Status ein halb transparentes Bild darzustellen. <br/>
+				  <pre class="prettyprint">
+.iconOn {    
+	opacity: 1.0;
+}
+
+.iconOff{	    
+	opacity: 0.5;
+}
+</pre>
+				  </td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-bg-color</td>
+				  <td>Hintergrund CSS Farb- class des Elements</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-bg-color-on</td>
+				  <td>Hintergrund CSS Farb- class des Icons für den an Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-bg-color-off</td>
+				  <td>Hintergrund CSS Farb- class des Icons für den aus Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>switchColor</td>
+				  <td>Hintergrund CSS Farb- class des Swichtes im geöffneten Zustand</td>
+                  <td>z.B. greenSwitch, yellowSwitch ...</td>
+				  <td>default: 'greenSwitch'</td>
+                </tr>
+				<tr>
+                  <td>onState1</td>
+				  <td>FHEM an Status<br/>
+				  <strong>Bemerkung: </strong>nur für Template list_double_switch
+				  </td>
+                  <td>z.B. on, off, wet, dry, 1 ...</td>
+				  <td></td>
+                </tr>
+				<tr>
+                  <td>offState1</td>
+				  <td>FHEM aus Status<br/>
+				  <strong>Bemerkung: </strong>nur für Template list_double_switch
+				  </td>
+                  <td>z.B. on, off, wet, dry, 1 ...</td>
+				  <td></td>
+                </tr>
+				<tr>
+                  <td>switchColor1</td>
+				  <td>Hintergrund CSS Farb- class des Swichtes im geöffneten Zustand<br/>
+				  <strong>Bemerkung: </strong>nur für Template list_double_switch
+				  </td>
+                  <td>z.B. greenSwitch, yellowSwitch ...</td>
+				  <td>default: 'greenSwitch'</td>
+                </tr>
+				<tr>
+                  <td>size</td>
+				  <td><strong>Bemerkung: </strong>nur für Template tile</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>brandColor</td>
+				  <td><strong>Bemerkung: </strong>nur für Template tile</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>brandColorOn</td>
+				  <td><br/><strong>Bemerkung: </strong>nur für Template tile</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>brandColorOff</td>
+				  <td><br/><strong>Bemerkung: </strong>nur für Template tile</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				</table>
+			
+              </form>
+			 <h2>Textresources (Translation)</h2>
         </div><!--/span-->
       </div><!--/row-->
 
