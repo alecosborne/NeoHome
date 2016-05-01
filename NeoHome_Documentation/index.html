@@ -342,6 +342,18 @@ var DEVICES = [
 			  <h2>Module und Directives</h2>
 			  <h3>Modul - Switch</h3>
 			  <h5>Beschreibung</h5>
+			  <p class="well">
+			  Die State/Switch Directive kann als Infoelement oder aber als Schalterelement eingesetzt werden. Dazu stehen unterschiedliche Templates zur Verfügung.
+			  Bei einem Schalter Element wird bei einem Klick der FHEM Befehl <strong>set [DEVICE] [STATE]</strong> ausgeführt.
+			  </p>
+			  <span class="note">Darstellungsformen der State/Switch Directive <strong>nh-state-element</strong>:</span>
+			  <p class="well">
+			  <img src="images\neohome\list_state_element.html.png"/><br/><br/>
+			  <img src="images\neohome\list_switch_element.html.png"/><br/><br/>
+			  <img src="images\neohome\list_double_switch_element.html.png"/><br/><br/>
+			  <img src="images\neohome\tile_state_element.html.png"/><br/><br/>
+			  <img src="images\neohome\infrastructure_state_element.html.png"/><br/><br/>
+			  </p>
 			  <span class="note">Beispiel für eine State/Switch Directive <strong>nh-state-element</strong>:</span>
 
               <pre class="prettyprint">
@@ -374,20 +386,18 @@ var DEVICES = [
                 </tr>
                 <tr>
                   <td>data-template</td>
-				  <td>aussehenbestimmendes Template.</td>
+				  <td>aussehenbestimmendes Template</td>
                   <td>
 						<ul class="">
 							<li>list: 'list_state_element.html'</li>
 							<br />
 							<li>infrastructure: 'infrastructure_state_element.html'</li>
 							<br />
-							<li>serverinfo: 'server_info_state_element.html'</li> 
-							<br />
-							<li>list_switch: 'list_switch_element.html'</li>		
+							<li>list_switch: 'list_switch_element.html'</li>							
 							<br />
 							<li>tile: 'tile_state_element.html'</li>
 							<br />
-							<li>list_double_switch: 'list_double_switch_element.html'</li>							
+							<li>list_double_switch: 'list_double_switch_element.html'</li>	
 						</ul>
 				</td>
 				<td></td>
@@ -526,6 +536,10 @@ var DEVICES = [
 			
               </form>
 			 <h2>Textresources (Translation)</h2>
+			 <p class="well">
+			 Für die Textresourcenanbindung wird das Framework von <a class="" href="https://angular-translate.github.io/" target="_blank">Pascal Precht</a> verwendet. Es ermöglicht das einfache einbinden von Textresourcen. 
+			 Die Einbindung kann über verschiedene Wege wie z.B Filter oder Directiven erfolgen. Es gibt eine sehr gute Dokumentation in der anhand von Beispielen die Funktionsweise und Eigenschaften sehr gut erklärt werden. 
+			 </p>
         </div><!--/span-->
       </div><!--/row-->
 

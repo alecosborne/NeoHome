@@ -10,7 +10,6 @@ angular.module('shared').directive("nhStateElement", function($compile, $http, $
             templateMap = {
                 list: 'list_state_element.html',
                 infrastructure: 'infrastructure_state_element.html',
-                serverinfo: 'server_info_state_element.html',
                 list_switch: 'list_switch_element.html',                
                 tile: 'tile_state_element.html',
                 list_double_switch: 'list_double_switch_element.html'                                              
