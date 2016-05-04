@@ -7,8 +7,7 @@ angular.module('heating').directive("nhHeatingElement", function($compile, $http
             var templateLoader,
             baseUrl = './views/templates/',
             templateMap = {
-                list: 'list_heating_element.html',
-                tile: 'tile_heating.html'                
+                list: 'list_heating_element.html'         
             };
 
             var templateUrl = baseUrl + templateMap[contentType];
@@ -55,16 +54,8 @@ angular.module('heating').directive("nhHeatingElement", function($compile, $http
 
 			'bgColor' : '@',
 			'bgColorOn' : '@',
-			'bgColorOff' : '@',
-						
-			//only for tile template
-			'size' : '@',        	        	
-
-			'brandColor' : '@',
-			'brandColorOn' : '@',
-			'brandColorOff' : '@'
-
-			
+			'bgColorOff' : '@'
+									
 	    },			
 		controller: 'ClimaCtrl',
 	    	    

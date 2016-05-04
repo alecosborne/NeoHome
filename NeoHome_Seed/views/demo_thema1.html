@@ -1,6 +1,27 @@
 <div class="row animated fadeInRight">
     <div class="col-lg-4">    	 
-        
+        <div class="ibox float-e-margins">
+            <div class="widget-head-color-box blue-bg p-xs">
+                <h5 class="font-bold no-margins">
+                        {{'SUBTITLE.DEMO_SUBTITLE_HEATING' | translate}}                
+                </h5>                 
+            </div>
+            <div class="ibox-content no-padding">
+                <ul class="list-group">
+                    <nh-heating-element
+                        data-template="list"
+
+                        data-fhem-name="FF_che_TH_heater"                  
+                        data-fhem-name-clima="FF_che_TH_heater_Clima"
+                        data-text="{{'ELEMENTTEXT.HEATING'| translate}}"
+                        
+                        data-bg-color="white-bg"                   
+
+                        data-image="images/controls/heizung.png">
+                    </nh-heating-element>                                       
+                </ul>
+            </div>               
+        </div>
     </div>
 </div>
 

@@ -84,7 +84,9 @@ var GOOGLE_CALENDAR_GARBAGE_CAN_REFRESH_INTERVAL = 600000;
 */
 var DEVICES = [
     { id: '0', name: 'FHEM_DEMO_SWITCH_1'},
-    { id: '1', name: 'FHEM_DEMO_STATE'}
+    { id: '1', name: 'FHEM_DEMO_STATE'},
+    { id: '2', name: 'FF_che_TH_heater'},
+    { id: '3', name: 'FF_che_TH_heater_Clima'}
 ];
 
 var config_data = {
@@ -197,7 +199,17 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
         .state('index.demo_thema1', {
             url: "/demo_thema1",
             templateUrl: "views/demo_thema1.html",
-            data: { pageTitle: 'Demo thema 1' }
+            data: { pageTitle: 'Demo thema 1' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            name: 'ui.knob',
+                            files: ['js/plugins/RadMie-ng-knob/dist/ng-knob.min.js']
+                        }
+                    ]);
+                }
+            }
         })
 }
 

@@ -3,7 +3,7 @@
     TEMPLATENAME:   list
 -->
 
-<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+<li class="list-group-item {{bgColor}}">
     
      <a href="" class="pull-left">                                     
         <img class="icon img-circle p-xs m-r-md" ng-src="{{fhem[0].Readings.state.Value === onState && imageOn || imageOff}}" 

@@ -3,7 +3,7 @@
     TEMPLATENAME:   list_switch
 -->
 
-<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+<li class="list-group-item {{bgColor}}">
     
      <a href="" class="pull-left">                                     
         <img class="icon img-circle p-xs m-r-md" ng-src="{{fhem[0].Readings.state.Value === onState && imageOn || imageOff}}" 
@@ -15,7 +15,7 @@
         <strong>{{text}}</strong>
         
         <div class="pull-right">
-            <switch id="enabled" name="enabled" on="{{onState}}" off="{{offState}}" ng-model="boolValue[0]" class="wide pull-right" ng-change="setControlState(0)"></switch>                                      
+            <switch id="enabled" name="enabled" on="{{onState}}" off="{{offState}}" ng-model="boolValue[0]" class="wide pull-right {{switchColor}}" ng-change="setControlState(0)"></switch>                                      
         </div>
         <p class="m-b-xs" translate={{fhem[0].Readings.state.Value}}></p> 
         <br/>
