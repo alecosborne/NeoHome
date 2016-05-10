@@ -18,7 +18,20 @@
                         data-bg-color="white-bg"                   
 
                         data-image="images/controls/heizung.png">
-                    </nh-heating-element>                                       
+                    </nh-heating-element>
+                    <nh-blind-element     
+                        data-template="list"           
+
+                        data-fhem-name="GF_lr_BA_shutter1"                                               
+                        data-text="{{'ELEMENTTEXT.SHUTTER'| translate}}"
+
+                        
+                        data-bg-color-on="red-bg"
+                        data-bg-color-off="blue-bg" 
+                        
+                        data-states = "0,25,50,75,100"
+                        data-images ="images/controls/window_blind_0.png,images/controls/window_blind_25.png,images/controls/window_blind_50.png,images/controls/window_blind_75.png,images/controls/window_blind_100.png">
+                    </nh-blind-element>					
                 </ul>
             </div>               
         </div>

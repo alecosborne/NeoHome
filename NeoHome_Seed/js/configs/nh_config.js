@@ -86,7 +86,8 @@ var DEVICES = [
     { id: '0', name: 'FHEM_DEMO_SWITCH_1'},
     { id: '1', name: 'FHEM_DEMO_STATE'},
     { id: '2', name: 'FF_che_TH_heater'},
-    { id: '3', name: 'FF_che_TH_heater_Clima'}
+    { id: '3', name: 'FF_che_TH_heater_Clima'},
+	{ id: '4', name: 'GF_lr_BA_shutter1'}
 ];
 
 var config_data = {

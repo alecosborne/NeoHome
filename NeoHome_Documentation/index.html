@@ -696,6 +696,136 @@ var DEVICES = [
 	})
 			</pre>
 			  <br/>
+			  <h3>Modul - Blind</h3>
+			  <br/>
+			  <h4>Beschreibung</h4>
+			  <br/>
+			  <p class="well">
+			  Die Blind Directive dient der Steuerung einer Jalousie. Bei der Interaktion mit den Elementen werden die entsprechenden FHEM Befehl 
+			  ausgeführt. Neben der Steuerung über das Knob Element ist auch eine Steuerung über die 5 Buttons möglich. 
+			  </p>
+			  <span class="note">Darstellungsformen der Blind Directive <strong>nh-blind-element</strong>:</span>
+			  <p class="well">
+			  <img src="images\neohome\list_blind_element.html.png"/><br/><br/>			  
+			  </p>
+			  <br/>
+			  <h4>Beispiel</h4>
+			  <br/>
+			  <span class="note">Beispiel für eine Blind Directive <strong>nh-blind-element</strong>:</span>
+              <pre class="prettyprint">
+	&lt;nh-blind-element     
+			data-template="list"           
+
+			data-fhem-name="GF_lr_BA_shutter1"                                               
+			data-text="{{'ELEMENTTEXT.SHUTTER_I'| translate}}"
+			
+			data-bg-color-on="red-bg"
+			data-bg-color-off="blue-bg" 
+			
+			data-states = "0,25,50,75,100"
+			data-images ="images/controls/window_blind_0.png,images/controls/window_blind_25.png,images/controls/window_blind_50.png,images/controls/window_blind_75.png,images/controls/window_blind_100.png"&gt;	
+		&lt;/nh-blind-element&gt;	
+              </pre>
+              <br />			 
+			  <h4>Parameter</h4>
+			  <br/>
+			  <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                  <th>Parameter</th>
+                  <th>Beschreibung</th>
+				  <th>Optionen</th>
+				  <th>Defaultwert</th>
+                </tr>
+                <tr>
+                  <td>data-template</td>
+				  <td>aussehenbestimmendes Template</td>
+                  <td>
+						<ul class="">
+							<li>list: 'list_blind_element.html'</li>							
+						</ul>
+				</td>
+				<td></td>
+                </tr>
+				<tr>
+                  <td>data-fhem-name</td>
+				  <td>FHEM Device</td>
+                  <td></td>
+				  <td></td>
+                </tr>				
+				<tr>
+                  <td>data-text</td>
+				  <td>darzustellender Text</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>				
+				<tr>
+                  <td>data-states</td>
+				  <td></td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-images</td>
+				  <td>Bilder für den Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>				
+				<tr>
+                  <td>data-image-class-on</td>
+				  <td>CSS Class für an Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-image-class-off</td>
+				  <td>CSS Class für an Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-bg-color</td>
+				  <td>Hintergrund CSS Farb- class des Elements</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-bg-color-on</td>
+				  <td>Hintergrund CSS Farb- class des Icons für den an Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-bg-color-off</td>
+				  <td>Hintergrund CSS Farb- class des Icons für den aus Status</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				</table>
+			  <br/>
+			  <h4>Abhängigkeiten</h4>
+			  <br/>
+			  <p class="well">
+			  Die Abhängigkeit für ein Jalousieelement wird in der nh_config.js definiert. Hier muss für die Knob Element die passende Bibliothek beim Aufruf der Seite nachgeladen werden.
+			  </p>
+			  <span class="note">Beispiel einer Definition der Abhängigkeit <strong>ui.knob</strong>:</span>
+			  <pre class="prettyprint">
+	.state('index.demo_thema1', {
+		url: "/demo_thema1",
+		templateUrl: "views/demo_thema1.html",
+		data: { pageTitle: 'Demo thema 1' },
+		resolve: {
+			loadPlugin: function ($ocLazyLoad) {
+				return $ocLazyLoad.load([
+					{
+						name: 'ui.knob',
+						files: ['js/plugins/RadMie-ng-knob/dist/ng-knob.min.js']
+					}
+				]);
+			}
+		}
+	})
+			</pre>
+			  <br/>
 			 <h2>Textresources (Translation)</h2>
 			 <p class="well">
 			 Für die Textresourcenanbindung wird das Framework von <a class="" href="https://angular-translate.github.io/" target="_blank">Pascal Precht</a> verwendet. Es ermöglicht das einfache einbinden von Textresourcen. 
