@@ -25,24 +25,24 @@
                 <!--<div class="logo-element">
                     <img alt="image" class="img-circle" src="images/neohome.png">   
                 </div>-->
-                <i class="fa fa-home fa-4x logo-element-font"/>
+                <!--<i class="fa fa-home fa-4x logo-element-font"/>-->
 
             </li>            
-            <li ui-sref-active="active">
+            <li ui-sref-active="active" auto-close-navigation>
                 <a ui-sref="index.dashboard"><i class="fa fa-tachometer"></i> <span class="nav-label">{{'NAVIGATION.ITEM.DEMO_DASHBOARD' | translate}}</span></a>
             </li>
 
             <li ng-class="{active: $state.includes('rooms')}">
                 <a href="index.html"><i class="fa fa-home"></i> <span class="nav-label">{{'NAVIGATION.ITEM.DEMO_ROOMS' | translate}}</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('rooms')}">
-                    <li ui-sref-active="active"><a ui-sref="rooms.demo_room1">{{'NAVIGATION.ITEM.DEMO_ROOM_1' | translate}}</a></li>
+                    <li ui-sref-active="active" auto-close-navigation><a ui-sref="rooms.demo_room1">{{'NAVIGATION.ITEM.DEMO_ROOM_1' | translate}}</a></li>
                 </ul>
             </li>
             
             <li>                
                 <h5 class="sidebar-nav-title">{{'NAVIGATION.TITLE.THEMA' | translate}}<a class="action-link" href="#"></a></h5>
             </li>
-            <li ui-sref-active="active">
+            <li ui-sref-active="active" auto-close-navigation>
                 <a ui-sref="index.demo_thema1"><i class="fa fa-shield"></i> <span class="nav-label">{{'NAVIGATION.ITEM.DEMO_THEMA_1' | translate}}</span></a>
             </li>
                      

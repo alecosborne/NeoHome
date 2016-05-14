@@ -536,6 +536,25 @@ function markdownEditor() {
     }
 };
 
+
+/**
+ * closeNavigation - Directive for closing navigation when side runs in smale mode 
+ */
+function autoCloseNavigation(){
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var clickingLink = function() {
+              if ($('body').hasClass('body-small')) {
+                $('body').removeClass('mini-navbar');
+              }
+            };
+            element.bind('click', clickingLink);
+        }
+    }
+};
+
+
 /**
  *
  * Pass all functions into module
@@ -564,3 +583,4 @@ angular
     .directive('truncate', truncate)
     .directive('touchSpin', touchSpin)
     .directive('markdownEditor', markdownEditor)
+    .directive('autoCloseNavigation', autoCloseNavigation)
