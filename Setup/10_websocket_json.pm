@@ -237,8 +237,27 @@ onCommandMessage($$$) {
         }
         last;
       };
+      $command eq "smalllist" and do {
+        my @devs = grep {!IsIgnored($_)} (defined $message->{arg}) ? devspec2array($message->{arg}) : keys %main::defs;
+        Log3 ($cl->{SNAME},5,"websocket command list devs: ".join(",",@devs));
+        my $i = 0;
+        my $num = @devs;
+        foreach my $dev (@devs) {
+          my $h = $main::defs{$dev};
+          my $r = $h->{READINGS};
+          sendTypedMessage($cl,'listentry',{
+            arg        => $message->{arg},
+            name       => $dev,
+            'index'    => $i++,
+            num        => $num,
+            readings   => {map {$_ => {Value  => $r->{$_}->{VAL}, 'Time' => strftime ("%c GMT", _fhemTimeGm($r->{$_}->{TIME}))}} keys %$r},
+            #attributes => $main::attr{$dev},
+          });
+        }
+        last;
+      };	
       $command eq "get" and do {
-        my $ret = AnylyzeCommand($cl, 'get '.($message->{device} // '').' '.($message->{property} // ''));
+        my $ret = AnalyzeCommand($cl, 'get '.($message->{device} // '').' '.($message->{property} // ''));
         sendTypedMessage($cl,'getreply',{
           device   => $message->{device},
           property => $message->{property},

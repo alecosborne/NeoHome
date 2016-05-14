@@ -267,6 +267,33 @@ angular.module('shared').factory('FhemWebSocketFactory', ['$q', '$rootScope', 'S
 	};	
 
 	/**
+	*	Send a smalllist command and get a initial state (only readings). The event onListentry
+	*	get the results.	
+	*/
+	function getSmallListentry(devspec) {
+		sendCommand({
+			command: 'smalllist',
+			arg:     devspec
+		});
+	};	
+
+	/**
+	*	Send a get command and get device property. The event onGetreply
+	*	get the results.	
+	*	
+	*	@device: FHEM device.
+	*	@property: Property of the device.
+	*/
+	function getDeviceProperty(device, property) {
+		sendCommand({
+			command: 'get',
+			device:   device,
+			property: property
+		});
+	};	
+
+
+	/**
 	*	Wait for connection wrapper. 
 	*	Wrapper to wait for a WebSocket connection with a readyState.	
 	*
@@ -382,14 +409,17 @@ angular.module('shared').factory('FhemWebSocketFactory', ['$q', '$rootScope', 'S
 				});
 
 				//Send list command and get the actual state.
-				getListentry(list[item]); 
+				//getListentry(list[item]);
+				getSmallListentry(list[item]);
+				
 
 			}else
 			{	
 				//A entry for this device exits. Only add the callback.
 				//$rootScope.devices[list[item]].callbacks[id]=callback;
-				getListentry(list[item]); 				
-			}												     
+				//getListentry(list[item]);
+				getSmallListentry(list[item]);				
+			}										     
 		}
 	};
 
