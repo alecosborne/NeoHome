@@ -206,7 +206,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
                     return $ocLazyLoad.load([
                         {
                             name: 'ui.knob',
-                            files: ['js/plugins/RadMie-ng-knob/dist/ng-knob.min.js']
+                            files: ['js/plugins/RadMie-ng-knob/dist/ng-knob.min.js','js/plugins/d3/d3.min.js']
                         }
                     ]);
                 }
