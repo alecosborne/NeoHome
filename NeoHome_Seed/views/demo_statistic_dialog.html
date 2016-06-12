@@ -1,0 +1,42 @@
+<div class="row animated fadeInRight">
+    <div class="col-lg-4">
+        <div class="ibox float-e-margins">
+            <div class="widget-head-color-box blue-bg p-xs">
+                <h5 class="font-bold no-margins">
+                    {{'SUBTITLE.MOWER' | translate}}                
+                    <a href="" 
+                        nh-statistic data-fhem-devices="PL_ga_PM_mower_Pwr" 
+                        data-fhem-device-readings= "power" 
+                        data-fhem-device-readings-texts="{{'CHARTTEXT.MOWER_STATE'|translate}}"
+                        data-text ="{{'CHARTTEXT.MOWER'|translate}}"  
+                        data-description = "{{'CHARTTEXT.DESCRIPTION_MOWER'|translate}}"                                             
+                        data-chart-height="300"
+                        ><span class="pull-right fa fa-area-chart fc-white"></span>
+                    </a>
+                </h5>
+            </div>
+            <div class="ibox-content no-padding">
+                <ul class="list-group">
+                    <nh-state-element       
+                        data-template="list"
+
+                        data-fhem-names="dum_PL_ga_PM_mower_State" 
+                        data-text="{{'ELEMENTTEXT.MOWER'| translate}}"
+            
+                        data-state-only = "true"
+                        data-on-state = "maehen"               
+                        data-off-state = "laden"                
+
+                        data-bg-color="white-bg"  
+                        data-bg-color-on="red-bg"
+                        data-bg-color-off="blue-bg"                        
+
+                        data-image-on="images/controls/mower_mow.png"
+                        data-image-off="images/controls/mower_mow.png">
+                    </nh-state-element>                                        
+                </ul>
+            </div>               
+        </div>                 
+    </div>
+   
+</div>

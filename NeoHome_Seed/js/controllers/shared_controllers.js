@@ -366,35 +366,45 @@ angular.module('shared').controller('GroupCtrl',['$rootScope','$scope','FhemFact
 /**
 *	Statistic Controller 
 */	
-angular.module('shared').controller('StatisticCtrl',['$scope','FhemWebSocketFactory','SharedFactory','ngDialog','GENERAL_CONFIG', function($scope, FhemWebSocketFactory, SharedFactory, ngDialog, GENERAL_CONFIG){	
+angular.module('shared').controller('StatisticCtrl',['$scope','FhemWebSocketFactory','SharedFactory','$uibModalInstance','items','GENERAL_CONFIG', function($scope, FhemWebSocketFactory, SharedFactory, $uibModalInstance, items, GENERAL_CONFIG){	
 	
+
 	/*Init the x-Axis format.*/
 	var formatXAxis = '%H:%M';
 
 	/*Init the devices and readings for the query.*/
-	var fhemDeviceArray = $scope.fhemDevices.split(/\,| /);			
-	var fhemDeviceReadingsArray = $scope.fhemDeviceReadings.split(/\,| /);			
-	var fhemDeviceReadingsTextsArray = $scope.fhemDeviceReadingsTexts.split(/\,/);	
+	
+	var fhemDeviceArray = '';			
+	var fhemDeviceReadingsArray = '';			
+	var fhemDeviceReadingsTextsArray = '';
+
+	$scope.items = items;
+
+	if (items.fhemDevices != undefined)
+		fhemDeviceArray = items.fhemDevices.split(/\,| /);
+	if (items.fhemDeviceReadings != undefined)
+		fhemDeviceReadingsArray = items.fhemDeviceReadings.split(/\,| /);	
+	if (items.fhemDeviceReadingsTextsArray != undefined)	
+		fhemDeviceReadingsTextsArray = items.fhemDeviceReadingsTextsArray.split(/\,/);	
+	
 
 
 	var resultTest = this;		
 	resultTest.result = null;	
-	var currentDate = new Date();
 
 	/*Init the date time picker model params*/
-	$scope.startTime = SharedFactory.formatDate(currentDate)+ " " + "00:00:00";
-	$scope.endTime = SharedFactory.formatDate(currentDate)+ " " + "24:00:00";//currentDate.toLocaleTimeString()	
+	$scope.startTime = moment().startOf('day').format('YYYY-MM-DD HH:mm');
+	$scope.endTime = moment().endOf('day').format('YYYY-MM-DD HH:mm');
 
 
 	function setXAxisFormat() {
 		/*Check if the timespan bigger then 1 day*/
-		var d_start = new Date($scope.startTime.substring(6, 10),$scope.startTime.substring(3, 5),$scope.startTime.substring(0, 2));
-		var d_end= new Date($scope.endTime.substring(6, 10),$scope.endTime.substring(3, 5),$scope.endTime.substring(0, 2));
-		
+		var diff = moment($scope.startTime).isSame($scope.endTime, 'day');
 	
-		if (d_end-d_start > 0)
-			formatXAxis = '%d.%m %H:%M';
+		if (!diff)
+			/*formatXAxis = '%d.%m %H:%M';*/
 			/*formatXAxis = '%d.%m.%y %H:%M';*/
+			formatXAxis = '%H:%M';
 		else
 			formatXAxis = '%H:%M';
 	}
@@ -453,23 +463,25 @@ angular.module('shared').controller('StatisticCtrl',['$scope','FhemWebSocketFact
 			else
 				$scope.statisticsData =$scope.fhem;
 			
-			//$scope.statisticsData = sss.concat(ppp);
 			loadStatisticsOptions();
 		});				
 	}
 
 	$scope.getControlData = function () {	
-
-		var startDateString = $scope.startTime.split(/\.| |\:/);	
-		var endDateString = $scope.endTime.split(/\.| |\:/);				
+	
+		var startDateString = moment($scope.startTime).format('YYYY-MM-DD_HH:mm:ss');
+		var endDateString = moment($scope.endTime).format('YYYY-MM-DD_HH:mm:ss');
+				
 
 		$scope.statisticsData = undefined;
 
 		for (i = 0; i < fhemDeviceArray.length; i++) { 
 			//'get logdb - webchart 2015-05-08_00:00:00 2015-05-08_22:00:00 GA.Rasenmaeher_Pwr timerange TIMESTAMP power'
 			//var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ $scope.fhemDevices +' timerange TIMESTAMP ' + $scope.fhemDeviceReadings;		
-			var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
-		
+			
+			var command = 'get logdb - webchart '+ startDateString+' '+ endDateString+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
+			//var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
+			
 			if(GENERAL_CONFIG.APP_CONTROLLER_DEBUG)
 				console.log("Send Command:" + command);
 		
@@ -480,13 +492,14 @@ angular.module('shared').controller('StatisticCtrl',['$scope','FhemWebSocketFact
 	/*Don't call this at creation state.*/
 	//$scope.getControlData();       
 
-	var colorArray = ['#82DFD6', '#CC0000', '#FF6666', '#FF3333', '#FF6666', '#FFE6E6'];
+	var colorArray = ['#1c84c6','#1ab394', '#f8ac59', '#FF6666', '#FF3333', '#FF6666', '#FFE6E6'];
 	
 	$scope.colorFunction = function() {
 		return function(d, i) {
 	    	return colorArray[i];
 	    };
 	}	
+	
 
 	/*Load the statistics options.*/
 	function loadStatisticsOptions(){
@@ -539,16 +552,63 @@ angular.module('shared').controller('StatisticCtrl',['$scope','FhemWebSocketFact
 		  }
 		};	
 	};
+
+	$scope.closeDialog = function () {
+   		$uibModalInstance.close();
+  	};
        
-	$scope.openStatisticDialog = function () {
+	$scope.openStatisticDialog = function (size) {
 		$scope.getControlData();
-		var new_dialog = ngDialog.open({
+		
+		/*var new_dialog = ngDialog.open({
 						template: './views/templates/statistic_dialog.html',
 						className: 'ngdialog-theme-default',   						
 						scope: $scope    						
 			});                                                               
-		};
+		};*/
+		var modalInstance = $uibModal.open({
+            templateUrl: './views/templates/statistic_dialog.html',
+            size: size,
+            controller: ModalInstanceCtrl,
+            windowClass: "animated flipInY"
+        });
+
+	};
+
+	$scope.getControlData();
 	
+}]);
+
+
+
+
+/**
+*	Modal Controller - used to run modal view
+*/	
+angular.module('shared').controller('ModalCtrl',['$scope','$uibModal', function($scope, $uibModal){	
+
+	$scope.items  =  {
+		text: $scope.text,
+		description: $scope.description, 
+		fhemDevices: $scope.fhemDevices, 
+		fhemDeviceReadings:  $scope.fhemDeviceReadings,
+		fhemDeviceReadingsTextsArray:   $scope.fhemDeviceReadingsTexts,
+	};
+
+	$scope.openStatisticDialog = function () {
+
+        var modalInstance = $uibModal.open({
+            templateUrl: 'views/templates/statistic_dialog.html',
+            controller: 'StatisticCtrl',
+            windowClass: "animated flipInY",
+            resolve: {
+		        items: function () {
+		          return $scope.items;
+		        }
+		      }
+        });
+    };
+
 }]);
 
 /**
@@ -975,17 +1035,4 @@ angular.module('shared').controller('PresenceCtrl',['$scope','FhemWebSocketFacto
 	
 }]);
 
-/**
-*	Modal Controller - used to run modal view
-*/	
-angular.module('shared').controller('ModalCtrl',['$scope','$uibModal', function($scope, $uibModal){	
-	$scope.open = function () {
-
-        var modalInstance = $uibModal.open({
-            templateUrl: 'views/templates/statistic_dialog.html',
-            //controller: ModalInstanceCtrl,
-            windowClass: "animated flipInY"
-        });
-    };
-}]);
 

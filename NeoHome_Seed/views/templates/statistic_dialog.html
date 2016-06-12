@@ -1,65 +1,38 @@
-<div class="ngdialog-message">	 								
-	<div class="row">		
-		<div class="col-md-12">
-             <section class="widget">
-        		<header>
-		            <h4>
-		                <span class="fw-semi-bold">{{text}}</span> {{'DIALOG_TITLE.CHARTS'|translate}}
-		            </h4>
-		            <!--<div class="widget-controls">
-		                <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
-		            </div>-->
-       			</header>
-		        <div class="widget-body">
-		            <p class="fs-mini text-muted">
-		                <div class="row">
-							<div class="col-md-5">
-								<div class="input-group">
-								<input type="text"
-								           class="form-control"
-								           ng-model="$parent.startTime"
-								           data-date-time-picker
-								           data-language="'de'"
-								           data-pick12HourFormat="false"
-								           data-use-current="{{false}}"
-								           data-location="'de'"
-								           ng-change="getControlData()"
-								            />   												
-			                    <span class="input-group-btn">
-			                        <a href="#" class="btn btn-success">
-			                            <span class="glyphicon glyphicon-calendar"></span>
-			                        </a>
-			                    </span>
-								</div>
-							</div>
-							<div class="col-md-offset-2 col-md-5">
-								<div class="input-group">											              
-						            <input type="text"
-								           class="form-control"
-								           ng-model="$parent.endTime"
-								           data-date-time-picker
-								           data-language="'de'"
-								           data-pick12HourFormat="false"
-								           data-use-current="{{false}}"
-								           data-location="'de'"
-								           ng-change="getControlData()"
-								            />                    
-						                <span class="input-group-btn">
-						                    <a href="#" class="btn btn-success">
-						                        <span class="glyphicon glyphicon-calendar"></span>
-						                    </a>
-						                </span>
-								</div>
-							</div>	
-						</div>
-		            </p>                    
-		            <nvd3 options='statisticsOptions' data='statisticsData'></nvd3>		            		            
-		        </div>
-    		</section>            
-        </div>
+
+<div class="inmodal">
+    <div class="modal-header">
+        <i class="fa fa-area-chart modal-icon"></i>
+        <h4 class="modal-title">{{items.text}} {{'DIALOG_TITLE.CHARTS'|translate}}</h4>
+        <small class="font-bold">{{items.description}}</small>
+    </div>
+    
+    <div class="">Start
+		<div class="dropdown">
+		  <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown">
+		    <div class="input-group"><input type="text" class="form-control" data-ng-model="startTime" data-date-time-input="YYYY-MM-DD HH:mm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		    </div>
+		  </a>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+		    <datetimepicker data-ng-model="startTime" data-on-set-time="getControlData()" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"/>
+		  </ul>
+		</div>
 	</div>
 
-	<div class="ngdialog-buttons">				
-		<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">{{'DIALOG_BUTTON.CLOSE'|translate}}</button>
+	<div class="">End
+		<div class="dropdown">
+		  <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown">
+		    <div class="input-group"><input type="text" class="form-control" data-ng-model="endTime" data-date-time-input="YYYY-MM-DD HH:mm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		    </div>
+		  </a>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+		    <datetimepicker data-ng-model="endTime" data-on-set-time="getControlData()" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+		  </ul>
+		</div>						
 	</div>
+    <div class="modal-body">
+        <nvd3 options='statisticsOptions' data='statisticsData'></nvd3>	
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" ng-click="closeDialog()">{{'DIALOG_BUTTON.CLOSE'|translate}}</button>
+    </div>
 </div>

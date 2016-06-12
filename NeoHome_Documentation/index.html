@@ -825,6 +825,185 @@ var DEVICES = [
 		}
 	})
 			</pre>
+			<br/>
+			  <h3>Modul - Statistic</h3>
+			  <br/>
+			  <h4>Beschreibung</h4>
+			  <br/>
+			  <p class="well">
+			  Die Statistik Directive dient der Anzeige von Bestimmtem Werten aus der Datanbank (logDB).
+			  </p>
+			  <span class="note">Einbettung eines Statistikdialogs z.B. im Header eines Blocks:</span>
+			  <p class="well">
+			  <img src="images\neohome\statistic_dialog_link.png"/><br/><br/>			  
+			  </p>
+			  <span class="note">Darstellungsformen der Heating Directive <strong>nh-heating-element</strong>:</span>
+			  <p class="well">
+			  <img src="images\neohome\statistic_dialog.png"/><br/><br/>			  
+			  </p>
+			  <br/>
+			  <h4>Beispiel</h4>
+			  <br/>
+			  <span class="note">Beispiel für eine Statistiv Directive <strong>nh-statistic</strong>:</span>
+              <pre class="prettyprint">
+	&lt;a href="" 
+		nh-statistic data-fhem-devices="PL_ga_PM_mower_Pwr" 
+		data-fhem-device-readings= "power" 
+		data-fhem-device-readings-texts="{{'CHARTTEXT.MOWER_STATE'|translate}}"
+		data-text ="{{'CHARTTEXT.MOWER'|translate}}"  
+		data-description = "{{'CHARTTEXT.DESCRIPTION_MOWER'|translate}}"                                             
+		data-chart-height="300"&gt;
+		&lt;span class="pull-right fa fa-area-chart fc-white"&gt;&lt;/span&gt;
+	&lt;/a&gt;
+              </pre>
+              <br />			 
+			  <br/>
+			  <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                  <th>Parameter</th>
+                  <th>Beschreibung</th>
+				  <th>Optionen</th>
+				  <th>Defaultwert</th>
+                </tr>
+				<tr>
+                  <td>data-fhem-devices</td>
+				  <td>FHEM Devices</td>
+                  <td></td>
+				  <td></td>
+                </tr>
+				<tr>
+                  <td>data-fhem-device-readings</td>
+				  <td>FHEM Devices-Readings</td>
+                  <td></td>
+				  <td></td>
+                </tr>				
+				<tr>
+                  <td>data-fhem-device-readings-texts</td>
+				  <td>Darzustellender Text des Readings</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>				
+				<tr>
+                  <td>data-text</td>
+				  <td>Titel des Charts</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-description</td>
+				  <td>Beschreibung des Charts</td>
+                  <td></td>
+				  <td>default: ''</td>
+                </tr>
+				<tr>
+                  <td>data-chart-type</td>
+				  <td>Chart Typ</td>
+                  <td>
+					<ul class="">			
+						<li>discreteBarChart</li>
+						<li>lineChart</li>
+						<li>cumulativeLineChart</li>
+						<li>stackedAreaChart</li>
+						<li>multiBarChart</li>
+						<li>multiBarHorizontalChart</li>
+						<li>pieChart</li>
+					</ul>
+				  </td>
+				  <td>default: 'stackedAreaChart'</td>
+                </tr>
+				<tr>
+                  <td>data-chart-interpolate-type</td>
+				  <td>Interpolate Typ</td>
+                  <td>
+					<ul class="">			
+						<li>linear – Normal line (jagged).</li>
+						<li>step-before – a stepping graph alternating between vertical and horizontal segments.</li>
+						<li>step-after - a stepping graph alternating between horizontal and vertical segments.</li>
+						<li>basis - a B-spline, with control point duplication on the ends (that's the one above).</li>
+						<li>basis-open - an open B-spline; may not intersect the start or end.</li>
+						<li>basis-closed - a closed B-spline, with the start and the end closed in a loop.</li>
+						<li>bundle - equivalent to basis, except a separate tension parameter is used to straighten the spline. This could be really cool with varying tension.</li>
+						<li>cardinal - a Cardinal spline, with control point duplication on the ends. It looks slightly more 'jagged' than basis.</li>
+						<li>cardinal-open - an open Cardinal spline; may not intersect the start or end, but will intersect other control points. So kind of shorter than 'cardinal'.</li>
+						<li>cardinal-closed - a closed Cardinal spline, looped back on itself.</li>
+						<li>monotone - cubic interpolation that makes the graph only slightly smoother. (default)</li>
+					</ul>	
+				  </td>
+				  <td>default: 'monotone'</td>
+                </tr>
+				<tr>
+                  <td>data-chart-ignore-zero-values</td>
+				  <td>Ignoriert 0 Werte.</td>
+                  <td>true/false</td>
+				  <td>default: 'false'</td>
+                </tr>
+				<tr>
+                  <td>data-chart-show-values</td>
+				  <td>Zeigt die Werte.</td>
+                  <td>true/false</td>
+				  <td>default: 'false'</td>
+                </tr>
+				<tr>
+                  <td>data-chart-show-yaxis</td>
+				  <td>Zeigt die y-Achse</td>
+                  <td>true/false</td>
+				  <td>default: 'true'</td>
+                </tr>
+				<tr>
+                  <td>data-chart-yaxis-is-datetime</td>
+				  <td>Die y-Achse liegt im Wertebereich vom Typ Datetime.</td>
+                  <td>true/false</td>
+				  <td>default: 'false'</td>
+                </tr>
+				<tr>
+                  <td>data-chart-as-area</td>
+				  <td>Zeigt die Linien im 'line chart' als areas.</td>
+                  <td>true/false</td>
+				  <td>default: 'true'</td>
+                </tr>
+				<tr>
+                  <td>data-chart-height</td>
+				  <td>Die Höhe des Chart in px.</td>
+                  <td></td>
+				  <td>default: '450'</td>
+                </tr>
+				</table>
+			  <br/>
+			  <h4>Abhängigkeiten</h4>
+			  <br/>
+			  <p class="well">
+			  Der Einsatz des Statistik Dialogs setzt den Einsatz der FHEM LogDB voraus. 
+			  Die Abhängigkeit für ein Statistik Dialog wird in der nh_config.js definiert. Hier muss für den Chart und die DateTimePicker die passenden Bibliothek beim Aufruf der Seite nachgeladen werden.
+			  </p>
+			  <span class="note">Beispiel einer Definition der Abhängigkeit <strong>ui.knob</strong>:</span>
+			  <pre class="prettyprint">
+	.state('rooms.demo_statistic_dialog', {
+            url: "/demo_statistic_dialog",
+            templateUrl: "views/demo_statistic_dialog.html",
+            data: { pageTitle: 'Demo statistic dialog' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            name: 'ui.bootstrap.datetimepicker',
+                            files: ['js/plugins/angular-bootstrap-datetimepicker/src/css/datetimepicker.css','js/plugins/angular-bootstrap-datetimepicker/src/js/datetimepicker.js','js/plugins/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js']
+                        },
+                        {
+                            name: 'ui.dateTimeInput',
+                            files:['js/plugins/angular-bootstrap-datetimepicker/src/js/dateTimeInput.js']
+                        },
+                        {
+                            files: ['css/plugins/nvd3/nv.d3.min.css','css/plugins/nvd3/nvd3.css','js/plugins/d3/d3.min.js','js/plugins/nvd3/nv.d3.min.js']
+                        },
+                        {
+                            name: 'nvd3',
+                            files: ['js/plugins/angular-nvd3/angular-nvd3.js']
+                        }
+                    ]);
+                }
+            }
+        })  
+			</pre>
 			  <br/>
 			 <h2>Textresources (Translation)</h2>
 			 <p class="well">

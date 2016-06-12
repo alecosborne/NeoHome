@@ -29,7 +29,11 @@ body.mini-navbar .logo-element-font {
     display: block;
 }
 
-
+/* MODAL */
+.modal-body{
+    padding-right: 20px;
+    padding-left: 20px;
+}
 
 /*	COLORS */
 .explicit-navy-bg {
@@ -143,14 +147,14 @@ img.iconSmall {
   width: 35px;
 }
 
-/* Iconstate on of a titles */
+/* Iconstate on */
 .iconOn {    
-
+    opacity: 1.0;
 }
 
-/* Iconstate off of a titles */
+/* Iconstate off */
 .iconOff{	    
-	opacity: 1.0;
+	opacity: 0.5;
 }
 
 .imageOff{       

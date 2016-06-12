@@ -87,7 +87,9 @@ var DEVICES = [
     { id: '1', name: 'FHEM_DEMO_STATE'},
     { id: '2', name: 'FF_che_TH_heater'},
     { id: '3', name: 'FF_che_TH_heater_Clima'},
-	{ id: '4', name: 'GF_lr_BA_shutter1'}
+	{ id: '4', name: 'GF_lr_BA_shutter1'},
+	{ id: '5', name: 'PL_ga_PM_mower_Pwr'},
+	{ id: '6', name: 'dum_PL_ga_PM_mower_State'}
 ];
 
 var config_data = {
@@ -192,6 +194,32 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
                         {
                            name: 'uiSwitch',
                            files: ['css/plugins/angular-ui-switch/angular-ui-switch.min.css','js/plugins/angular-ui-switch/angular-ui-switch.min.js']
+                        }
+                    ]);
+                }
+            }
+        })   
+		.state('rooms.demo_statistic_dialog', {
+            url: "/demo_statistic_dialog",
+            templateUrl: "views/demo_statistic_dialog.html",
+            data: { pageTitle: 'Demo statistic dialog' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            name: 'ui.bootstrap.datetimepicker',
+                            files: ['js/plugins/angular-bootstrap-datetimepicker/src/css/datetimepicker.css','js/plugins/angular-bootstrap-datetimepicker/src/js/datetimepicker.js','js/plugins/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js']
+                        },
+                        {
+                            name: 'ui.dateTimeInput',
+                            files:['js/plugins/angular-bootstrap-datetimepicker/src/js/dateTimeInput.js']
+                        },
+                        {
+                            files: ['css/plugins/nvd3/nv.d3.min.css','css/plugins/nvd3/nvd3.css','js/plugins/d3/d3.min.js','js/plugins/nvd3/nv.d3.min.js']
+                        },
+                        {
+                            name: 'nvd3',
+                            files: ['js/plugins/angular-nvd3/angular-nvd3.js']
                         }
                     ]);
                 }

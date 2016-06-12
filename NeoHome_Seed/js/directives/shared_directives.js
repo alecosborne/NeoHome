@@ -514,6 +514,7 @@ angular.module('shared').directive("nhCounterElement", function($compile, $http,
 *	fhemDeviceReadings: List of the readings separated by ','. 
 *	fhemDeviceReadingsTexts: List of the display textes of the readings separated by ','. 
 *	text: Display text (title) of the chart(s).
+*	description: Display text (description) of the chart(s).
 *	chartType: discreteBarChart, lineChart, cumulativeLineChart, stackedAreaChart, multiBarChart, multiBarHorizontalChart, pieChart
 *              default: stackedAreaChart 
 *	chartInterpolateType: linear – Normal line (jagged).
@@ -542,6 +543,7 @@ angular.module('shared').directive('nhStatistic', function(){
                 'fhemDeviceReadings': '@',
                 'fhemDeviceReadingsTexts': '@',
                 'text' : '@',
+                'description' : '@',
                 'chartType' : '@',
                 'chartInterpolateType' : '@',
                 'chartIgnoreZeroValues' : '@',
@@ -552,10 +554,10 @@ angular.module('shared').directive('nhStatistic', function(){
                 'chartHeight' : '@'
                 
             },
-            controller: 'StatisticCtrl',
+            controller: 'ModalCtrl',
         	link: function (scope, element, attrs){
         		element.on('click', function () {				
-					scope.openStatisticDialog('GA.RasenmaeherState');
+					scope.openStatisticDialog('lg');
 				});
         }
     }
