@@ -1,0 +1,26 @@
+<div class="row animated fadeInRight">
+    <div class="col-lg-4">    	 
+        <div class="ibox float-e-margins">
+            <div class="widget-head-color-box blue-bg p-xs">
+                <h5 class="font-bold no-margins">
+                        {{'SUBTITLE.DEMO_SUBTITLE_SONOS' | translate}}                
+                </h5>                 
+            </div>
+            <div class="ibox-content no-padding">
+                <ul class="list-group">
+					<nh-sonos-element     
+                        data-template="list"           
+					
+                        data-fhem-name="sonos_Allgemein"   
+						data-fhem-name-bass="sonos_Allgemein"
+                        data-text="Allgemein"
+						
+                        data-states = "0,25,50,75,100"
+                        data-images ="images/controls/window_blind_0.png,images/controls/window_blind_25.png,images/controls/window_blind_50.png,images/controls/window_blind_75.png,images/controls/window_blind_100.png">
+                    </nh-sonos-element>
+                </ul>
+            </div>               
+        </div>
+    </div>
+</div>
+

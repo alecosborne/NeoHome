@@ -1,0 +1,54 @@
+<!--
+    TYPE:           nhSonosElement
+    TEMPLATENAME:   list
+-->
+<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+    
+     <a href="" class="pull-left">                                     
+        <img ng-src="{{fhem.Readings.currentAlbumArtURL.Value}}"/>     
+    </a>
+
+    <div class="media-body ">        
+        <strong>{{text}}</strong>
+
+        <p class="m-b-xs" translate={{fhem.Readings.infoSummarize1.Value}}></p>
+        
+		
+        <div class="pull-left text-center fw-semi-bold text-gray nowrap">
+            Volume:
+			<span uib-popover-template="sonosVolumePopover.templateUrl" popover-placement="right" popover-title="{{sonosVolumePopover.title}}" popover-trigger="outsideClick" 
+			type="button" class="">
+			{{sonos_volume}}
+			</span>
+			<br/>
+			 Bass:
+			<span uib-popover-template="sonosBassPopover.templateUrl" popover-placement="right" popover-title="{{sonosBassPopover.title}}" popover-trigger="outsideClick" 
+			type="button" class="">
+			{{sonos_bass}}
+			</span>
+			<br/>
+			 Treble:
+			<span uib-popover-template="sonosTreblePopover.templateUrl" popover-placement="right" popover-title="{{sonosTreblePopover.title}}" popover-trigger="outsideClick" 
+			type="button" class="">
+			{{sonos_treble}}
+			</span>
+			<br/>
+        </div>
+		<br/>
+                                  
+      
+           
+      
+        <small class="text-muted">{{fhem.Readings.state.Time | date:'dd-MM-yyyy'}}</small>
+		
+		<a href="" 
+			nh-sonos-details data-fhem-devices="PL_ga_PM_mower_Pwr" 
+			data-fhem-device-readings= "power" 
+			data-fhem-device-readings-texts="{{'CHARTTEXT.MOWER_STATE'|translate}}"
+			data-text ="{{'CHARTTEXT.MOWER'|translate}}"  
+			data-description = "{{'CHARTTEXT.DESCRIPTION_MOWER'|translate}}"                                             
+			data-chart-height="300"
+			><span class="pull-right fa fa-cogs"></span>
+		</a>		
+    </div>                               
+</li>

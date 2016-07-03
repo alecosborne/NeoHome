@@ -16,9 +16,9 @@ var APP_NAME = "NeoHome";
 var APP_VERSION = "Alpha 0.5";
 var APP_ROOTPATH = "NeoHome_Seed";
 var APP_DEBUG = false;
-var APP_CONTROLLER_DEBUG = false;
-var APP_DIRECTIVE_DEBUG = false;
-var APP_SERVICE_DEBUG = false;
+var APP_CONTROLLER_DEBUG = true;
+var APP_DIRECTIVE_DEBUG = true;
+var APP_SERVICE_DEBUG = true;
 
 /**
  *	Fhem constants
@@ -240,6 +240,25 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
                 }
             }
         })
+		.state('index.demo_sonos', {
+            url: "/demo_sonos",
+            templateUrl: "views/demo_sonos.html",
+            data: { pageTitle: 'Demo Sonos' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            name: 'ui.knob',
+                            files: ['js/plugins/RadMie-ng-knob/dist/ng-knob.min.js','js/plugins/d3/d3.min.js']
+                        },
+                        {
+                            files: ['css/plugins/touchspin/jquery.bootstrap-touchspin.min.css', 'js/plugins/touchspin/jquery.bootstrap-touchspin.min.js']
+                        }
+                    ]);
+                }
+            }
+        })
+		
 }
 
 

@@ -7,7 +7,8 @@
         'ui.router',                    // Routing
         'oc.lazyLoad',                  // ocLazyLoad
         'ui.bootstrap',                 // Ui Bootstrap
-
+		'ngAnimate', 
+		
         'pascalprecht.translate',         
         'ngCookies',
         'ngSanitize',
@@ -15,6 +16,7 @@
         // application libs
 		'shared',
         'heating',
+		'sonos',
 		'window',
         'weather',
         'energy',
@@ -30,6 +32,7 @@
     //var app = angular.module('shared',['nh.config']); 
 	var app = angular.module('window',[]);
 	var app = angular.module('heating',[]);
+	var app = angular.module('sonos',[]);
     var app = angular.module('infrastructure',[]);
     var app = angular.module('weather',['nh.config']);
     var app = angular.module('energy',['nh.config']);
