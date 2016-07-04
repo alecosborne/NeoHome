@@ -39,6 +39,30 @@ angular.module('sonos').controller('SonosCtrl',['$rootScope', '$scope' ,'$timeou
         boostat: 5,
         maxboostedstep: 10,
     };
+	
+	$scope.knobstyle = {
+			min: 0,
+			max: 50,
+		 	size: 150,
+		 	unit: "",
+		 	startAngle: 270,
+  			endAngle: 90,
+		 	displayPrevious: true,
+	  		trackColor: 'rgba(28, 132, 198, .1)',
+	  		prevBarColor: 'rgba(28, 132, 198, .2)',
+	  		barColor: 'rgba(28, 132, 198, .5)',
+		  	trackWidth: 10,
+	  		barWidth: 20,
+		 	scale: {
+			    enabled: true,
+			    type: 'dots',
+			    color: 'gray',
+			    width: 1,
+			    quantity: 20,
+			    height: 8
+			  },
+		  	step: 1
+		};
 
 	
 	
@@ -123,13 +147,30 @@ angular.module('sonos').controller('SonosCtrl',['$rootScope', '$scope' ,'$timeou
 			$scope.sonos_treble=$scope.fhem.Readings.Treble.Value;
 	}
 	
+	
+	$scope.setPlay = function(){
+		var name = $scope.fhem.Name;
+		var cmd = "set " + name + " Play";
+		FhemWebSocketFactory.sendFhemCommand(cmd);
+	}
+	
+	$scope.setPause = function(){
+		var name = $scope.fhem.Name;
+		var cmd = "set " + name + " Pause";
+		FhemWebSocketFactory.sendFhemCommand(cmd);
+	}
+	
+	$scope.setStop = function(){
+		var name = $scope.fhem.Name;
+		var cmd = "set " + name + " Stop";
+		FhemWebSocketFactory.sendFhemCommand(cmd);
+	}
 
 	/**
 	* Set the Sonos state.
 	* type: Volume, Bass, Treble
 	*/
 	setSonosState = function(type, value) {
-		
 		var name = $scope.fhem.Name;
 		//var cmd = "set " + name + " Volume " + $scope.SonosLevel;
 		var cmd = "set " + name + " " + type + " " + value;

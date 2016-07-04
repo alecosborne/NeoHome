@@ -13,6 +13,26 @@
 
         <p class="m-b-xs" translate={{fhem.Readings.infoSummarize1.Value}}></p>
         
+		<div class="row">
+			<div class="m-r-md text-center">     
+				<ui-knob class="sonos-knob" value="sonos_volume" options="knobstyle" ng-model="sonos_volume"></ui-knob>
+			</div>
+		</div>
+		<div class="row">
+			<div class="m-r-md text-center">    
+			<button class="btn btn-default btn-circle btn-lg" ng-click="setPlay()" type="button">
+				<i class="fa fa-play"></i>
+			</button>
+			
+			<button class="btn btn-default btn-circle btn-lg" ng-click="setPause()" type="button">
+				<i class="fa fa-pause"></i>
+			</button>
+			
+			<button class="btn btn-default btn-circle btn-lg" ng-click="setStop()" type="button">
+				<i class="fa fa-stop"></i>
+			</button>
+			</div>
+		</div>
 		
         <div class="pull-left text-center fw-semi-bold text-gray nowrap">
             Volume:
