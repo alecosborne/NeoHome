@@ -797,13 +797,13 @@ angular.module('energy').controller('EnergyCtrl',['$rootScope','$scope','FhemWeb
 			//'get logdb - webchart 2015-05-08_00:00:00 2015-05-08_22:00:00 GA.Rasenmaeher_Pwr timerange TIMESTAMP power'
 			//var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ $scope.fhemDevices +' timerange TIMESTAMP ' + $scope.fhemDeviceReadings;		
 			//var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
-			var commandPowerDaySum = 'get logdb - webchart '+$scope.startTimeDaySum+' '+$scope.endTime+' '+ $scope.fhemDevicePowerDaySum +' timerange TIMESTAMP ' + $scope.fhemDevicePowerDaySumReading;		
+			var commandPowerDaySum = 'webchart '+$scope.startTimeDaySum+' '+$scope.endTime+' '+ $scope.fhemDevicePowerDaySum +' timerange TIMESTAMP ' + $scope.fhemDevicePowerDaySumReading;		
 			
 
 			if(GENERAL_CONFIG.APP_CONTROLLER_DEBUG)
 				console.log("Send Command:" + commandPowerDaySum);
 		
-			FhemWebSocketFactory.sendFhemCommand(commandPowerDaySum, 'sumPowerDay', callbackPowerDaySum);	
+			FhemWebSocketFactory.sendFhemDBCommand(commandPowerDaySum, 'sumPowerDay', callbackPowerDaySum);	
 
 
 			
@@ -819,13 +819,13 @@ angular.module('energy').controller('EnergyCtrl',['$rootScope','$scope','FhemWeb
 		$scope.endTime   = moment().subtract(1, 'day').endOf('day').format('YYYY-MM-DD_HH:mm:ss');	*/		
 
 		
-			var commandPowerDay = 'get logdb - webchart '+$scope.startTimeDay+' '+$scope.endTime+' '+ $scope.fhemDevicePowerDay +' timerange TIMESTAMP ' + $scope.fhemDevicePowerDayReading;		
+			var commandPowerDay = 'webchart '+$scope.startTimeDay+' '+$scope.endTime+' '+ $scope.fhemDevicePowerDay +' timerange TIMESTAMP ' + $scope.fhemDevicePowerDayReading;		
 			
 
 			if(GENERAL_CONFIG.APP_CONTROLLER_DEBUG)
 				console.log("Send Command:" + commandPowerDay);
 		
-			FhemWebSocketFactory.sendFhemCommand(commandPowerDay, 'powerDay' ,callbackPowerDay);						    			
+			FhemWebSocketFactory.sendFhemDBCommand(commandPowerDay, 'powerDay' ,callbackPowerDay);						    			
 		//}		
 	}	
 
@@ -845,13 +845,13 @@ angular.module('energy').controller('EnergyCtrl',['$rootScope','$scope','FhemWeb
 			//'get logdb - webchart 2015-05-08_00:00:00 2015-05-08_22:00:00 GA.Rasenmaeher_Pwr timerange TIMESTAMP power'
 			//var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ $scope.fhemDevices +' timerange TIMESTAMP ' + $scope.fhemDeviceReadings;		
 			//var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
-			var commandGasDaySum = 'get logdb - webchart '+$scope.startTimeDaySum+' '+$scope.endTime+' '+ $scope.fhemDeviceGasDaySum +' timerange TIMESTAMP ' + $scope.fhemDeviceGasDaySumReading;		
+			var commandGasDaySum = 'webchart '+$scope.startTimeDaySum+' '+$scope.endTime+' '+ $scope.fhemDeviceGasDaySum +' timerange TIMESTAMP ' + $scope.fhemDeviceGasDaySumReading;		
 			
 
 			if(GENERAL_CONFIG.APP_CONTROLLER_DEBUG)
 				console.log("Send Command:" + commandGasDaySum);
 		
-			FhemWebSocketFactory.sendFhemCommand(commandGasDaySum, 'sumGasDay', callbackGasDaySum);	
+			FhemWebSocketFactory.sendFhemDBCommand(commandGasDaySum, 'sumGasDay', callbackGasDaySum);	
 
 
 			
@@ -866,13 +866,13 @@ angular.module('energy').controller('EnergyCtrl',['$rootScope','$scope','FhemWeb
 		$scope.endTime   = moment().subtract(1, 'day').endOf('day').format('YYYY-MM-DD_HH:mm:ss');	*/		
 
 		
-			var commandGasDay = 'get logdb - webchart '+$scope.startTimeDay+' '+$scope.endTime+' '+ $scope.fhemDeviceGasDay +' timerange TIMESTAMP ' + $scope.fhemDeviceGasDayReading;		
+			var commandGasDay = 'webchart '+$scope.startTimeDay+' '+$scope.endTime+' '+ $scope.fhemDeviceGasDay +' timerange TIMESTAMP ' + $scope.fhemDeviceGasDayReading;		
 			
 
 			if(GENERAL_CONFIG.APP_CONTROLLER_DEBUG)
 				console.log("Send Command:" + commandGasDay);
 		
-			FhemWebSocketFactory.sendFhemCommand(commandGasDay, 'gasDay' ,callbackGasDay);						    			
+			FhemWebSocketFactory.sendFhemDBCommand(commandGasDay, 'gasDay' ,callbackGasDay);						    			
 		//}		
 	}	
 

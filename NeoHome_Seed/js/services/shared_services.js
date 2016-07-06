@@ -453,6 +453,27 @@ angular.module('shared').factory('FhemWebSocketFactory', ['$q', '$rootScope', 'S
     		command: cmd    		
   		});
     }
+
+    /**
+	*	Send a Fhem DB Command. After the command replay
+	*	the callback method will be procesed.
+	*
+	*	@cmd: Command.
+	*	@id: Id of the command.
+	*	@callback: Callback method in the controller.
+	*/
+	fhemWebSocketFactory.sendFhemDBCommand = function(cmd, id, callback) {
+		
+		cmd = 'get ' + FHEM_CONFIG.FHEM_LOG_DB + ' - ' + cmd; 
+
+		$rootScope.commands[cmd]= {
+				id: id, 
+				callback: callback};
+
+    	sendCommand({
+    		command: cmd    		
+  		});
+    }
     
     /**
     *	Set Fhem control state.

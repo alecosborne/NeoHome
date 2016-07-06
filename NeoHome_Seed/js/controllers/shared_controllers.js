@@ -479,13 +479,13 @@ angular.module('shared').controller('StatisticCtrl',['$scope','FhemWebSocketFact
 			//'get logdb - webchart 2015-05-08_00:00:00 2015-05-08_22:00:00 GA.Rasenmaeher_Pwr timerange TIMESTAMP power'
 			//var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ $scope.fhemDevices +' timerange TIMESTAMP ' + $scope.fhemDeviceReadings;		
 			
-			var command = 'get logdb - webchart '+ startDateString+' '+ endDateString+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
+			var command = 'webchart '+ startDateString+' '+ endDateString+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
 			//var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
 			
 			if(GENERAL_CONFIG.APP_CONTROLLER_DEBUG)
 				console.log("Send Command:" + command);
 		
-			FhemWebSocketFactory.sendFhemCommand(command, i, callback);							    			
+			FhemWebSocketFactory.sendFhemDBCommand(command, i, callback);							    			
 		}		
 	}	
 
@@ -614,7 +614,7 @@ angular.module('shared').controller('ModalCtrl',['$scope','$uibModal', function(
 /**
 *	Schedule Controller 
 */	
-angular.module('shared').controller('ScheduleCtrl',['$scope','FhemWebSocketFactory','SharedFactory','ngDialog','GENERAL_CONFIG', function($scope, FhemWebSocketFactory, SharedFactory, ngDialog, GENERAL_CONFIG){	
+angular.module('shared').controller('ScheduleCtrl',['$scope','FhemWebSocketFactory','SharedFactory','ngDialog','GENERAL_CONFIG','FHEM_CONFIG', function($scope, FhemWebSocketFactory, SharedFactory, ngDialog, GENERAL_CONFIG, FHEM_CONFIG){	
 	
 	var currentDate = new Date();
 	$scope.fhem = new Array();	
@@ -659,7 +659,7 @@ angular.module('shared').controller('ScheduleCtrl',['$scope','FhemWebSocketFacto
 		for (i = 0; i < fhemDeviceArray.length; i++) { 
 			//'get logdb - webchart 2015-05-08_00:00:00 2015-05-08_22:00:00 GA.Rasenmaeher_Pwr timerange TIMESTAMP power'
 			//var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ $scope.fhemDevices +' timerange TIMESTAMP ' + $scope.fhemDeviceReadings;		
-			var command = 'get logdb - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
+			var command = 'get ' + FHEM_CONFIG.FHEM_LOG_DB + ' - webchart '+startDateString[2]+'-'+startDateString[1]+'-'+startDateString[0]+'_'+startDateString[3]+'-'+startDateString[4]+'-'+'00'+' '+endDateString[2]+'-'+endDateString[1]+'-'+endDateString[0]+'_'+endDateString[3]+'-'+endDateString[4]+'-'+'00'+' '+ fhemDeviceArray[i] +' timerange TIMESTAMP ' + fhemDeviceReadingsArray[i];		
 		
 			if(GENERAL_CONFIG.APP_CONTROLLER_DEBUG)
 				console.log("Send Command:" + command);
@@ -682,14 +682,14 @@ angular.module('shared').controller('ScheduleCtrl',['$scope','FhemWebSocketFacto
 /**
 *	Expereimental Controller 
 */	
-angular.module('shared').controller('TestCtrl',['$scope','scriptLoader','FhemWebSocketFactory','ngDialog','GENERAL_CONFIG', function($scope, scriptLoader, FhemWebSocketFactory,ngDialog,GENERAL_CONFIG){	
+angular.module('shared').controller('TestCtrl',['$scope','scriptLoader','FhemWebSocketFactory','ngDialog','GENERAL_CONFIG','FHEM_CONFIG', function($scope, scriptLoader, FhemWebSocketFactory,ngDialog,GENERAL_CONFIG,FHEM_CONFIG){	
 	
 	var resultTest = this;		
 	resultTest.result = null;
 	$scope.vartest = "Hallo";
 	function test() {		
 
-		FhemWebSocketFactory.sendFhemCommand('get logdb - webchart 2015-05-08_00:00:00 2015-05-08_22:00:00 GA.Rasenmaeher_Pwr timerange TIMESTAMP power',
+		FhemWebSocketFactory.sendFhemCommand('get ' + FHEM_CONFIG.FHEM_LOG_DB + ' - webchart 2015-05-08_00:00:00 2015-05-08_22:00:00 GA.Rasenmaeher_Pwr timerange TIMESTAMP power',
 				function(data) {
 				if(GENERAL_CONFIG.APP_CONTROLLER_DEBUG)
 					console.log("Fire from command: "+ data.command +":" + JSON.stringify(data));

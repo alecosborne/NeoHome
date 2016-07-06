@@ -325,6 +325,7 @@ var FHEM_OVER_WEB_SOCKET = true;
 var FHEM_WEB_SOCKET_URL = "ws://192.168.1.24:8080";
 var FHEM_WEB_SOCKET_SECURE_URL = "wss://192.168.1.24:8080";
 var FHEM_WEB_SOCKET_SECURE = false;
+var FHEM_LOG_DB = "logdb";
 
 ...
 
@@ -338,7 +339,235 @@ var DEVICES = [
 
 ...			  
 			  </pre>
-              <br />			 
+              <br />
+			  <h2>Konfiguration</h2>
+			  <p class="well">
+			  Im folgenden Abschnitt gibt es eine Übersicht über alle Konfigurationsparameter der Anwendung.
+			  </p>	
+			  <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                  <th>Parameter</th>
+				  <th>Beschreibung</th>
+				  <th>Beispiel</th>
+                </tr>
+                <tr>
+				  <td colspan="3"><b>Application constants</b></td>
+				</tr>
+				<tr>
+				  <td>APP_NAME</td>
+                  <td>Name der eigenen Applikation.</td>
+				  <td>"Mein Smart Home";</td>
+				</tr>
+				<tr>
+				  <td>APP_VERSION</td>
+                  <td>Version der eigenen Applikation.</td>
+				  <td>"0.5";</td>
+				</tr>
+				<tr>
+				  <td>APP_ROOTPATH</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>APP_DEBUG</td>
+                  <td>Allgemeine Debugausgaben aktivieren.</td>
+				  <td>true;</td>
+				</tr>
+				<tr>
+				  <td>APP_CONTROLLER_DEBUG</td>
+                  <td>Controller Debugausgaben aktivieren.</td>
+				  <td>true;</td>
+				</tr>
+				<tr>
+				  <td>APP_DIRECTIVE_DEBUG</td>
+                  <td>Directiven Debugausgaben aktivieren.</td>
+				  <td>true;</td>
+				</tr>
+				<tr>
+				  <td>APP_SERVICE_DEBUG</td>
+                  <td>Service Debugausgaben aktivieren.</td>
+				  <td>true;</td>
+				</tr>
+				<tr>
+				  <td colspan="3"><b>Fhem constants</b></td>
+				</tr>
+				<tr>
+				  <td>FHEM_URL</td>
+                  <td>FHEM URL.</td>
+				  <td>"http://192.168.1.24:8083/fhem";</td>
+				</tr>
+				<tr>
+				  <td>FHEM_OVER_WEB_SOCKET</td>
+                  <td></td>
+				  <td>true;</td>
+				</tr>
+				<tr>
+				  <td>FHEM_WEB_SOCKET_URL</td>
+                  <td>Web Socket URL.</td>
+				  <td>"ws://192.168.1.24:8080";</td>
+				</tr>
+				<tr>
+				  <td>FHEM_WEB_SOCKET_SECURE_URL</td>
+                  <td>Secure Web Socket URL</td>
+				  <td>"wss://192.168.1.24:8080";</td>
+				</tr>
+				<tr>
+				  <td>FHEM_WEB_SOCKET_SECURE</td>
+                  <td>Secure Socket aktiv.</td>
+				  <td>false;</td>
+				</tr>
+				<tr>
+				  <td>FHEM_LOG_DB</td>
+                  <td>FHEM LogDb Name.</td>
+				  <td>"logdb";</td>
+				</tr>
+				<tr>
+				  <td colspan="3"><b>Weather constants Openweathermap</b></td>
+				</tr>
+				<tr>
+				  <td>OPENWEATHERMAP_ACTIVE</td>
+                  <td></td>
+				  <td>true;</td>
+				</tr>
+				<tr>
+				  <td>OPENWEATHERMAP_APPID</td>
+                  <td></td>
+				  <td>"1f22356c3a4647568567c96977";</td>
+				</tr>
+				<tr>
+				  <td>OPENWEATHERMAP_API_URL</td>
+                  <td></td>
+				  <td>"http://api.openweathermap.org/data/2.5/"</td>
+				</tr>
+				<tr>
+				  <td>OPENWEATHERMAP_WEATHER_URL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>OPENWEATHERMAP_FORECAST_HOURLY_URL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>OPENWEATHERMAP_FORECAST_DAILY_URL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>OPENWEATHERMAP_REFRESH_INTERVAL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td colspan="3"><b>Weather constants Wunderground</b></td>
+				</tr>
+				<tr>
+				  <td>WUNDERGROUND_ACTIVE</td>
+                  <td></td>
+				  <td>false;</td>
+				</tr>
+				<tr>
+				  <td>WUNDERGROUND_API_URL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>WUNDERGROUND_WEATHER_URL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>WUNDERGROUND_FORECAST_HOURLY_URL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>WUNDERGROUND_FORECAST_DAILY_URL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>WUNDERGROUND_REFRESH_INTERVAL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td colspan="3"><b>Weather constants Netatmo</b></td>
+				</tr>
+				<tr>
+				  <td>NETATMO_ACTIVE</td>
+                  <td></td>
+				  <td>true;</td>
+				</tr>
+				<tr>
+				  <td>NETATMO_CLIENT_ID</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>NETATMO_CLIENT_SECRET</td>
+                  <td></td>
+				  <td></td>
+				</tr><tr>
+				  <td>NETATMO_USERNAME</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>NETATMO_PASSWORD</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>NETATMO_REFRESH_INTERVAL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td colspan="3"><b>Google calendar constants</b></td>
+				</tr>
+				<tr>
+				  <td>GOOGLE_CALENDAR_GARBAGE_CAN_URL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>GOOGLE_CALENDAR_GARBAGE_CAN_URL_ATTR_SINGLE_EVENTS</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>GOOGLE_CALENDAR_GARBAGE_CAN_URL_ATTR_ORDER_BY</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>GOOGLE_CALENDAR_GARBAGE_CAN_URL_ATTR_MAX_RESULTS</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>GOOGLE_CALENDAR_GARBAGE_CAN_URL_ATTR_TIME_MIN</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td>GOOGLE_CALENDAR_GARBAGE_CAN_REFRESH_INTERVAL</td>
+                  <td></td>
+				  <td></td>
+				</tr>
+				<tr>
+				  <td colspan="3"><b>Devicelist</b></td>
+				</tr>
+				<tr>
+				  <td></td>
+                  <td></td>
+				  <td></td>
+				</tr>
+			  </table>
+			  </pre>
+              <br />
 			  <h2>Module und Directives</h2>
 			  <h3>Modul - Switch</h3>
 			  <br/>
