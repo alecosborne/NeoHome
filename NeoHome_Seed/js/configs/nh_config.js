@@ -260,6 +260,34 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
                 }
             }
         })
+		.state('index.weather', {
+            url: "/weather",
+            templateUrl: "views/weather.html",
+            data: { pageTitle: 'Weather' },
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            files: ['css/plugins/slick/slick.css','css/plugins/slick/slick-theme.css','js/plugins/slick/slick.min.js']
+                        },
+                        {
+                            name: 'slick',
+                            files: ['js/plugins/slick/angular-slick.min.js']
+                        },
+                        {
+                            files: ['css/plugins/nvd3/nv.d3.min.css','css/plugins/nvd3/nvd3.css','js/plugins/d3/d3.min.js','js/plugins/nvd3/nv.d3.min.js']
+                        },
+                        {
+                            name: 'nvd3',
+                            files: ['js/plugins/angular-nvd3/angular-nvd3.js']
+                        },                       
+                        {
+                            files: ['css/plugins/weather-icons/css/weather-icons.min.css']
+                        }
+                    ]);
+                }
+            }
+        })
 		
 }
 

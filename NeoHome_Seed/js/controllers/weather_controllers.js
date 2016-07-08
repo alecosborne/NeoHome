@@ -137,12 +137,12 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
         WeatherFactory.getWeatherCurrent('OPENWEATHERMAP')
             .success(function (data) {
                 
-/*NETATMO*/        	//$scope.fhem.weather.date = data.dt
+/*NETATMO*/        	$scope.fhem.weather.date = data.dt
                 	$scope.fhem.weather.location = data.name
                 	$scope.fhem.weather.id =  data.weather[0].id
-/*NETATMO*/			//$scope.fhem.weather.temperature =  data.main.temp
-/*NETATMO*/			//$scope.fhem.weather.temperatur_max =   data.main.temp_max
-/*NETATMO*/			//$scope.fhem.weather.temperatur_min = data.main.temp_min
+/*NETATMO*/			$scope.fhem.weather.temperature =  data.main.temp
+/*NETATMO*/			$scope.fhem.weather.temperatur_max =   data.main.temp_max
+/*NETATMO*/			$scope.fhem.weather.temperatur_min = data.main.temp_min
 					$scope.fhem.weather.description =  data.weather[0].description
 					//$scope.fhem.weather.temperature_feelslike = ''
 					//$scope.fhem.weather.uv_index = ''
@@ -151,11 +151,11 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
 					else
 						$scope.fhem.weather.precipitation = 0
 
-/*NETATMO*/			//$scope.fhem.weather.pressure = data.main.pressure
-/*NETATMO*/			//$scope.fhem.weather.humidity = data.main.humidity
-/*NETATMO*/			//$scope.fhem.weather.wind_strength = data.wind.speed
-					//$scope.fhem.weather.windchill = ''
-					//$scope.fhem.weather.dewpoint = ''
+/*NETATMO*/			$scope.fhem.weather.pressure = data.main.pressure
+/*NETATMO*/			$scope.fhem.weather.humidity = data.main.humidity
+/*NETATMO*/			$scope.fhem.weather.wind_strength = data.wind.speed
+					$scope.fhem.weather.windchill = ''
+					$scope.fhem.weather.dewpoint = ''
 					$scope.fhem.weather.clouds = data.clouds.all
 					$scope.fhem.weather.sunrise = data.sys.sunrise
 					$scope.fhem.weather.sunset =  data.sys.sunset
