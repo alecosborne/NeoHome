@@ -1,10 +1,33 @@
 /**
 *	Controller for a fhem clima element.
 */	
-angular.module('heating').controller('ClimaCtrl',['$rootScope','$scope','FhemFactory','FhemWebSocketFactory','GENERAL_CONFIG', function($rootScope, $scope, FhemFactory, FhemWebSocketFactory, GENERAL_CONFIG){	
+angular.module('heating').controller('ClimaCtrl',['$rootScope','$scope','$timeout','FhemFactory','FhemWebSocketFactory','GENERAL_CONFIG', function($rootScope, $scope, $timeout, FhemFactory, FhemWebSocketFactory, GENERAL_CONFIG){	
 	
 	var deviceName = undefined;
 	var deviceNameClima = undefined;
+
+	// create the timer variable
+    var clickTimer;
+
+	/**
+	*	Method to register a listener callback to be executed 
+	*	whenever a device changes.
+	*/
+	$scope.registerNames = function (name, nameClima) {	
+		deviceName = name;
+		deviceNameClima = nameClima;
+
+		$scope.$watch(
+            "$root.devicelist['"+name+"']",
+			watchListenerCallback,true
+        );
+
+        $scope.$watch(
+            "$root.devicelist['"+nameClima+"']",
+			watchListenerCallback,true
+        );
+		
+	}
 
 	/**
 	*	Init the controler variables.
@@ -50,26 +73,6 @@ angular.module('heating').controller('ClimaCtrl',['$rootScope','$scope','FhemFac
 	}
 
 	/**
-	*	Method to register a listener callback to be executed 
-	*	whenever a device changes.
-	*/
-	$scope.registerNames = function (name, nameClima) {	
-		deviceName = name;
-		deviceNameClima = nameClima;
-
-		$scope.$watch(
-            "$root.devicelist['"+name+"']",
-			watchListenerCallback,true
-        );
-
-        $scope.$watch(
-            "$root.devicelist['"+nameClima+"']",
-			watchListenerCallback,true
-        );
-		
-	}
-
-	/**
 	*	Listener callback for the scope watch.
 	*/
 	var watchListenerCallback = function(newValue, oldValue) {
@@ -87,6 +90,46 @@ angular.module('heating').controller('ClimaCtrl',['$rootScope','$scope','FhemFac
 		}				
 									
     }
+
+    $scope.$watch("desiredTemperature", function(newValue, oldValue) {
+		$timeout.cancel(clickTimer);
+		if(newValue != oldValue){
+			clickTimer = $timeout(function () {
+				$scope.setTemperature();
+			}, 1000);
+		}
+	});
+
+	/**
+	* Refresh the model values.
+	*/
+	function setTempHeatingParameters() {
+		if (typeof $scope.fhem.Readings["desired-temp"] != 'undefined')
+			$scope.desiredTemperature = $scope.fhem.Readings["desired-temp"].Value;
+				
+		if (typeof $scope.fhem.Readings.controlMode != 'undefined')
+			$scope.controlMode = $scope.fhem.Readings.controlMode.Value;
+	}
+
+
+	/**
+	* Set the temperatur state.
+	*/
+	$scope.setTemperature = function() {
+		var name = $scope.fhem.Name;
+		
+		if ( $scope.controlMode != $scope.fhem.Readings.controlMode.Value || 
+			 $scope.desiredTemperature != $scope.fhem.Readings["desired-temp"].Value) { 
+
+			if($scope.controlMode === 'manual') {
+				FhemWebSocketFactory.setTemperatureManual(name, $scope.desiredTemperature)		   			
+		    	FhemWebSocketFactory.setBurstXmit(name)		   			
+		    }else if($scope.controlMode === 'auto' || $scope.controlMode === 'boost'){
+		    	FhemWebSocketFactory.setTemperature(name, $scope.controlMode)		   			
+		    	FhemWebSocketFactory.setBurstXmit(name)		   			
+		    }
+    	}
+	}
 
 	
 	/* **Deprecated**
@@ -109,36 +152,5 @@ angular.module('heating').controller('ClimaCtrl',['$rootScope','$scope','FhemFac
 				});													
 			});					
 	}*/
-
-	/**
-	* Refresh the model values.
-	*/
-	function setTempHeatingParameters() {
-		if (typeof $scope.fhem.Readings["desired-temp"] != 'undefined')
-			$scope.desiredTemperature = $scope.fhem.Readings["desired-temp"].Value;
-				
-		if (typeof $scope.fhem.Readings.controlMode != 'undefined')
-			$scope.controlMode = $scope.fhem.Readings.controlMode.Value;
-	}
-
-	/**
-	* Set the temperatur state.
-	*/
-	$scope.setTemperature = function() {
-		var name = $scope.fhem.Name;
-		
-		if ( $scope.controlMode != $scope.fhem.Readings.controlMode.Value || 
-			 $scope.desiredTemperature != $scope.fhem.Readings["desired-temp"].Value) { 
-
-
-			if($scope.controlMode === 'manual') {
-				FhemWebSocketFactory.setTemperatureManual(name, $scope.desiredTemperature)		   			
-		    	FhemWebSocketFactory.setBurstXmit(name)		   			
-		    }else if($scope.controlMode === 'auto' || $scope.controlMode === 'boost'){
-		    	FhemWebSocketFactory.setTemperature(name, $scope.controlMode)		   			
-		    	FhemWebSocketFactory.setBurstXmit(name)		   			
-		    }
-    	}
-	}
 	
 }]);
