@@ -30,6 +30,8 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
 		var time2 = new Date(date2*1000).toLocaleTimeString();
 		var time3 = new Date(date3*1000).toLocaleTimeString();
 
+		var cssString = '';
+
 		var t1 = new Date();
   		var parts = time1.split(":");
   		t1.setHours(parts[0],parts[1],parts[2],0);
@@ -41,13 +43,22 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
   		t3.setHours(parts[0],parts[1],parts[2],0);
 
 
-		if(date1 == "" || date2 == "" || date3 == "")
-			return "";
 
-		if(t2.getTime() < t1.getTime() && t1.getTime() < t3.getTime())
-			return "wi-owm-day-"+$scope.fhem.weather.id;
-		else
-			return "wi-owm-night-"+$scope.fhem.weather.id;
+		if(WEATHER_CONFIG.OPENWEATHERMAP_ACTIVE && WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("id") > -1) {
+			if(date1 == "" || date2 == "" || date3 == "")
+				return "wi-owm-day-"+$scope.fhem.weather.id;
+
+			if(t2.getTime() < t1.getTime() && t1.getTime() < t3.getTime())
+				return "wi-owm-day-"+$scope.fhem.weather.id;
+			else
+				return "wi-owm-night-"+$scope.fhem.weather.id;
+		} else if(WEATHER_CONFIG.WUNDERGROUND_ACTIVE && WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("id") > -1) {
+				return "wi-wu-"+$scope.fhem.weather.id;
+		}else{
+			return $scope.fhem.weather.id
+		}
+
+
 
 		
 	}
@@ -107,26 +118,26 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
 			var netatmoRain = netatmoResult.modules[1];
 			var netatmoWind = netatmoResult.modules[2];
 
-			$scope.fhem.weather.date = data.data.time_server;
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("date") > -1 ? $scope.fhem.weather.date = data.data.time_server : '';
 			/*Outside*/
-			$scope.fhem.weather.temperature =  netatmoOutside.dashboard_data.Temperature;
-			$scope.fhem.weather.temperatur_max = netatmoOutside.dashboard_data.max_temp;
-			$scope.fhem.weather.temperatur_min = netatmoOutside.dashboard_data.min_temp;
-			$scope.fhem.weather.date_temperatur_max = netatmoOutside.dashboard_data.date_max_temp;
-			$scope.fhem.weather.date_temperatur_min = netatmoOutside.dashboard_data.date_min_temp;
-			$scope.fhem.weather.temperatur_trend = netatmoOutside.dashboard_data.temp_trend;
-			$scope.fhem.weather.humidity = netatmoOutside.dashboard_data.Humidity;		
-			$scope.fhem.weather.pressure = netatmoBase.dashboard_data.Pressure;		
-			$scope.fhem.weather.pressure_trend = netatmoBase.dashboard_data.pressure_trend;		
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("temperature") > -1 ? $scope.fhem.weather.temperature =  netatmoOutside.dashboard_data.Temperature : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("temperatur_max") > -1 ? $scope.fhem.weather.temperatur_max = netatmoOutside.dashboard_data.max_temp : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("temperatur_min") > -1 ? $scope.fhem.weather.temperatur_min = netatmoOutside.dashboard_data.min_temp : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("date_temperatur_max") > -1 ? $scope.fhem.weather.date_temperatur_max = netatmoOutside.dashboard_data.date_max_temp : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("date_temperatur_min") > -1 ? $scope.fhem.weather.date_temperatur_min = netatmoOutside.dashboard_data.date_min_temp : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("temperatur_trend") > -1 ? $scope.fhem.weather.temperatur_trend = netatmoOutside.dashboard_data.temp_trend : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("humidity") > -1 ? $scope.fhem.weather.humidity = netatmoOutside.dashboard_data.Humidity : '';		
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("pressure") > -1 ? $scope.fhem.weather.pressure = netatmoBase.dashboard_data.Pressure : '';		
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("pressure_trend") > -1 ? $scope.fhem.weather.pressure_trend = netatmoBase.dashboard_data.pressure_trend : '';		
 			/*Rain*/
-			$scope.fhem.weather.rain = netatmoRain.dashboard_data.Rain;
-			$scope.fhem.weather.rain_1h = netatmoRain.dashboard_data.sum_rain_1;
-			$scope.fhem.weather.rain_24h = netatmoRain.dashboard_data.sum_rain_24;
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("rain") > -1 ? $scope.fhem.weather.rain = netatmoRain.dashboard_data.Rain : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("rain_1h") > -1 ? $scope.fhem.weather.rain_1h = netatmoRain.dashboard_data.sum_rain_1 : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("rain_24h") > -1 ? $scope.fhem.weather.rain_24h = netatmoRain.dashboard_data.sum_rain_24 : '';
 			/*Wind*/    		       		
-			$scope.fhem.weather.gust_angle = netatmoWind.dashboard_data.GustAngle;
-			$scope.fhem.weather.gust_strength = netatmoWind.dashboard_data.GustStrength;
-			$scope.fhem.weather.wind_angle = netatmoWind.dashboard_data.WindAngle;
-			$scope.fhem.weather.wind_strength = netatmoWind.dashboard_data.WindStrength;
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("gust_angle") > -1 ? $scope.fhem.weather.gust_angle = netatmoWind.dashboard_data.GustAngle : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("gust_strength") > -1 ? $scope.fhem.weather.gust_strength = netatmoWind.dashboard_data.GustStrength : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("wind_angle") > -1 ? $scope.fhem.weather.wind_angle = netatmoWind.dashboard_data.WindAngle : '';
+			WEATHER_CONFIG.NETATMO_FIELDS.indexOf("wind_strength") > -1 ? $scope.fhem.weather.wind_strength = netatmoWind.dashboard_data.WindStrength : '';
 
 		});
 	}                		
@@ -137,28 +148,28 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
         WeatherFactory.getWeatherCurrent('OPENWEATHERMAP')
             .success(function (data) {
                 
-/*NETATMO*/        	$scope.fhem.weather.date = data.dt
-                	$scope.fhem.weather.location = data.name
-                	$scope.fhem.weather.id =  data.weather[0].id
-/*NETATMO*/			$scope.fhem.weather.temperature =  data.main.temp
-/*NETATMO*/			$scope.fhem.weather.temperatur_max =   data.main.temp_max
-/*NETATMO*/			$scope.fhem.weather.temperatur_min = data.main.temp_min
-					$scope.fhem.weather.description =  data.weather[0].description
-					//$scope.fhem.weather.temperature_feelslike = ''
-					//$scope.fhem.weather.uv_index = ''
+	        	WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("date") > -1 ? $scope.fhem.weather.date = data.dt : '';
+            	WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("location") > -1 ? $scope.fhem.weather.location = data.name : '';
+            	WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("id") > -1 ? $scope.fhem.weather.id =  data.weather[0].id : '';
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("temperature") > -1 ? $scope.fhem.weather.temperature =  data.main.temp : '';
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("temperatur_max") > -1 ? $scope.fhem.weather.temperatur_max =   data.main.temp_max : '';
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("temperatur_min") > -1 ? $scope.fhem.weather.temperatur_min = data.main.temp_min : '';
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("description") > -1 ? $scope.fhem.weather.description =  data.weather[0].description : '';
+				
+				if(WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("description") > -1) {
 					if(data.hasOwnProperty('rain') && data.rain.hasOwnProperty('1h'))
-						$scope.fhem.weather.precipitation = data.rain["1h"]
+						$scope.fhem.weather.precipitation = data.rain["1h"];
 					else
-						$scope.fhem.weather.precipitation = 0
+						$scope.fhem.weather.precipitation = 0;
+				}
 
-/*NETATMO*/			$scope.fhem.weather.pressure = data.main.pressure
-/*NETATMO*/			$scope.fhem.weather.humidity = data.main.humidity
-/*NETATMO*/			$scope.fhem.weather.wind_strength = data.wind.speed
-					$scope.fhem.weather.windchill = ''
-					$scope.fhem.weather.dewpoint = ''
-					$scope.fhem.weather.clouds = data.clouds.all
-					$scope.fhem.weather.sunrise = data.sys.sunrise
-					$scope.fhem.weather.sunset =  data.sys.sunset
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("pressure") > -1 ? $scope.fhem.weather.pressure = data.main.pressure : '';
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("humidity") > -1 ? $scope.fhem.weather.humidity = data.main.humidity : '';
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("wind_strength") > -1 ? $scope.fhem.weather.wind_strength = data.wind.speed : '';
+
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("clouds") > -1 ? $scope.fhem.weather.clouds = data.clouds.all : '';
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("sunrise") > -1 ? $scope.fhem.weather.sunrise = data.sys.sunrise : '';
+				WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("sunset") > -1 ? $scope.fhem.weather.sunset =  data.sys.sunset : '';
             })
             .error(function (error) {
                 $scope.status = 'Unable to load current weather data: ' + error.message;
@@ -227,24 +238,19 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
         WeatherFactory.getWeatherCurrent('WUNDERGROUND')
             .success(function (data) {
                 
-                $scope.fhem.weather.date = data.current_observation.local_epoch
-                $scope.fhem.weather.location = data.current_observation.display_location.city
-                //$scope.fhem.weather.id =  data.weather[0].id
-				$scope.fhem.weather.temperature =  data.current_observation.temp_c
-				$scope.fhem.weather.temperatur_max =   data.current_observation.temp_c
-				$scope.fhem.weather.temperatur_min = data.current_observation.temp_c
-				$scope.fhem.weather.description =  data.current_observation.weather
-				$scope.fhem.weather.temperature_feelslike = data.current_observation.feelslike_c
-				$scope.fhem.weather.uv_index = data.current_observation.UV
-				$scope.fhem.weather.precipitation = data.current_observation.precip_today_metric
-				$scope.fhem.weather.pressure = data.current_observation.pressure_mb
-				$scope.fhem.weather.humidity = data.current_observation.relative_humidity
-				$scope.fhem.weather.wind_strength = data.current_observation.wind_gust_kph
-				$scope.fhem.weather.windchill = data.current_observation.windchill_c
-				$scope.fhem.weather.dewpoint = data.current_observation.dewpoint_c
-				$scope.fhem.weather.clouds = data.clouds.all
-				$scope.fhem.weather.sunrise = ''
-				$scope.fhem.weather.sunset =  ''
+                WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("date") > -1 ? $scope.fhem.weather.date = data.current_observation.local_epoch : '';
+                WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("location") > -1 ? $scope.fhem.weather.location = data.current_observation.display_location.city : '';
+                WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("id") > -1 ? $scope.fhem.weather.id =  data.current_observation.icon : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("temperature") > -1 ? $scope.fhem.weather.temperature =  data.current_observation.temp_c : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("description") > -1 ? $scope.fhem.weather.description =  data.current_observation.weather : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("temperature_feelslike") > -1 ? $scope.fhem.weather.temperature_feelslike = data.current_observation.feelslike_c : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("uv_index") > -1 ? $scope.fhem.weather.uv_index = data.current_observation.UV : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("precipitation") > -1 ? $scope.fhem.weather.precipitation = data.current_observation.precip_today_metric : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("pressure") > -1 ? $scope.fhem.weather.pressure = data.current_observation.pressure_mb : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("humidity") > -1 ? $scope.fhem.weather.humidity = data.current_observation.relative_humidity.replace('%','')  : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("wind_strength") > -1 ? $scope.fhem.weather.wind_strength = data.current_observation.wind_gust_kph : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("windchill") > -1 ? $scope.fhem.weather.windchill = data.current_observation.windchill_c : '';
+				WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("dewpoint") > -1 ? $scope.fhem.weather.dewpoint = data.current_observation.dewpoint_c : '';
             })
             .error(function (error) {
                 $scope.status = 'Unable to load current weather data: ' + error.message;
@@ -329,30 +335,41 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
 
 		//init and run OPENWEATHERMAP
 		if(WEATHER_CONFIG.OPENWEATHERMAP_ACTIVE){
-			getWeatherCurrentOpenweathermap();	
-			getWeatherForecastDailyOpenweathermap();
-			getWeatherForecastHourlyOpenweathermap();
+			getWeatherCurrentOpenweathermap();
+
+			if(WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("forecast") > -1){
+				getWeatherForecastDailyOpenweathermap();
+				getWeatherForecastHourlyOpenweathermap();
+			}
 		
 			//refresh interval
 			interval_openweathermap = $interval(function() {        
 				getWeatherCurrentOpenweathermap();	
-				getWeatherForecastDailyOpenweathermap();
-				getWeatherForecastHourlyOpenweathermap();
+				if(WEATHER_CONFIG.OPENWEATHERMAP_FIELDS.indexOf("forecast") > -1){
+					getWeatherForecastDailyOpenweathermap();
+					getWeatherForecastHourlyOpenweathermap();
+				}
 			}, WEATHER_CONFIG.OPENWEATHERMAP_REFRESH_INTERVAL);
 		}
 
 		//init and run WUNDERGROUND
 		if(WEATHER_CONFIG.WUNDERGROUND_ACTIVE){
 			getWeatherCurrentWunderground();	
-			getWeatherForecastDailyWunderground();
-			getWeatherForecastHourlyWunderground();
+
+			if(WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("forecast") > -1){
+				getWeatherForecastDailyWunderground();
+				getWeatherForecastHourlyWunderground();
+			}
 		
 			//refresh interval
 			interval_wunderground = $interval(function() {    			    
 				getWeatherCurrentWunderground();	
-				getWeatherForecastDailyWunderground();
-				getWeatherForecastHourlyWunderground();       
-			}, WEATHER_CONFIG.WUDNERGROUND_REFRESH_INTERVAL);
+
+				if(WEATHER_CONFIG.WUNDERGROUND_FIELDS.indexOf("forecast") > -1){
+					getWeatherForecastDailyWunderground();
+					getWeatherForecastHourlyWunderground();
+				}       
+			}, WEATHER_CONFIG.WUNDERGROUND_REFRESH_INTERVAL);
 		}
 	}
 	

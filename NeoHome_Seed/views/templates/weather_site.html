@@ -12,15 +12,14 @@
 	                			</h1>	                			
 	                		</td>	  
 	                		<td class="valign-bottom">
-	                			<img class="iconWeatherTypMini" src="images/weather_01/detail_temp_max.png"/> 	           		
+	                			<img class="iconWeatherTypMini" ng-if="fhem.weather.temperatur_max" src="images/weather_01/detail_temp_max.png"/> 	           		
 	                		</td>              			                          		
 	                		<td class="valign-bottom">
-	                			<h5 class="font-bold no-margins pull-right" ng-bind-html="fhem.weather.temperatur_max | number:1 | smallDecimal:'&deg;':true">	                		
-	                			
+	                			<h5 class="font-bold no-margins pull-right" ng-if="fhem.weather.temperatur_max" ng-bind-html="fhem.weather.temperatur_max | number:1 | smallDecimal:'&deg;':true">
 	                			</h5>
 	                		</td>
 	                		<td rowspan="2" class="p-l-md">
-	                			<img class="iconWeatherTypMini" ng-show="{{fhem.weather.temperatur_trend}}" ng-src="images/weather_01/trend_{{fhem.weather.temperatur_trend}}.png"/>
+	                			<img class="iconWeatherTypMini" ng-if="fhem.weather.temperatur_trend" ng-src="images/weather_01/trend_{{fhem.weather.temperatur_trend}}.png"/>
 	                		</td>	                		
 	                		
 	                		<td rowspan="2" class="p-l-xl">	                			
@@ -30,10 +29,10 @@
 	                	</tr>
 	                	<tr>
 	                		<td class="valign-top">
-	                			<img class="iconWeatherTypMini" src="images/weather_01/detail_temp_min.png"/> 	           		
+	                			<img class="iconWeatherTypMini" ng-if="fhem.weather.temperatur_min" src="images/weather_01/detail_temp_min.png"/> 	           		
 	                		</td>              			                          			
 	                		<td class="valign-top">
-	                			<h5 class="font-bold no-margins pull-right" ng-bind-html="fhem.weather.temperatur_min | number:1 | smallDecimal:'&deg;':true">
+	                			<h5 class="font-bold no-margins pull-right" ng-if="fhem.weather.temperatur_min" ng-bind-html="fhem.weather.temperatur_min | number:1 | smallDecimal:'&deg;':true">
 	                			</h5>
 	                		</td>
 	                	</tr>		
@@ -43,7 +42,7 @@
             </div>
  			<div class="col-xs-12 row">
 	 			<div class="row">
-		            <div class="col-xs-3">
+		            <div class="col-xs-3" ng-if="fhem.weather.temperatur_max">
 		            	<ul class="weather-list">
 		                	<li><i class="wi wi-thermometer-exterior"></i><p class="inline">{{fhem.weather.temperatur_min | number:0}}&deg;</p></li>
 		                	<li><i class="wi wi-thermometer"></i><p class="inline">{{fhem.weather.temperatur_max | number:0}}&deg;</p></li>		
@@ -52,7 +51,7 @@
 		            <div class="col-xs-3">
 		            	<ul class="weather-list">
 		                	<li><i class="wi wi-strong-wind"></i><p class="inline" ng-bind-html="fhem.weather.wind_strength | number:1 | smallDecimal:' km&frasl;h'"/></li>
-		                	<li><i class="wi wi-humidity"></i><p class="inline" ng-bind-html="fhem.weather.humidity | number:0 | smallDecimal:' &#37;'"/></li>		
+		                	<li ng-if="fhem.weather.humidity"><i class="wi wi-humidity"></i><p class="inline" ng-bind-html="fhem.weather.humidity | number:0 | smallDecimal:' &#37;'"/></li>		
 		              	</ul>
 		            </div>
 		            <div class="col-xs-3">
@@ -62,7 +61,7 @@
 		                	<p class="inline" ng-bind-html="fhem.weather.rain_24h | number:2 | smallDecimal:' l&frasl;m&sup2;'"/></li>
 		              	</ul>
 		            </div>
-		            <div class="col-xs-3">
+		            <div class="col-xs-3" ng-if="fhem.weather.sunrise">
 		            	<ul class="weather-list">
 		                	<li><i class="wi wi-sunrise"></i><p class="inline">{{fhem.weather.sunrise | unixTimestampToUTC | date:'HH:mm'}}</p></li>
 		                	<li><i class="wi wi-sunset"></i><p class="inline">{{fhem.weather.sunset | unixTimestampToUTC | date:'HH:mm'}}</p></li>

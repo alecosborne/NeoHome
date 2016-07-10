@@ -31,12 +31,29 @@ var FHEM_WEB_SOCKET_SECURE = false;
 var FHEM_LOG_DB = "logdb";
 
 /**
+*  Weather
+*
+* Possible fields: 
+*   ['date','location','id','temperature','temperatur_max','temperatur_min','date_temperatur_max',
+*   'date_temperatur_min','temperatur_trend','description','temperature_feelslike','uv_index',
+*   'precipitation','rain','rain_1h','rain_24h','pressure','pressure_trend','humidity',
+*   'wind_angle','wind_strength','gust_angle','gust_strength','windchill','dewpoint','clouds',
+*   'sunrise','sunset','forecast'];
+*/
+
+/**
 *	Weather constants
 *   	OpenWeatherMap API (http://openweathermap.org/)
 *		Calls per day (no more then): 4,000,000
 *		Weather data update: From 10 min to 2 hours
+*
+* Possible fields: 
+*   ['date','location','id','temperature','temperatur_max','temperatur_min',
+*   'description','precipitation','pressure','humidity',
+*   'wind_strength','clouds','sunrise','sunset','forecast'];
 */
 var OPENWEATHERMAP_ACTIVE = true;
+var OPENWEATHERMAP_FIELDS =['date','location','id','temperature','temperatur_max','temperatur_min','description','precipitation','pressure','humidity','wind_strength','clouds','sunrise','sunset','forecast'];
 var OPENWEATHERMAP_APPID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 var OPENWEATHERMAP_API_URL = "http://api.openweathermap.org/data/2.5/";
 var OPENWEATHERMAP_WEATHER_URL = "weather?lat=49.30&lon=8.60&units=metric&lang=en&APPID="; 
@@ -49,8 +66,14 @@ var OPENWEATHERMAP_REFRESH_INTERVAL = 600000;
 *     Wunderground API (http://wunderground.com/)
 *   Calls per day (no more then): ?
 *   Weather data update: ?
+*
+* Possible fields: 
+*   ['date','location','id','temperature','description','temperature_feelslike',
+*   'uv_index','precipitation','pressure','humidity','wind_strength','windchill',
+*   'dewpoint','forecast'];
 */
 var WUNDERGROUND_ACTIVE = false;
+var WUNDERGROUND_FIELDS = ['date','location','id','temperature','description','temperature_feelslike','uv_index','precipitation','pressure','humidity','wind_strength','windchill','dewpoint','forecast'];
 var WUNDERGROUND_API_URL = "http://api.wunderground.com/api/XXXXXXXXXXXXXXXXXXXXXXXXXXXX/";
 var WUNDERGROUND_WEATHER_URL ="conditions/lang:DL/q/pws:IHEIDELB27.json"; 
 var WUNDERGROUND_FORECAST_HOURLY_URL = "hourly/lang:DL/q/pws:IHEIDELB27.json";
@@ -59,11 +82,14 @@ var WUNDERGROUND_REFRESH_INTERVAL = 600000;
 
 /**
 * NETATMO constants
-*     
-*   
-*   
+*  
+* Possible fields:   
+*  ['date','temperature','temperatur_max','temperatur_min','date_temperatur_max',
+*   'date_temperatur_min','temperatur_trend','rain','rain_1h','rain_24h','pressure',
+*   'pressure_trend','humidity','wind_angle','wind_strength','gust_angle','gust_strength']
 */
 var NETATMO_ACTIVE = false;
+var NETATMO_FIELDS =['date','temperature','temperatur_max','temperatur_min','date_temperatur_max','date_temperatur_min','temperatur_trend','rain','rain_1h','rain_24h','pressure','pressure_trend','humidity','wind_angle','wind_strength','gust_angle','gust_strength'];
 var NETATMO_CLIENT_ID = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 var NETATMO_CLIENT_SECRET = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 var NETATMO_USERNAME = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX";
