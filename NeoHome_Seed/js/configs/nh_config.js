@@ -116,7 +116,8 @@ var DEVICES = [
     { id: '3', name: 'FF_che_TH_heater_Clima'},
 	{ id: '4', name: 'GF_lr_BA_shutter1'},
 	{ id: '5', name: 'PL_ga_PM_mower_Pwr'},
-	{ id: '6', name: 'dum_PL_ga_PM_mower_State'}
+	{ id: '6', name: 'dum_PL_ga_PM_mower_State'},
+	{ id: '7', name: 'Sonos_Allgemein'}
 ];
 
 var config_data = {
