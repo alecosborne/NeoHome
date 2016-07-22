@@ -556,7 +556,8 @@ angular.module('shared').controller('StatisticCtrl',['$scope','FhemWebSocketFact
 	$scope.closeDialog = function () {
    		$uibModalInstance.close();
   	};
-       
+      
+    /*   
 	$scope.openStatisticDialog = function (size) {
 		$scope.getControlData();
 		
@@ -566,6 +567,7 @@ angular.module('shared').controller('StatisticCtrl',['$scope','FhemWebSocketFact
 						scope: $scope    						
 			});                                                               
 		};*/
+		/*
 		var modalInstance = $uibModal.open({
             templateUrl: './views/templates/statistic_dialog.html',
             size: size,
@@ -573,7 +575,7 @@ angular.module('shared').controller('StatisticCtrl',['$scope','FhemWebSocketFact
             windowClass: "animated flipInY"
         });
 
-	};
+	};*/
 
 	$scope.getControlData();
 	
@@ -1034,5 +1036,3 @@ angular.module('shared').controller('PresenceCtrl',['$scope','FhemWebSocketFacto
 
 	
 }]);
-
-

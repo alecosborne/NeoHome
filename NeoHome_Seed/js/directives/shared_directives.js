@@ -65,7 +65,7 @@ angular.module('shared').directive("nhStateElement", function($compile, $http, $
 
 			'switchColor' : '@',			
 
-			
+			'weekDayTimer' : '@',
 
 			//2nd element
 			'onState1' : '@',
@@ -563,34 +563,6 @@ angular.module('shared').directive('nhStatistic', function(){
     }
 });
 
-/**
-*	Host and open a schedule element.
-*
-*	fhemDevicesTexts: List of the texts separated by ','. 
-*/
-angular.module('shared').directive('nhSchedule', function(){
-	return {            
-            restrict: 'A',
-            scope: {                
-                'fhemDevices': '@',
-                'fhemDevicesTexts': '@',
-                'fhemDeviceReadingsTexts': '@',
-                'text' : '@',
-                'chartType' : '@',
-                'chartInterpolateType' : '@',
-                'chartAsArea': '@',
-                'chartHeight' : '@'
-                
-            },
-            controller: 'ScheduleCtrl',
-        	link: function (scope, element, attrs){
-        		scope.subscribeDevice(attrs.fhemDevices);	
-        		element.on('click', function () {				
-					scope.openScheduleDialog('GA.RasenmaeherState');
-				});
-        }
-    }
-});
 
 /**
 *	Host a scene element with different templates.

@@ -146,12 +146,42 @@ angular.module('sonos').controller('SonosCtrl',['$rootScope', '$scope' ,'$timeou
 	* Refresh the model parameters.
 	*/
 	function setTempSonosParameters() {
-		if (typeof $scope.fhem.Readings.Volume != 'undefined')
-			$scope.sonos_volume=$scope.fhem.Readings.Volume.Value;
-		if (typeof $scope.fhem.Readings.Bass != 'undefined')	
-			$scope.sonos_bass=$scope.fhem.Readings.Bass.Value;
-		if (typeof $scope.fhem.Readings.Treble != 'undefined')
-			$scope.sonos_treble=$scope.fhem.Readings.Treble.Value;
+		if (typeof $scope.fhem.Readings.Volume != 'undefined'){
+			if (typeof $scope.fhem.Readings.LastActionResult != 'undefined' && $scope.fhem.Readings.LastActionResult.Value.startsWith('SetVolume')){
+				var tmpVolume = $scope.fhem.Readings.LastActionResult.Value.split(" ")[1];
+				
+				if($scope.fhem.Readings.Volume.Value != tmpVolume)
+					$scope.sonos_volume = tmpVolume;
+				else
+					$scope.sonos_volume=$scope.fhem.Readings.Volume.Value;
+			}
+			else
+				$scope.sonos_volume=$scope.fhem.Readings.Volume.Value;
+		}
+		if (typeof $scope.fhem.Readings.Bass != 'undefined'){
+			if (typeof $scope.fhem.Readings.LastActionResult != 'undefined' && $scope.fhem.Readings.LastActionResult.Value.startsWith('SetBass')){
+				var tmpBass = $scope.fhem.Readings.LastActionResult.Value.split(" ")[1];
+				
+				if($scope.fhem.Readings.Bass.Value != tmpBass)
+					$scope.sonos_bass = tmpBass;
+				else
+					$scope.sonos_bass=$scope.fhem.Readings.Bass.Value;
+			}
+			else
+				$scope.sonos_bass=$scope.fhem.Readings.Bass.Value;
+		}
+		if (typeof $scope.fhem.Readings.Treble != 'undefined'){
+			if (typeof $scope.fhem.Readings.LastActionResult != 'undefined' && $scope.fhem.Readings.LastActionResult.Value.startsWith('SetTreble')){
+				var tmpTreble = $scope.fhem.Readings.LastActionResult.Value.split(" ")[1];
+				
+				if($scope.fhem.Readings.Treble.Value != tmpTreble)
+					$scope.sonos_treble = tmpTreble;
+				else	
+					$scope.sonos_treble=$scope.fhem.Readings.Treble.Value;
+			}
+			else	
+				$scope.sonos_treble=$scope.fhem.Readings.Treble.Value;
+		}
 	}
 	
 	

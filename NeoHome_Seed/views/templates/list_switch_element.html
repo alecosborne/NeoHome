@@ -20,5 +20,13 @@
         <p class="m-b-xs" translate={{fhem[0].Readings.state.Value}}></p> 
         <br/>
        <small class="text-muted">{{fhem[0].Readings.state.Time}}</small> 
+       <a href="" ng-if="weekDayTimer" 
+            nh-week-day-timer
+            data-fhem-name ="{{fhemNames}}" 
+            data-fhem-week-day-timer-device="{{weekDayTimer}}"
+            data-description = "{{'SCHEDULE.DESCRIPTION_PRINTER'|translate}}"
+            data-commandos = "{{onState}},{{offState}}"                                      
+            ><span class="pull-right fa fa-cogs"></span>
+        </a>
     </div>                              
 </li>

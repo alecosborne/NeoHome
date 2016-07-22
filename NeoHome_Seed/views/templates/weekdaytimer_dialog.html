@@ -1,0 +1,63 @@
+
+<div class="inmodal">
+    <div class="modal-header">
+    	<button type="button" class="close" ng-click="closeDialog()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <i class="fa fa-clock-o modal-icon"></i>
+        <h4 class="modal-title">{{items.text}} {{'DIALOG_TITLE.SCHEDULE'|translate}}</h4>
+        <small class="font-bold">{{items.description}}</small>
+    </div>
+    
+    <div class="modal-body">
+   		<div ng-repeat="item in weekDayTimerArray" class="">
+    		<div ng-repeat="(day, state) in item.days" class="p-r-xl col-xs-1">  
+                    <button class="btn btn-circle btn-lg" ng-class="{false:'btn-default',true:'btn-primary'}[state]" type="button" ng-click="setMode($parent.$index, day)">{{day|translate}}
+                        
+                    </button>
+            </div>
+            <div class="vote-actions pull-right col-xs-1">
+                <a ng-click="swapArrayItems($index, $index-1)" ng-class="{true:'not-active',false:''}[$first]">
+                    <i class="fa fa-chevron-up"> </i>
+                </a>
+               
+                	<a ng-click="deleteItem($index)">
+                	    <i class="fa fa-times p-l-xxs"> </i>
+                	</a>
+                
+                <a ng-click="swapArrayItems($index, $index+1)" ng-class="{true:'not-active',false:''}[$last]">
+                    <i class="fa fa-chevron-down"> </i>
+                </a>
+            </div>
+
+			<div class="schedule-time-block">
+				<div class="input-group col-xs-7 p-l p-t-sm p-b-md" clock-picker data-autoclose="true">
+					<input type="text" class="form-control" value="{{item.time}}" ng-model="item.time" >
+					<span class="input-group-addon">
+						<span class="fa fa-clock-o"></span>
+					</span>
+					<span class="input-group-btn">
+						
+					<button ng-repeat="commanditem in items.commandos" class="btn btn-default" 
+					ng-model="item.state" uib-btn-radio="commanditem" uncheckable type="button">{{commanditem}}</button>					
+					</span>
+				</div>
+			</div>
+
+
+            
+
+             
+   
+        </div>
+    </div>
+		
+    <div class="modal-footer">
+    	<div class="pull-left">
+    		<switch id="enabled" name="enabled" on="{{'on'|translate}}" off="{{'off'|translate}}" ng-model="weekDayTimerState" class="wide pull-right"></switch> 
+    	</div>
+
+   		<button type="button" class="btn btn-success" ng-click="getData()"><span class="fa fa-refresh" aria-hidden="true"></button>	
+    	<button type="button" class="btn btn-success" ng-click="addItem()"><span class="fa fa-plus" aria-hidden="true"></button>
+    	<button type="button" class="btn btn-success" ng-click="save()">{{'DIALOG_BUTTON.SAVE'|translate}}</button>
+        <button type="button" class="btn btn-success" ng-click="closeDialog()">{{'DIALOG_BUTTON.CLOSE'|translate}}</button>
+    </div>
+</div>
