@@ -13,12 +13,12 @@
 
         <p class="m-b-xs" translate={{fhem.Readings.infoSummarize1.Value}}></p>
 		
-		<slick ng-if="favourites" init-onload="true" data="favourites" class="slick_weather" infinite="true" slides-to-show="1" slides-to-scroll="1" center-mode="false"
-	            responsive="[ { breakpoint: 1024, settings: { slidesToShow: 1, slidesToScroll: 1, infinite: true, dots: true } }, { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }, { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } } ]">
+		<slick ng-if="favourites" init-onload="true" data="favourites" class="slick_weather" infinite="true" slides-to-show="2" slides-to-scroll="2" center-mode="true"
+	            responsive="[ { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true, dots: true } }, { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }, { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } } ]">
 	                
 	                <div ng-repeat="item in favourites | limitTo:10" ng-click="startFavourite(item)">
 	                    <div class="ibox-content blue-bg text-center">					                    
-	                        <h2>{{item}}</h2>
+	                        <span>{{item}}</span>
 	                        
 		              						                        	
 	                    </div>
