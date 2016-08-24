@@ -279,6 +279,13 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
                     return $ocLazyLoad.load([
+						{
+                            files: ['css/plugins/slick/slick.css','css/plugins/slick/slick-theme.css','js/plugins/slick/slick.min.js']
+                        },
+                        {
+                            name: 'slick',
+                            files: ['js/plugins/slick/angular-slick.min.js']
+                        },
                         {
                             name: 'ui.knob',
                             files: ['js/plugins/RadMie-ng-knob/dist/ng-knob.min.js','js/plugins/d3/d3.min.js']
