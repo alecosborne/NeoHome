@@ -258,6 +258,12 @@ angular.module('energy').controller('EnergyCtrl',['$rootScope','$scope','FhemWeb
 						        	return d;
 						        }
 	            },
+	            "tooltip": {
+		    		valueFormatter: function(d){
+                        return d3.format(',.2f')(d) + ' kWh';
+                    }
+  					//contentGenerator: function(d) { return JSON.stringify(d); }
+				},	
 
 		    	"xAxis": {
 		        "showMaxMin": false,

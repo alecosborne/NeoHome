@@ -513,15 +513,19 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
 		    "clipEdge": true,
 		    "transitionDuration": 500,
 		    "useInteractiveGuideline": true,
-		    "reduceXTicks": true,		    		    
+		    "reduceXTicks": true,	
+		    "tooltip": {
+		    	headerFormatter: function(d) { return d3.time.format('%A')(new Date(d*1000)) },
+  				//contentGenerator: function(d) { return JSON.stringify(d); }
+			},
 		    "xAxis": {	
 		      //"ticks": 15,
 		      "tickValues": $scope.statisticsDataForecastDaily[0].values.map( function(d){return d.x;} ),		      
 		      "showMaxMin": false,
-		      "rotateLabels": 50,
+		      //"rotateLabels": 50,
 		      	tickFormat: function(d) {
 		                	    /*return d3.time.format(formatXAxis)(new Date(d))*/
-		                	    return d3.time.format('%A')(new Date(d*1000))
+		                	    return d3.time.format('%a')(new Date(d*1000))
 		        		    }
 		    }		       
 		  }
@@ -561,7 +565,11 @@ angular.module('weather').controller('WeatherCtrl',['$scope','$interval','Weathe
 		    "clipEdge": true,
 		    "transitionDuration": 500,
 		    "useInteractiveGuideline": true,
-		    "reduceXTicks": true,		    		    
+		    "reduceXTicks": true,	
+		    "tooltip": {
+		    	headerFormatter: function(d) { return d3.time.format('%A %H:%M')(new Date(d*1000)) },
+  				//contentGenerator: function(d) { return JSON.stringify(d); }
+			},	    		    
 		    "xAxis": {	
 		      "ticks": 15,
 		      //"tickValues": $scope.statisticsData[0].values.map( function(d){return d.x;} ),		      
