@@ -15,11 +15,14 @@
                     <nh-state-element     
 			            data-template="list_switch"
 
-			            data-fhem-names="FHEM_DEMO_SWITCH_1"
+			            data-fhem-names="BF_ce_SA_printer"
 			            data-text="{{'ELEMENTTEXT.DEMO_SWTICH' | translate}}"
 
 			            data-on-state = "on"             
-			            data-off-state = "off"               
+			            data-off-state = "off" 
+
+						data-week-day-timer="wt_BF_ce_SA_printer"
+                        data-week-day-timer-commands="on off"
 
 			            data-bg-color="white-bg"  
 			            data-bg-color-on="red-bg"
@@ -33,7 +36,7 @@
 					<nh-state-element     
                         data-template="list"
 
-                        data-fhem-names="FHEM_DEMO_STATE" 
+                        data-fhem-names="BF_ce_SA_printer" 
                         data-text="{{'ELEMENTTEXT.DEMO_STATE'| translate}}"
 
                         data-state-only = "true"
@@ -70,7 +73,7 @@
                     <nh-state-element     
                         data-template="list"
 
-                        data-fhem-names="FHEM_DEMO_STATE" 
+                        data-fhem-names="BF_ce_SA_printer" 
                         data-text="{{'ELEMENTTEXT.DEMO_STATE'| translate}}"
 
                         data-state-only = "true"

@@ -27,7 +27,7 @@
 
     var app = angular.module('calendar',['nh.config']);
 	//var app = angular.module('shared',['ngDialog','nh.config','uiSwitch']);
-    var app = angular.module('shared',['ngDialog','nh.config']);   
+    var app = angular.module('shared',['weekdaytimer','nh.config']);   
 
     //var app = angular.module('shared',['nh.config']); 
 	var app = angular.module('window',[]);
@@ -38,6 +38,7 @@
     var app = angular.module('energy',['nh.config']);
     var app = angular.module('nh.config', []);    
     var app = angular.module('fhem_filters',[]);
+	var app = angular.module('weekdaytimer',[]);
 })();
 
 

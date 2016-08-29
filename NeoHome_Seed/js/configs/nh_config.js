@@ -110,14 +110,15 @@ var GOOGLE_CALENDAR_GARBAGE_CAN_REFRESH_INTERVAL = 600000;
 * Devicelist
 */
 var DEVICES = [
-    { id: '0', name: 'FHEM_DEMO_SWITCH_1'},
-    { id: '1', name: 'FHEM_DEMO_STATE'},
-    { id: '2', name: 'FF_che_TH_heater'},
-    { id: '3', name: 'FF_che_TH_heater_Clima'},
-	{ id: '4', name: 'GF_lr_BA_shutter1'},
-	{ id: '5', name: 'PL_ga_PM_mower_Pwr'},
-	{ id: '6', name: 'dum_PL_ga_PM_mower_State'},
-	{ id: '7', name: 'Sonos_Allgemein'}
+    { id: '0', name: 'BF_ce_SA_printer'},
+	{ id: '1', name: 'wt_BF_ce_SA_printer'},
+    { id: '2', name: 'FHEM_DEMO_STATE'},
+    { id: '3', name: 'FF_che_TH_heater'},
+    { id: '4', name: 'FF_che_TH_heater_Clima'},
+	{ id: '5', name: 'GF_lr_BA_shutter1'},
+	{ id: '6', name: 'PL_ga_PM_mower_Pwr'},
+	{ id: '7', name: 'dum_PL_ga_PM_mower_State'},
+	{ id: '8', name: 'Sonos_Allgemein'}
 ];
 
 var config_data = {
@@ -226,6 +227,10 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
                         {
                            name: 'uiSwitch',
                            files: ['css/plugins/angular-ui-switch/angular-ui-switch.min.css','js/plugins/angular-ui-switch/angular-ui-switch.min.js']
+                        },
+						,
+                        {
+                            files: ['css/plugins/clockpicker/clockpicker.css', 'js/plugins/clockpicker/clockpicker.js']
                         }
                     ]);
                 }
