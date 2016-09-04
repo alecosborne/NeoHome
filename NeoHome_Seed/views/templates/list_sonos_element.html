@@ -2,29 +2,64 @@
     TYPE:           nhSonosElement
     TEMPLATENAME:   list
 -->
-<li class="list-group-item {{bgColor}}" ng-click="onClick()">
-    
-     <a href="" class="pull-left">                                     
+<li class="list-group-item {{bgColor}}">
+	<a href="" class="pull-left">                                     
         <img ng-src="{{fhem.Readings.currentAlbumArtURL.Value}}"/>     
     </a>
 
     <div class="media-body ">        
         <strong>{{text}}</strong>
-
-        <p class="m-b-xs" translate={{fhem.Readings.infoSummarize1.Value}}></p>
-		
+		<p class="m-b-xs" translate={{fhem.Readings.infoSummarize1.Value}}></p>
+	
+</li>
+<li class="list-group-item {{bgColor}}" ng-if="favourites">
+	<div class="media-body ">
 		<slick ng-if="favourites" init-onload="true" data="favourites" class="slick_weather" infinite="true" slides-to-show="2" slides-to-scroll="2" center-mode="true"
-	            responsive="[ { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true, dots: true } }, { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }, { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } } ]">
-	                
-	                <div ng-repeat="item in favourites | limitTo:10" ng-click="startFavourite(item)">
-	                    <div class="ibox-content blue-bg text-center">					                    
-	                        <span>{{item}}</span>
-	                        
-		              						                        	
-	                    </div>
-	                </div>					                
-	            </slick>
-        
+			responsive="[ { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true, dots: true } }, { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }, { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } } ]">
+			
+			<div ng-repeat="item in favourites | limitTo:10" ng-click="startFavourite(item)">
+				<div class="ibox-content blue-bg text-center">					                    
+					<span>{{item}}</span>
+					
+																
+				</div>
+			</div>					                
+		</slick>
+	</div>    
+</li>
+<li class="list-group-item {{bgColor}}" ng-if="playlists">
+	<div class="media-body ">
+		<slick ng-if="playlists" init-onload="true" data="playlists" class="slick_weather" infinite="true" slides-to-show="2" slides-to-scroll="2" center-mode="true"
+			responsive="[ { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true, dots: true } }, { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }, { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } } ]">
+			
+			<div ng-repeat="item in playlists | limitTo:10" ng-click="startPlaylist(item)">
+				<div class="ibox-content blue-bg text-center">					                    
+					<span>{{item}}</span>
+					
+																
+				</div>
+			</div>					                
+		</slick>
+	</div>
+</li>
+<li class="list-group-item {{bgColor}}" ng-if="radios">
+	<div class="media-body ">  
+		<slick ng-if="radios" init-onload="true" data="radios" class="slick_weather" infinite="true" slides-to-show="2" slides-to-scroll="2" center-mode="true"
+			responsive="[ { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 2, infinite: true, dots: true } }, { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }, { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } } ]">
+			
+			<div ng-repeat="item in radios | limitTo:10" ng-click="startRadio(item)">
+				<div class="ibox-content blue-bg text-center">					                    
+					<span>{{item}}</span>
+					
+																
+				</div>
+			</div>					                
+		</slick>
+	</div>
+</li>
+<li class="list-group-item {{bgColor}}" ng-click="onClick()">
+    
+    <div class="media-body ">        
 		<div class="row">
 			<div class="m-r-md text-center">     
 				<ui-knob class="sonos-knob" value="sonos_volume" options="knobstyle" ng-model="sonos_volume"></ui-knob>

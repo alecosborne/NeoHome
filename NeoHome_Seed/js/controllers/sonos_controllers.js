@@ -112,6 +112,8 @@ angular.module('sonos').controller('SonosCtrl',['$rootScope', '$scope' ,'$timeou
 
 			setTempSonosParameters();
 			refreshFavourites();
+			refreshPlaylists();
+			refreshRadios();
 		}
 	}
 
@@ -152,12 +154,50 @@ angular.module('sonos').controller('SonosCtrl',['$rootScope', '$scope' ,'$timeou
 	}
 	
 	/**
-	* Load a new favourites
+	* Refresh the playlists
+	*/
+	function refreshPlaylists() {
+		var name = $scope.fhem.Name;
+		var cmd = "get " + name + " Playlists ";
+		FhemWebSocketFactory.sendFhemCommand(cmd);
+	}
+	
+	/**
+	* Refresh the radios
+	*/
+	function refreshRadios() {
+		var name = $scope.fhem.Name;
+		var cmd = "get " + name + " Radios ";
+		FhemWebSocketFactory.sendFhemCommand(cmd);
+	}
+	
+	/**
+	* Load/Start a new favourites
 	*/
 	$scope.startFavourite = function(favourite){
 		var name = $scope.fhem.Name;
 		favourite=favourite.replace(/ /g, '%20')
 		var cmd = "set " + name + " StartFavourite " + favourite ;
+		FhemWebSocketFactory.sendFhemCommand(cmd);
+	}
+	
+	/**
+	* Load/Start a new radio
+	*/
+	$scope.startRadio  = function(radio){
+		var name = $scope.fhem.Name;
+		radio=radio.replace(/ /g, '%20')
+		var cmd = "set " + name + " StartRadio " + radio ;
+		FhemWebSocketFactory.sendFhemCommand(cmd);
+	}
+	
+	/**
+	* Load/Start a new playlist
+	*/
+	$scope.startPlaylist  = function(playlist){
+		var name = $scope.fhem.Name;
+		playlist=playlist.replace(/ /g, '%20')
+		var cmd = "set " + name + " StartPlaylist " + playlist ;
 		FhemWebSocketFactory.sendFhemCommand(cmd);
 	}
 
@@ -171,6 +211,17 @@ angular.module('sonos').controller('SonosCtrl',['$rootScope', '$scope' ,'$timeou
 			$scope.favourites = $scope.fhem.Readings.LastActionResult.Value.substring(15).replace(/\"/g,'').split(',');
 		}
 		//
+		//Check Playlists 
+		if (typeof $scope.fhem.Readings.LastActionResult != 'undefined' && $scope.fhem.Readings.LastActionResult.Value.startsWith('GetPlaylists')){
+			$scope.playlists = $scope.fhem.Readings.LastActionResult.Value.substring(15).replace(/\"/g,'').split(',');
+		}
+		//
+		//Check Radios 
+		if (typeof $scope.fhem.Readings.LastActionResult != 'undefined' && $scope.fhem.Readings.LastActionResult.Value.startsWith('GetRadios')){
+			$scope.radios = $scope.fhem.Readings.LastActionResult.Value.substring(15).replace(/\"/g,'').split(',');
+		}
+		//
+		
 			
 		if (typeof $scope.fhem.Readings.Volume != 'undefined'){
 			if (typeof $scope.fhem.Readings.LastActionResult != 'undefined' && $scope.fhem.Readings.LastActionResult.Value.startsWith('SetVolume')){
